@@ -1,0 +1,43 @@
+{
+  "carrier": "USPS",
+  "service": "Ground Advantage",
+  "zone_assumption": "Zone 5 (PLACEHOLDER)",
+  "dim_divisor": 166,
+  "dim_applies_above_cubic_in": 1728,
+  "rates": [
+    {
+      "max_lb": 1,
+      "price_usd": 5.5
+    },
+    {
+      "max_lb": 2,
+      "price_usd": 6.5
+    },
+    {
+      "max_lb": 3,
+      "price_usd": 7.5
+    },
+    {
+      "max_lb": 5,
+      "price_usd": 9
+    },
+    {
+      "max_lb": 10,
+      "price_usd": 13
+    },
+    {
+      "max_lb": 20,
+      "price_usd": 20
+    },
+    {
+      "max_lb": 40,
+      "price_usd": 32
+    },
+    {
+      "max_lb": 70,
+      "price_usd": 48
+    }
+  ],
+  "source_url": "",
+  "last_checked": "2026-11-16"
+}

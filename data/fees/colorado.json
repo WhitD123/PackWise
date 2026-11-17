@@ -1,0 +1,43 @@
+{
+  "state": "CO",
+  "program_year": 2026,
+  "status": "final",
+  "unit": "usd_per_lb",
+  "rates": {
+    "corrugated": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Corrugated cardboard"
+    },
+    "glass": {
+      "rate_usd_per_lb": 0.04,
+      "official_category": "Glass bottles and jars"
+    },
+    "pe-film": {
+      "rate_usd_per_lb": 0.48,
+      "official_category": "HDPE/LDPE flexible film"
+    },
+    "pp-film": {
+      "rate_usd_per_lb": 0.64,
+      "official_category": "PP flexible film"
+    },
+    "plastic-laminate": {
+      "rate_usd_per_lb": 0.74,
+      "official_category": "Plastic laminates, other flexible"
+    },
+    "eps-foam": {
+      "rate_usd_per_lb": 1.72,
+      "official_category": "PS foam"
+    },
+    "aluminum": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "Aluminum containers"
+    },
+    "steel": {
+      "rate_usd_per_lb": 0.07,
+      "official_category": "Steel containers"
+    }
+  },
+  "source_url": "https://www.strategicpackaginginsights.com/insights/oregon-colorado-epr-fee-schedules-line-by-line/",
+  "last_checked": "2026-11-16",
+  "notes": "Secondary source, not checked against the CAA schedule. kraft-paper, paperboard, molded-pulp and paper-plastic-mix not yet mapped."
+}

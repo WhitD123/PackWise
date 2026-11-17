@@ -1,0 +1,24 @@
+/* Every color, font and spacing value. Starting point from the brief, section 12.
+   Tyler owns this file: change values here and every screen follows. */
+
+:root {
+  /* Palette */
+  --forest: #1f3a2b;
+  --moss: #4a6b3f;
+  --bark: #5c4033;
+  --kraft: #c8a97e;
+  --paper: #f4efe6;
+  --ink: #1c1a17;
+  --ochre: #b8862b;
+  --brick: #9c4a3a;
+
+  /* Derived surfaces */
+  --surface: #fbf8f2;
+  --line: #d9cfbf;
+  --muted: #6b6257;
+
+  /* Radius and rules */
+  --radius: 4px;
+  --rule-thin: 1px;
+  --rule-thick: 6px;
+}

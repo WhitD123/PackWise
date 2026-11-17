@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* Expose tokens to Tailwind: bg-forest, text-ink, border-line, font-serif... */
+@theme inline {
+  --color-forest: var(--forest);
+  --color-moss: var(--moss);
+  --color-bark: var(--bark);
+  --color-kraft: var(--kraft);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ochre: var(--ochre);
+  --color-brick: var(--brick);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --radius-sm: var(--radius);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading), Georgia, serif;
+}
