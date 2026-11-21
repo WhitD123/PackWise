@@ -12,6 +12,7 @@ import { dimsOf, fittedInsertFits, resolveSetup, setupKey, type CatalogIndex } f
 import { checkState } from "../coverage/checkCoverage.ts";
 import { estimateFees } from "../coverage/estimateFees.ts";
 import { GRAMS_PER_LB, shippingQuote } from "../rightsizing/dimWeight.ts";
+import { averagePrice } from "../shipping/price.ts";
 import { CLEARANCE_IN, fitMailer, packIntoBox, volume, WALL_IN, WRAP_THICKNESS_IN } from "../rightsizing/packItems.ts";
 import { rateProtection } from "../scoring/protection.ts";
 import type {
@@ -122,7 +123,12 @@ export function evaluateSetup(
     if (!packed) return null;
     placements = packed;
     voidVolume_in3 = Math.max(0, volume(outerDims) - blocks.reduce((s, d) => s + volume(d), 0));
-    shippedDims = grow(outerDims, 2 * WALL_IN);
+    // Outside size: the supplier's, if listed (the fitted jar boxes), else inside + the wall thickness.
+    const o = parts.outer;
+    shippedDims =
+      o.outside_length_in !== undefined && o.outside_width_in !== undefined && o.outside_height_in !== undefined
+        ? { length: o.outside_length_in, width: o.outside_width_in, height: o.outside_height_in }
+        : grow(outerDims, 2 * WALL_IN);
   } else {
     const fit = fitMailer(
       blocks,
@@ -195,8 +201,33 @@ export function evaluateSetup(
 
   const packagingWeight_g = usage.reduce((s, u) => s + u.weight_g, 0);
   const packagingCost_usd = usage.reduce((s, u) => s + u.price_usd, 0);
-  const quote = shippingQuote(shippedDims, itemsWeight_g + packagingWeight_g, ctx.shipping);
-  if (!quote) return null;
+  const shippedWeight_g = itemsWeight_g + packagingWeight_g;
+  let shipping: { price_usd: number; billable_lb: number };
+  let shippingMethod: EvaluatedSetup["shippingMethod"];
+  let zoneLabel: EvaluatedSetup["zoneLabel"];
+  if (ctx.shipping.weight_rates_by_zone) {
+    // Real USPS tables: prices by zone, Cubic, ounce tiers (src/lib/shipping/price.ts).
+    const zoneShare = ctx.zoneShare ?? { "5": 1 };
+    zoneLabel = ctx.zoneShare ? "exact" : "assumed";
+    const avg = averagePrice(
+      {
+        dims: shippedDims,
+        weight_lb: shippedWeight_g / GRAMS_PER_LB,
+        softPack:
+          parts.outer.type === "mailer" ? { length_in: outerDims.length, width_in: outerDims.width } : undefined,
+      },
+      zoneShare,
+      ctx.shipping,
+    );
+    if (!avg) return null;
+    shipping = avg;
+    shippingMethod = avg.method;
+  } else {
+    // Single-zone table: kept for the small hand-worked test catalog.
+    const quote = shippingQuote(shippedDims, shippedWeight_g, ctx.shipping);
+    if (!quote) return null;
+    shipping = quote;
+  }
 
   return {
     key: setupKey(setup),
@@ -206,14 +237,16 @@ export function evaluateSetup(
     packagingWeight_g,
     plasticWeight_g,
     packagingCost_usd,
-    shippingCost_usd: quote.price_usd,
-    billableWeight_lb: quote.billable_lb,
+    shippingCost_usd: shipping.price_usd,
+    billableWeight_lb: shipping.billable_lb,
+    shippingMethod,
+    zoneLabel,
     shippedDims,
     voidVolume_in3,
     placements,
     warnings: [...warnings],
     values: {
-      cost: packagingCost_usd + quote.price_usd,
+      cost: packagingCost_usd + shipping.price_usd,
       protection: rateProtection(parts, fragility, {
         fitted,
         voidVolume_in3,

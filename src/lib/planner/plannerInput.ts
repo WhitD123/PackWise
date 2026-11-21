@@ -3,6 +3,7 @@
 // grams and 0..1 shares. Conversion happens only here.
 
 import type { AppData } from "../data.ts";
+import { zoneShareFromStates } from "../shipping/price.ts";
 import type { PresetName } from "../scoring/weights.ts";
 import type { Fragility, Product, SellerContext, Setup } from "../types.ts";
 import type { ExampleProduct } from "./examples.ts";
@@ -26,6 +27,11 @@ export interface PlannerInput {
   ordersPerYear: number;
   /** state code -> percent of orders (0..100) */
   statePercent: Record<string, number>;
+  /**
+   * Where all orders go, percent by state (for shipping zones). From an uploaded order file.
+   * Optional: when missing, shipping assumes Zone 5 for every order and says so.
+   */
+  orderStatePercent?: Record<string, number>;
   /** Today's packaging, as component ids. "" = not provided. */
   current: { outer_id: string; fill_id: string; wrap_id: string; insert_id: string };
   priority: PresetName;
@@ -79,6 +85,11 @@ export function toContext(input: PlannerInput, data: AppData): SellerContext {
     ordersPerYear: input.ordersPerYear,
     stateShare: Object.fromEntries(Object.entries(input.statePercent).map(([s, pct]) => [s, (pct || 0) / 100])),
     shipping: data.shipping,
+    zoneShare:
+      zoneShareFromStates(
+        Object.fromEntries(Object.entries(input.orderStatePercent ?? {}).map(([s, pct]) => [s, (pct || 0) / 100])),
+        data.shipping,
+      ) ?? undefined,
     feeSchedules: data.feeSchedules,
     coverage:
       input.revenueUsd === undefined

@@ -57,6 +57,10 @@ export interface PackagingComponent {
   length_in?: number;
   width_in?: number;
   height_in?: number;
+  /** Outside size, when the supplier lists it. Otherwise inside + 0.25 in (an estimate). */
+  outside_length_in?: number;
+  outside_width_in?: number;
+  outside_height_in?: number;
   unit: ComponentUnit;
   /** Per unit: one box, one cubic foot of filler, one square foot of wrap. */
   weight_g: number;
@@ -113,7 +117,24 @@ export interface ShippingRules {
   zone_assumption: string;
   dim_divisor: number;
   dim_applies_above_cubic_in: number | null;
+  /** Single-zone table (Zone 5 column). Used only when the zoned tables below are missing. */
   rates: { max_lb: number; price_usd: number }[];
+  /** Weight prices by zone "1".."9". Pick the first row whose max_lb >= billable weight. */
+  weight_rates_by_zone?: { max_lb: number; prices_by_zone: Record<string, number> }[];
+  /** Ground Advantage Cubic tiers (data/rules/shipping.json). */
+  cubic?: {
+    max_weight_lb: number;
+    max_cubic_ft: number;
+    max_longest_dimension_in: number;
+    tiers: { tier_cu_ft: number; prices_by_zone: Record<string, number> }[];
+  };
+  surcharges_usd?: {
+    length_over_22_in_up_to_30_in: number;
+    length_over_30_in: number;
+    volume_over_2_cubic_ft: number;
+  };
+  /** Zone from the ship-from ZIP3 to each destination state. */
+  zones_from_origin?: { origin_zip3: string; states: Record<string, { zone: number }> };
   source_url: string;
   last_checked: string;
 }
@@ -172,6 +193,8 @@ export interface SellerContext {
   /** state code -> share of orders shipped there (0..1). */
   stateShare: Record<string, number>;
   shipping: ShippingRules;
+  /** Share of orders by USPS zone ("1".."9"), summing to 1. Missing = Zone 5 assumed. */
+  zoneShare?: Record<string, number>;
   feeSchedules: FeeSchedule[];
   /**
    * Who the seller is, for the exemption tests. When set, fees follow the coverage
@@ -239,8 +262,12 @@ export interface EvaluatedSetup {
   packagingCost_usd: number;
   shippingCost_usd: number;
   billableWeight_lb: number;
-  /** Outside size of the packed shipment, used for dimensional weight. */
+  /** Outside size of the packed shipment, used for dimensional weight and Cubic pricing. */
   shippedDims: Dimensions;
+  /** Which price won: weight, Cubic, or a mix across zones. Undefined with the old single-zone table. */
+  shippingMethod?: "weight" | "cubic" | "mixed";
+  /** "exact": zones from the order mix. "assumed": no order mix given, so Zone 5 for every order. */
+  zoneLabel?: "exact" | "assumed";
   /** Empty space inside a box, cubic inches (0 for mailers). */
   voidVolume_in3: number;
   placements: Placement[];

@@ -2,6 +2,7 @@
 // known answers in tests/fixtures/demo-answer-key.json.
 
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import { fittedInsertFits, indexCatalog } from "../src/lib/catalog.ts";
@@ -13,7 +14,10 @@ import { minimumProtection } from "../src/lib/scoring/protection.ts";
 import { FACTORS, WEIGHT_PRESETS } from "../src/lib/scoring/weights.ts";
 import { rankSwaps } from "../src/lib/swaps/rankSwaps.ts";
 import type { Dimensions } from "../src/lib/types.ts";
+import { parseShopifyCsv } from "../src/lib/orders/parseShopifyCsv.ts";
 import { CATALOG, CANDLE, CONTEXT, POLY_MAILER } from "./fixtures/library.ts";
+
+const readJson = (p: string) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url), "utf8"));
 
 const data = loadData();
 const index = indexCatalog(data.catalog);
@@ -131,5 +135,56 @@ describe("planner and swaps on Maya's candle (real data)", () => {
     assert.equal(top.to.outer_id, "box-12oz-straight-jar-shipper");
     assert.ok(top.plastic_avoided_lb_per_year > 0);
     assert.ok(top.landfill_avoided_lb_per_year > 0);
+  });
+});
+
+describe("shipping in the engine (answer key: $12.17 oversized, $9.96 fitted, averaged over zones)", () => {
+  const csv = readFileSync(new URL("../data/samples/shopify-orders.csv", import.meta.url), "utf8");
+  const mix = parseShopifyCsv(csv).stateShare;
+  const withZones = toContext(
+    { ...input, orderStatePercent: Object.fromEntries(Object.entries(mix).map(([s, v]) => [s, v * 100])) },
+    data,
+  );
+  const OVERSIZED = { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: null };
+
+  // The answer key's zone shares come from the original 2,100-order file; the sample file was
+  // later split into one-candle orders, which moved the mix slightly (Oregon 8.38% -> 8.23%).
+  const keyZones: Record<string, number> = {};
+  for (const z of readJson("tests/fixtures/demo-answer-key.json").demo_B_right_size_12oz_candle.shipping_by_zone) {
+    keyZones[String(z.zone)] = z.share_of_orders;
+  }
+  const withKeyZones = { ...ctx, zoneShare: keyZones };
+
+  it("oversized box averages $12.17 across the answer key's zone mix", () => {
+    const ev = evaluateSetup(products, OVERSIZED, index, withKeyZones, { strictClearance: false })!;
+    close(ev.shippingCost_usd, 12.1709, 0.01, "oversized shipping");
+    assert.equal(ev.zoneLabel, "exact");
+    assert.equal(ev.shippingMethod, "weight");
+  });
+
+  it("fitted jar box averages $9.96 across the answer key's zone mix, priced by Cubic", () => {
+    const ev = evaluateSetup(products, FITTED, index, withKeyZones)!;
+    close(ev.shippingCost_usd, 9.9642, 0.01, "fitted shipping");
+    assert.equal(ev.shippingMethod, "cubic");
+  });
+
+  it("the current order file's zone mix gives nearly the same prices (within 5 cents)", () => {
+    const a = evaluateSetup(products, OVERSIZED, index, withZones, { strictClearance: false })!;
+    const b = evaluateSetup(products, FITTED, index, withZones)!;
+    close(a.shippingCost_usd, 12.1709, 0.05, "oversized");
+    close(b.shippingCost_usd, 9.9642, 0.05, "fitted");
+  });
+
+  it("the swap now saves money: shipping falls more than the box costs", () => {
+    const result = rankSwaps(products, currentSetup(input)!, data.catalog, withZones)!;
+    const top = result.swaps[0];
+    assert.equal(top.to.outer_id, "box-12oz-straight-jar-shipper");
+    assert.ok(top.usd_saved_per_year > 0);
+  });
+
+  it("with no order mix, shipping assumes Zone 5 and says so", () => {
+    const ev = evaluateSetup(products, FITTED, index, ctx)!;
+    assert.equal(ev.zoneLabel, "assumed");
+    close(ev.shippingCost_usd, 9.04, 0.01, "zone 5 fitted");
   });
 });
