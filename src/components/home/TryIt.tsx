@@ -131,7 +131,7 @@ export function TryIt({ data }: { data: AppData }) {
             {estimate.best ? (
               <>
                 <div key={`${productId}-${activePreset}`} className="pw-fade">
-                  <CartonCompare today={estimate.current} swap={estimate.best.option} />
+                  <CartonCompare today={estimate.current} swap={estimate.best.option} look={product.look} />
                 </div>
                 <p className="mt-3 text-sm">
                   <span className="font-semibold text-forest">Better: </span>
@@ -186,7 +186,7 @@ export function TryIt({ data }: { data: AppData }) {
               </>
             ) : (
               <>
-                <CartonCompare today={estimate.current} />
+                <CartonCompare today={estimate.current} look={product.look} />
                 <p className="mt-3">
                   That is already as good as anything in our library for this product. The full results show how it scores.
                 </p>

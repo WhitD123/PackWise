@@ -12,6 +12,7 @@ import { TryIt } from "@/components/home/TryIt";
 import { SectionNav } from "@/components/results/SectionNav";
 import { Term } from "@/components/ui/Term";
 import { loadData, type ImpactFact } from "@/lib/data";
+import { lookOf } from "@/lib/planner/examples";
 import { grams, num, pounds, usd, usdWhole } from "@/lib/format";
 import { buildWorkedExample } from "@/lib/method/workedExample";
 
@@ -116,7 +117,7 @@ export default function Home() {
                   against a box made for the jar. Drawn to the same scale. Sample data.
                 </span>
               </figcaption>
-              <CartonCompare today={today} swap={better} />
+              <CartonCompare today={today} swap={better} look={lookOf(ex?.input.lines[0].name)} />
               <table className="mt-5 w-full text-sm">
                 <caption className="sr-only">Per order, today compared with the better box</caption>
                 <thead>

@@ -11,6 +11,7 @@ import { Warning } from "@/components/ui/Warning";
 import { describeSetup, indexCatalog, resolveSetup } from "@/lib/catalog";
 import type { AppData } from "@/lib/data";
 import { grams, usd, usdWhole } from "@/lib/format";
+import { lookOf } from "@/lib/planner/examples";
 import { planPackaging } from "@/lib/planner/planPackaging";
 import {
   currentSetup,
@@ -140,7 +141,7 @@ export function ResultsView({ data }: { data: AppData }) {
           ) : (
             <Card>
               <div className="max-w-2xl">
-                <CartonCompare today={rs.current} swap={rs.recommended ?? undefined} />
+                <CartonCompare today={rs.current} swap={rs.recommended ?? undefined} look={lookOf(input.lines[0]?.name)} />
               </div>
               <div className="mt-5 grid gap-6 md:grid-cols-2">
                 <BoxFitCaption title="Today" option={rs.current} euLimit={euLimit} />
