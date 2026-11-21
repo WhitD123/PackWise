@@ -85,6 +85,12 @@ function Item({ c, m }: { c: PackagingComponent; m: Material | undefined }) {
                 : "."}
             </p>
             {c.type === "mailer" && <p>The thickest item it holds is an estimate, worked out from its width.</p>}
+            {c.shaped_for && (
+              <p>
+                Shaped for a {c.shaped_for}. Packwise does not know your product&rsquo;s shape, so it never recommends this
+                insert; you can still enter it as what you use today.
+              </p>
+            )}
             {c.weight_range_g && (
               <p>
                 Weight is uncertain: published figures run from {c.weight_range_g[0].toLocaleString("en-US")} to{" "}

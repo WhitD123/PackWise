@@ -555,3 +555,7 @@ The planner's shipping step accepts a seller's own Shopify order export (CSV, up
 - **Revenue** is the sum of order subtotals (before shipping), scaled to a year. It feeds the state exemption tests.
 - **Warnings shown to the seller:** rows skipped (no order number, date, quantity or two-letter state), a file under 7 days, orders to states outside the 50 states and DC (counted for volume, not for zones or state laws), and orders with more than one item (the planner sizes packaging for the products described in the planner, so items per order should match a typical order).
 - **Product packaging:** the jar and lid (`productPackaging`) belong to Maya's candle. They count toward fees only while the planner still describes her unchanged 12 oz candle (`productPackagingOf`).
+
+## Update 2026-11-21: shaped inserts
+
+New optional component field `shaped_for` (text): the product an insert is shaped to hold. Set on `molded-pulp-bottle-tray` to "750 mL wine bottle", which its research note already said ("SIZED FOR 750 mL WINE BOTTLES, not candle jars"). Packwise does not know a product's shape, so the planner and swaps never recommend a shaped insert; a seller can still enter one as today's packaging. Before this, the engine treated the tray as a snug holder for anything that fit its outside size and recommended it for a ceramic mug and an 8 oz candle.

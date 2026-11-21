@@ -1220,7 +1220,8 @@
     "certifications": [],
     "reusable": null,
     "notes": "Uline S-24716T Pulp Wine Shipper tray (tray only), folded 14.5 x 4.75 x 5 in (flat 14.5 x 9.5 x 2.5 in), bundles of 30. Weight: 'Unit Weight' 0.28 lb -> 127.0 g. Price: $1.70/$1.60/$1.50/$1.40 at 30/60/180/240+; used 240+ break. SIZED FOR 750 mL WINE BOTTLES, not candle jars: no public U.S. listing for a jar-sized molded pulp insert with price and weight was found. Use as the molded pulp reference item; a jar-specific pulp insert needs a custom quote.",
-    "has_fitted_insert": false
+    "has_fitted_insert": false,
+    "shaped_for": "750 mL wine bottle"
   },
   {
     "id": "corrugated-pad-6x6",

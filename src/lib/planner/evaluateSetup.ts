@@ -276,7 +276,12 @@ export function evaluateSetup(
 
 /** Every allowed outer x insert x wrap x fill combination that fits the order. */
 export function evaluateAll(products: Product[], index: CatalogIndex, ctx: SellerContext): EvaluatedSetup[] {
-  const ids = (type: PackagingComponent["type"]) => index.byType(type).map((c) => c.id);
+  // A shaped insert (a wine-bottle tray) only fits the product it is made for, which we cannot check: never recommend it.
+  const ids = (type: PackagingComponent["type"]) =>
+    index
+      .byType(type)
+      .filter((c) => !c.shaped_for)
+      .map((c) => c.id);
   const orNone = (list: string[]) => [null, ...list];
   const out: EvaluatedSetup[] = [];
   for (const outer of [...index.byType("box"), ...index.byType("mailer")]) {

@@ -119,3 +119,31 @@ describe("matching to the library", () => {
     assert.match(r.warnings.join(" "), /No box or mailer/);
   });
 });
+
+describe("fillers of the same material are told apart by name", () => {
+  const catalog = loadData().catalog;
+  const filler = (part_name: string, confidence: "high" | "medium" | "low" = "high"): ScanPart => ({
+    part_name,
+    type: "filler",
+    material: "kraft-paper",
+    approx_dims_in: null,
+    confidence,
+  });
+
+  it("crinkled paper is the crinkle fill, crumpled paper is the void fill", () => {
+    assert.equal(matchPart(filler("Crinkled paper filler"), catalog).component_id, "crinkle-paper-fill");
+    assert.equal(matchPart(filler("Crinkle cut paper shred"), catalog).component_id, "crinkle-paper-fill");
+    assert.equal(matchPart(filler("Crumpled kraft paper"), catalog).component_id, "kraft-paper-void-fill");
+    assert.equal(matchPart(filler("Crinkled paper filler"), catalog).ambiguous, false);
+  });
+
+  it("a name that does not decide it still falls back to the cheapest, marked for checking", () => {
+    const m = matchPart(filler("Paper filler"), catalog);
+    assert.equal(m.ambiguous, true);
+    assert.match(m.reason, /Check it/);
+  });
+
+  it("a low-confidence part is always marked for checking, even when the name decides", () => {
+    assert.equal(matchPart(filler("Crinkled paper", "low"), catalog).ambiguous, true);
+  });
+});

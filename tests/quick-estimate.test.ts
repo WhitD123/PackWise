@@ -96,6 +96,32 @@ describe("the better setup is a sensible one", () => {
   });
 });
 
+describe("shaped inserts (the wine-bottle tray) are never recommended", () => {
+  it("the library records what the tray is shaped for", () => {
+    assert.equal(index.component("molded-pulp-bottle-tray")?.shaped_for, "750 mL wine bottle");
+  });
+
+  it("no planner option and no swap for any example product uses a shaped insert", async () => {
+    const { planPackaging } = await import("../src/lib/planner/planPackaging.ts");
+    const { rankSwaps } = await import("../src/lib/swaps/rankSwaps.ts");
+    const { currentSetup } = await import("../src/lib/planner/plannerInput.ts");
+    for (const product of QUICK_PRODUCTS) {
+      const input = quickInput(data, product.id, "big-box-foam", 500);
+      const ctx = toContext(input, data);
+      const plan = planPackaging(toProducts(input), data.catalog, ctx);
+      assert.ok(plan.options.every((o) => !o.parts.insert?.shaped_for), `${product.id} planner`);
+      const swaps = rankSwaps(toProducts(input), currentSetup(input)!, data.catalog, ctx);
+      assert.ok((swaps?.swaps ?? []).every((s) => !s.option.parts.insert?.shaped_for), `${product.id} swaps`);
+    }
+  });
+
+  it("a seller who uses the tray today can still enter it", () => {
+    const input = quickInput(data, "ceramic-mug", "big-box-foam", 500);
+    const today = { outer_id: "box-18x12x6-single-white", fill_id: null, wrap_id: null, insert_id: "molded-pulp-bottle-tray" };
+    assert.ok(evaluateSetup(toProducts(input), today, index, toContext(input, data), { strictClearance: false }));
+  });
+});
+
 describe("example candles match the sourced demo candles", () => {
   it("size and packed weight equal data/samples/demo-products.json", async () => {
     const { readFileSync } = await import("node:fs");

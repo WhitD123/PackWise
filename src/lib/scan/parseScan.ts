@@ -52,6 +52,28 @@ function partSize(part: ScanPart): number[] | null {
   return part.type === "mailer" ? all.slice(0, 2) : all;
 }
 
+/** Word stems of 4+ letters ("crinkled" and "crinkle" both give "crink"), for matching a part's name to the library. */
+function stems(text: string): Set<string> {
+  return new Set(
+    text
+      .toLowerCase()
+      .split(/[^a-z]+/)
+      .filter((w) => w.length >= 4)
+      .map((w) => w.slice(0, 5)),
+  );
+}
+
+/** The one candidate whose name shares the most word stems with the part's name, or null if none or a tie. */
+export function bestByName<T extends { id: string; name: string }>(partName: string, candidates: T[]): T | null {
+  const want = stems(partName);
+  const scored = candidates
+    .map((c) => ({ c, n: [...stems(`${c.name} ${c.id}`)].filter((s) => want.has(s)).length }))
+    .sort((a, b) => b.n - a.n);
+  if (!scored[0] || scored[0].n === 0) return null;
+  if (scored[1] && scored[1].n === scored[0].n) return null;
+  return scored[0].c;
+}
+
 export function matchPart(part: ScanPart, catalog: Catalog): PartMatch {
   if (part.type === "product_packaging") {
     return {
@@ -92,7 +114,18 @@ export function matchPart(part: ScanPart, catalog: Catalog): PartMatch {
     return { part, component_id: candidates[0].id, ambiguous: part.confidence === "low", reason: `Matched to ${candidates[0].name}.` };
   }
 
-  // Several options and no size to choose between them: take the cheapest per unit and ask.
+  // Several options and no size: the part's own name often settles it ("crinkled paper" vs "crumpled paper").
+  const byName = bestByName(part.part_name, candidates);
+  if (byName) {
+    return {
+      part,
+      component_id: byName.id,
+      ambiguous: part.confidence === "low",
+      reason: `Matched to ${byName.name} by its name.`,
+    };
+  }
+
+  // Still several options: take the cheapest per unit and ask.
   const cheapest = [...candidates].sort((a, b) => a.price_usd - b.price_usd)[0];
   return {
     part,

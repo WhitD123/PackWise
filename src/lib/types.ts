@@ -79,6 +79,11 @@ export interface PackagingComponent {
   recycle_rate?: number;
   /** Box with a built-in jar insert: safe for the jar it is made for without the clearance rule. */
   has_fitted_insert?: boolean;
+  /**
+   * The product an insert is shaped to hold (for example a 750 mL wine bottle). Packwise does not know a product's
+   * shape, so a shaped insert is never recommended; it can still be entered as what a seller uses today.
+   */
+  shaped_for?: string;
   /** Size and count of the insert cells, for fitted-insert boxes. */
   fitted_insert?: { cells: number; cell_length_in: number; cell_width_in: number; cell_height_in: number };
   supplier: string;
