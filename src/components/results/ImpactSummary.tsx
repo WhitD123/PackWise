@@ -25,7 +25,7 @@ export function ImpactSummary({
   if (p.plasticAvoidedLbPerSeller <= 0) return null;
   return (
     <div className="rounded-sm bg-forest p-6 text-paper">
-      <p className="text-sm uppercase tracking-wide text-kraft">If {num(p.sellers)} similar sellers made this swap</p>
+      <p className="text-base text-kraft">If {num(p.sellers)} similar sellers made this swap</p>
       <p className="mt-2 font-serif text-4xl font-semibold">{num(p.plasticAvoidedUsTons, 1)} tons of plastic avoided a year</p>
       <p className="mt-3 text-sm text-paper/80">
         {pounds(p.plasticAvoidedLbPerSeller)} per seller ({num(ordersPerYear)} orders a year) × {num(p.sellers)} sellers ={" "}

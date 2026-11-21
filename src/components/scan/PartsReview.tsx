@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Select, TextInput } from "@/components/ui/Field";
+import { Warning } from "@/components/ui/Warning";
 import { fillSetup, matchPart, type ScanSetup } from "@/lib/scan/parseScan";
 import { PART_TYPES, type PartType, type ScanPart } from "@/lib/scan/schema";
 import type { Catalog } from "@/lib/types";
@@ -109,8 +111,8 @@ export function PartsReview({
               )}
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm">
-                <span className={check ? "text-ochre" : "text-muted"}>
-                  {check && <strong>Check this. </strong>}
+                <span className="flex flex-wrap items-center gap-2 text-muted">
+                  {check && <Badge tone="ochre">Check this</Badge>}
                   {m.reason}
                 </span>
                 <Button variant="ghost" onClick={() => setRows((rs) => rs.filter((x) => x.id !== r.id))}>
@@ -136,11 +138,11 @@ export function PartsReview({
       </Button>
 
       {resolved.warnings.length > 0 && (
-        <ul className="space-y-1 rounded-sm border border-ochre/50 bg-ochre/10 p-3 text-sm">
+        <div className="space-y-2">
           {resolved.warnings.map((w) => (
-            <li key={w}>{w}</li>
+            <Warning key={w}>{w}</Warning>
           ))}
-        </ul>
+        </div>
       )}
 
       <div className="flex flex-wrap items-center gap-3 border-t border-line pt-5">

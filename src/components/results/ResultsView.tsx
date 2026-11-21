@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { OptionsCompare } from "@/components/planner/OptionsCompare";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card, SectionHeading } from "@/components/ui/Card";
+import { Warning } from "@/components/ui/Warning";
 import { describeSetup, indexCatalog, resolveSetup } from "@/lib/catalog";
 import type { AppData } from "@/lib/data";
 import { grams, usd, usdWhole } from "@/lib/format";
@@ -25,7 +26,8 @@ import { ZONE_LABEL_TEXT, ZONE_SHORT } from "@/lib/shipping/getZone";
 import { PRESET_LABELS, WEIGHT_PRESETS } from "@/lib/scoring/weights";
 import { rankSwaps } from "@/lib/swaps/rankSwaps";
 
-import { BoxFitDiagram } from "./BoxFitDiagram";
+import { CartonCompare } from "@/components/home/CartonCompare";
+import { BoxFitCaption } from "./BoxFitDiagram";
 import { CoverageSection } from "./CoverageSection";
 import { ImpactSummary } from "./ImpactSummary";
 import { SwapCard } from "./SwapCard";
@@ -76,6 +78,7 @@ export function ResultsView({ data }: { data: AppData }) {
     .map((l) => (l.items_per_order > 1 ? `${l.items_per_order} × ${l.name}` : l.name))
     .join(", ");
   const currentName = currentParts ? describeSetup(currentParts) : null;
+  const onePick = plan.picks !== null && new Set([plan.picks.cheapest.key, plan.picks.bestBalance.key, plan.picks.lowestWaste.key]).size === 1;
 
   return (
     <div className="space-y-14">
@@ -98,8 +101,8 @@ export function ResultsView({ data }: { data: AppData }) {
 
       <section>
         <SectionHeading
-          title="Three ways to pack it"
-          lead={`We tested ${plan.fittingCount} combinations of boxes, mailers, wraps, fills and inserts that fit this order and kept the ones that protect it well enough.`}
+          title={onePick ? "Our pick for this order" : "Three ways to pack it"}
+          lead={`${onePick ? "One setup is the cheapest, the lowest waste and the best balance. " : ""}We tested ${plan.fittingCount} combinations of boxes, mailers, wraps, fills and inserts that fit this order and kept the ones that protect it well enough.`}
         />
         {plan.picks ? (
           <OptionsCompare picks={plan.picks} />
@@ -125,21 +128,24 @@ export function ResultsView({ data }: { data: AppData }) {
             <Card>Your order doesn’t fit in {currentName} as entered. Check the sizes in the planner.</Card>
           ) : (
             <Card>
-              <div className="grid gap-8 md:grid-cols-2">
-                <BoxFitDiagram title="Today" option={rs.current} euLimit={euLimit} />
+              <div className="max-w-2xl">
+                <CartonCompare today={rs.current} swap={rs.recommended ?? undefined} />
+              </div>
+              <div className="mt-5 grid gap-6 md:grid-cols-2">
+                <BoxFitCaption title="Today" option={rs.current} euLimit={euLimit} />
                 {rs.recommended ? (
-                  <BoxFitDiagram title="Right-sized" option={rs.recommended} euLimit={euLimit} />
+                  <BoxFitCaption title="Right-sized" option={rs.recommended} euLimit={euLimit} />
                 ) : (
                   <p className="self-center text-muted">
-                    {currentParts.outer.name} is already the smallest {currentParts.outer.type} in our library that
-                    fits this order safely.
+                    {currentParts.outer.name} is already the smallest {currentParts.outer.type} in our library that fits
+                    this order safely.
                   </p>
                 )}
               </div>
               {!rs.currentHasPadding && (
-                <p className="mt-4 text-sm text-ochre">
+                <Warning className="mt-4">
                   Today’s {currentParts.outer.type} leaves less padding than we recommend for fragile items.
-                </p>
+                </Warning>
               )}
               <p className="mt-4 text-xs text-muted">
                 {rs.current.zoneLabel === "assumed" || !rs.current.zoneLabel
@@ -172,11 +178,11 @@ export function ResultsView({ data }: { data: AppData }) {
             lead={`Compared with what you use today (${currentName}). We only suggest swaps that protect at least as well and cut plastic or landfill waste.`}
           />
           {!swaps.currentMeetsMinimum && (
-            <p className="mb-4 rounded-sm border border-ochre/50 bg-ochre/10 p-3 text-sm">
-              Your current setup is rated <strong>{capitalize(swaps.current.score.protection.level)}</strong>{" "}
-              protection, which is below what we recommend for fragile items. It may look cheap and light, but these
-              options protect the order properly.
-            </p>
+            <Warning className="mb-4">
+              Your current setup is rated <strong>{capitalize(swaps.current.score.protection.level)}</strong> protection,
+              which is below what we recommend for fragile items. It may look cheap and light, but these options protect
+              the order properly.
+            </Warning>
           )}
           {swaps.swaps.length === 0 ? (
             <Card>Nothing in our library beats your current setup with these priorities.</Card>

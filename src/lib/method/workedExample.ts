@@ -32,6 +32,9 @@ export interface WorkedExample {
   ordersPerYear: number;
   today: SetupBreakdown;
   swap: SetupBreakdown;
+  /** The same two setups with their five-factor scores, for the label. */
+  todayScored: ScoredSetup;
+  swapScored: ScoredSetup;
   /** Yearly differences, from the top swap. */
   swapYear: { usdSaved: number; plasticAvoidedLb: number; landfillAvoidedLb: number; carbonAvoidedKg: number };
   projection: Projection;
@@ -74,6 +77,8 @@ export function buildWorkedExample(data: AppData): WorkedExample | null {
   return {
     input,
     ordersPerYear: input.ordersPerYear,
+    todayScored: before,
+    swapScored: after,
     today: breakdown("Today", before, data),
     swap: breakdown("Top swap", after, data),
     swapYear: {

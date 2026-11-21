@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 
+import { Badge } from "@/components/ui/Badge";
 import { Card, SectionHeading } from "@/components/ui/Card";
+import { Warning } from "@/components/ui/Warning";
 import { coverageForSetup } from "@/lib/coverage/forSetup";
 import type { CoverageResult, StateCoverageRule } from "@/lib/coverage/types";
 import type { AppData } from "@/lib/data";
@@ -20,11 +22,11 @@ const STATUS_ORDER: Record<StateCoverageRule["law_status"], number> = {
   none: 3,
 };
 
-const BADGE: Record<CoverageResult["result"], { text: string; className: string }> = {
-  covered: { text: "Covered", className: "border-brick text-brick" },
-  exempt: { text: "Exempt", className: "border-moss text-moss" },
-  apply_for_exemption: { text: "Exempt if you apply", className: "border-ochre text-ochre" },
-  no_law: { text: "No law yet", className: "border-line text-muted" },
+const BADGE: Record<CoverageResult["result"], { text: string; tone: "brick" | "moss" | "ochre" | "neutral" }> = {
+  covered: { text: "Covered", tone: "brick" },
+  exempt: { text: "Exempt", tone: "moss" },
+  apply_for_exemption: { text: "Exempt if you apply", tone: "ochre" },
+  no_law: { text: "No law yet", tone: "neutral" },
 };
 
 function nextKeyDate(rule: StateCoverageRule, today: string) {
@@ -53,9 +55,7 @@ function StateCard({
     <Card>
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-xl text-forest">{rule.name}</h3>
-        <span className={`rounded-sm border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${badge.className}`}>
-          {badge.text}
-        </span>
+        <Badge tone={badge.tone}>{badge.text}</Badge>
       </div>
       <p className="mt-2">{before.reason}</p>
 
@@ -93,7 +93,7 @@ function StateCard({
         </p>
       )}
 
-      {before.needs_input && <p className="mt-3 text-sm text-ochre">{before.needs_input}</p>}
+      {before.needs_input && <Warning className="mt-3">{before.needs_input}</Warning>}
       {before.warnings.map((w) => (
         <p key={w} className="mt-2 text-xs text-muted">
           {w}

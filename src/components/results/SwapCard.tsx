@@ -1,4 +1,6 @@
 import { Card } from "@/components/ui/Card";
+import { describeSetup } from "@/lib/catalog";
+import { Warning } from "@/components/ui/Warning";
 import { pounds, usdWhole } from "@/lib/format";
 import type { ScoredSetup, Swap } from "@/lib/types";
 
@@ -17,9 +19,14 @@ export function SwapCard({ swap, current, rank }: { swap: Swap; current: ScoredS
   const o = swap.option;
   return (
     <Card>
-      <div className="mb-3 flex items-baseline gap-3">
-        <span className="font-serif text-3xl text-kraft">{rank}</span>
-        <p className="text-lg leading-snug">{swap.summary}</p>
+      <div className="mb-4 flex items-baseline gap-4">
+        <span aria-hidden="true" className="font-serif text-3xl font-bold text-bark">
+          {rank}
+        </span>
+        <div>
+          <p className="text-xl font-semibold leading-snug text-forest">Switch to {describeSetup(o.parts)}</p>
+          <p className="mt-1 text-sm text-muted">From {describeSetup(current.parts)}</p>
+        </div>
       </div>
       <div className="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Stat
@@ -54,7 +61,7 @@ export function SwapCard({ swap, current, rank }: { swap: Swap; current: ScoredS
         </span>
       </div>
       {swap.tradeoffs.length > 0 && <p className="mt-2 text-sm text-muted">Trade-offs: {swap.tradeoffs.join("; ")}.</p>}
-      {o.warnings.length > 0 && <p className="mt-2 text-xs text-ochre">⚠ {o.warnings.join(" ")}</p>}
+      {o.warnings.length > 0 && <Warning className="mt-3 text-xs">{o.warnings.join(" ")}</Warning>}
     </Card>
   );
 }

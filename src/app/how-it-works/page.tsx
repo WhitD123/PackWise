@@ -34,7 +34,7 @@ function Table({ head, rows, align }: { head: string[]; rows: ReactNode[][]; ali
     <div className="overflow-x-auto">
       <table className="w-full min-w-[32rem] border-collapse text-sm">
         <thead>
-          <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-muted">
+          <tr className="border-b border-ink text-left text-sm">
             {head.map((h, i) => (
               <th key={h} className={`py-2 pr-4 font-semibold ${align?.[i] === "r" ? "text-right" : ""}`}>
                 {h}

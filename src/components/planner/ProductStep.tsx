@@ -31,7 +31,7 @@ export function ProductStep({
 
       {lines.map((l, i) => (
         <fieldset key={l.key} className="rounded-sm border border-line bg-surface p-5">
-          <legend className="px-1 font-serif text-lg text-forest">Product {i + 1}</legend>
+          <legend className="px-1 font-serif text-lg font-semibold text-forest">Product {i + 1}</legend>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="sm:col-span-2">
               <Field label="Name">

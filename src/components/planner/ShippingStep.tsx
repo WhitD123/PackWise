@@ -8,6 +8,7 @@ import { OrderFileError, parseShopifyCsv } from "@/lib/orders/parseShopifyCsv";
 import { ordersFromParsedFile, ordersFromSample, shipFromZipOf, zonesFor, type PlannerInput } from "@/lib/planner/plannerInput";
 import { isValidZip, ZONE_LABEL_TEXT } from "@/lib/shipping/getZone";
 import { Button } from "@/components/ui/Button";
+import { Warning } from "@/components/ui/Warning";
 
 /** A year of Shopify orders is a few megabytes; a cap keeps the browser responsive. */
 const MAX_ORDER_FILE_BYTES = 25 * 1024 * 1024;
@@ -136,9 +137,9 @@ export function ShippingStep({
         {input.ordersNote && <p className="mt-2 text-sm">Using: {input.ordersNote}.</p>}
         {upload && <p className="mt-1 text-sm text-muted">{upload.summary}</p>}
         {upload?.warnings.map((w) => (
-          <p key={w} className="mt-1 text-sm text-ochre">
+          <Warning key={w} className="mt-2 max-w-2xl">
             {w}
-          </p>
+          </Warning>
         ))}
         {uploadError && (
           <p role="alert" className="mt-2 text-sm text-brick">

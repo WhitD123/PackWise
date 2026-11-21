@@ -379,6 +379,13 @@ Calm, earthy, professional; looks designed, not generated.
 - Avoid: neon, purple-blue gradients, glowing buttons, emoji icons, default component-library styling, heavy rounded shadowed cards everywhere, generic AI hero lines.
 - Footer: sources and "data last updated".
 
+**Design decisions made 2026-11-21** (palette unchanged; the front-end design skill was used):
+- Type: Bitter (slab serif) for headings, IBM Plex Sans for body and data, set in `src/app/fonts.ts`. Tabular figures on tables and numbers.
+- The home page opens as the side of a carton: a kraft panel with a forest border, holding a same-scale drawing of today's carton and the right-sized carton (`CartonCompare`) and a packing-slip table. The headline's "96% empty" is computed, not typed.
+- Contrast rules (checked, WCAG 4.5:1): Kraft and Ochre are never text on paper; use them as fills, borders and icons. Ochre warnings are the `Warning` component (ochre border and icon, ink words). On kraft panels use Ink or Forest text, never muted or Bark. Paper on Forest is fine.
+- Avoid the generated-page tells: no all-caps labels or eyebrows, no gradients, no identical card grids, no arrows on buttons, no middle-dot strings, no scattered entrance motion. Status words (`Badge`) are sentence case. One idea per section, with its own form.
+- Keyboard focus is always visible, there is a skip link, and the current page is underlined in the nav.
+
 ---
 
 ## 13. Timeline (from Nov 16)

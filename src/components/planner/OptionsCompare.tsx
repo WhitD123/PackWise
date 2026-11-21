@@ -1,4 +1,5 @@
 import { FiveFactorLabel } from "@/components/label/FiveFactorLabel";
+import { Badge } from "@/components/ui/Badge";
 import { dims } from "@/lib/format";
 import type { PlanPicks } from "@/lib/planner/planPackaging";
 import type { ScoredSetup } from "@/lib/types";
@@ -29,15 +30,15 @@ export function OptionsCompare({ picks }: { picks: PlanPicks }) {
         <div key={option.key} className="flex flex-col gap-3">
           <div className="flex flex-wrap gap-2">
             {badges.map((b) => (
-              <span key={b} className="rounded-sm bg-forest px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-paper">
+              <Badge key={b} tone="forest">
                 {b}
-              </span>
+              </Badge>
             ))}
           </div>
           <div>
             <h3 className="text-lg font-semibold leading-snug">{option.parts.outer.name}</h3>
             <p className="text-sm text-muted">
-              {extras(option)} · ships at {dims(option.shippedDims)}
+              {extras(option)}, ships at {dims(option.shippedDims)}
             </p>
           </div>
           <FiveFactorLabel option={option} />

@@ -22,10 +22,43 @@
 body {
   background: var(--paper);
   color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-heading), Georgia, serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Numbers line up in columns and tables. */
+table,
+dd,
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyboard focus is always visible. */
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+.on-dark :focus-visible {
+  outline-color: var(--paper);
+}
+
+::selection {
+  background: var(--kraft);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }

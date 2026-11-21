@@ -1,4 +1,5 @@
 import { ScoreBar } from "@/components/ui/ScoreBar";
+import { Warning } from "@/components/ui/Warning";
 import { grams, num, usd, usdWhole } from "@/lib/format";
 import { ZONE_SHORT } from "@/lib/shipping/getZone";
 import type { ScoredSetup } from "@/lib/types";
@@ -30,7 +31,7 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
   ];
 
   return (
-    <div className="border-2 border-ink bg-surface p-3 font-sans text-ink">
+    <div className="w-full max-w-sm border-2 border-ink bg-surface p-3 font-sans text-ink">
       <div className="border-b-[length:var(--rule-thick)] border-ink pb-1">
         <div className="font-serif text-2xl font-bold leading-none">Packaging Facts</div>
         <div className="mt-1 text-xs">Per order, scored 0 to 10 against the other options</div>
@@ -55,11 +56,13 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
         <span className="font-serif text-xl font-bold tabular-nums">{num(s.overall, 1)} / 10</span>
       </div>
       {option.warnings.length > 0 && (
-        <ul className="mt-2 space-y-0.5 text-[11px] text-ochre">
+        <div className="mt-3 space-y-1">
           {option.warnings.map((w) => (
-            <li key={w}>⚠ {w}</li>
+            <Warning key={w} className="text-xs">
+              {w}
+            </Warning>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
