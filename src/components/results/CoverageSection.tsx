@@ -87,6 +87,12 @@ function StateCard({
         </div>
       )}
 
+      {after && after.result !== before.result && (
+        <p className="mt-3 text-sm font-semibold text-moss">
+          After the top swap: {BADGE[after.result].text.toLowerCase()}. {after.reason}
+        </p>
+      )}
+
       {before.needs_input && <p className="mt-3 text-sm text-ochre">{before.needs_input}</p>}
       {before.warnings.map((w) => (
         <p key={w} className="mt-2 text-xs text-muted">
