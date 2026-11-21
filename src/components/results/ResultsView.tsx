@@ -185,7 +185,13 @@ export function ResultsView({ data }: { data: AppData }) {
               {swaps.swaps.map((s, i) => (
                 <SwapCard key={s.option.key} swap={s} current={swaps.current} rank={i + 1} />
               ))}
-              <ImpactSummary swap={swaps.swaps[0]} ordersPerYear={ctx.ordersPerYear} />
+              <ImpactSummary
+                swap={swaps.swaps[0]}
+                current={swaps.current}
+                ordersPerYear={ctx.ordersPerYear}
+                usParcelsBillion={data.usParcelVolume.value_billion}
+                parcelYear={data.usParcelVolume.year}
+              />
             </div>
           )}
         </section>

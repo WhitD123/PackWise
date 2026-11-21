@@ -18,6 +18,11 @@ export interface Material {
   name: string;
   is_plastic: boolean;
   recycle_rate: number;
+  /** What the rate measures and the year of its data (data/materials.json), shown on the method page. */
+  recycle_rate_metric?: string;
+  recycle_rate_year?: number;
+  recycle_rate_source_url?: string;
+  carbon_source_url?: string;
   curbside_recyclable: boolean;
   carbon_kg_co2e_per_kg: number;
   /** End-of-life emissions, kg CO2e per kg (EPA Emission Factors Hub). A null recycling value counts as 0. */
@@ -114,6 +119,10 @@ export interface StateCoverageRule {
 export interface ShippingRules {
   carrier: string;
   service: string;
+  /** When the price table took effect, and the note about USPS's temporary holiday prices. */
+  effective_date?: string;
+  temporary_pricing_note?: string;
+  rules_source_url?: string;
   zone_assumption: string;
   dim_divisor: number;
   dim_applies_above_cubic_in: number | null;

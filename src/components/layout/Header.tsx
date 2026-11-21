@@ -4,6 +4,7 @@ const NAV = [
   { href: "/planner", label: "Planner" },
   { href: "/scan", label: "Scan" },
   { href: "/results", label: "Results" },
+  { href: "/how-it-works", label: "How it works" },
 ];
 
 export function Header() {

@@ -47,6 +47,8 @@ export interface AppData {
   coverageSchedules: Record<string, CoverageFeeSchedule>;
   /** Maya's jar and lid (data/samples/demo-products.json, Uline S-22916M-GLD). */
   demoProductPackaging: ProductPackagingPart[];
+  /** US parcels shipped in 2025, the scale anchor for the impact projection (environment.json impact_baseline). */
+  usParcelVolume: { value_billion: number; year: number; publisher: string; source_url: string };
   /** EU PPWR Article 24: maximum empty space for e-commerce packaging. A benchmark only, not a US law. */
   euEmptySpace: { max_empty_space_ratio: number; application_date: string; source_url: string };
 }
@@ -76,6 +78,14 @@ function loadDemoProductPackaging(): ProductPackagingPart[] {
   ];
 }
 
+function loadParcelVolume(): AppData["usParcelVolume"] {
+  const fact = (environmentJson.impact_baseline as { id: string; value: number; year: number; publisher: string; source_url: string }[]).find(
+    (f) => f.id === "us-parcel-volume-2025",
+  );
+  if (!fact) throw new Error("environment.json is missing the us-parcel-volume-2025 fact");
+  return { value_billion: fact.value, year: fact.year, publisher: fact.publisher, source_url: fact.source_url };
+}
+
 export function loadData(): AppData {
   // JSON imports are typed loosely (e.g. "box" becomes string), so cast once here.
   return {
@@ -96,6 +106,7 @@ export function loadData(): AppData {
     },
     demoProductPackaging: loadDemoProductPackaging(),
     euEmptySpace: environmentJson.eu_empty_space,
+    usParcelVolume: loadParcelVolume(),
   };
 }
 

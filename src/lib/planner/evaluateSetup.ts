@@ -47,7 +47,7 @@ const IN2_PER_FT2 = 144;
  * Layers of wrap around each item: CLAUDE.md section 7 says "about two layers; an estimate".
  * For the 12 oz candle this gives 0.88 sq ft; the answer key rounds that to 1.0 sq ft.
  */
-const WRAP_LAYERS = 2;
+export const WRAP_LAYERS = 2;
 
 export interface ExpandedOrder {
   /** One entry per physical item. */

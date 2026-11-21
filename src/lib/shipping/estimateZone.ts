@@ -14,8 +14,8 @@ import centroids from "../../../data/rules/zip3-centroids.json" with { type: "js
 type Centroid = { lat: number; lng: number; n: number };
 const ZIP3 = centroids as Record<string, Centroid>;
 
-// [upper limit in miles, zone]. Anything beyond 1,800 miles is zone 8.
-const BANDS: ReadonlyArray<readonly [number, number]> = [
+// [upper limit in miles, zone]. Anything beyond the last band is zone 8.
+export const ZONE_BANDS: ReadonlyArray<readonly [number, number]> = [
   [150, 2],
   [300, 3],
   [600, 4],
@@ -49,6 +49,6 @@ export function estimateZone(originZip: string, destZip: string): ZoneEstimate |
   if (!a || !b) return null;
   if (o === d) return { zone: 1, miles: 0, estimated: true };
   const miles = milesBetween(a, b);
-  const hit = BANDS.find(([limit]) => miles <= limit);
+  const hit = ZONE_BANDS.find(([limit]) => miles <= limit);
   return { zone: hit ? hit[1] : 8, miles: Math.round(miles), estimated: true };
 }
