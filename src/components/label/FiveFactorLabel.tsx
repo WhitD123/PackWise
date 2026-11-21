@@ -7,20 +7,23 @@ const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** Nutrition-label style scorecard for one packaging setup. */
 export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
   const s = option.score;
+  // Waste first: the theme is waste (docs/scoring-spec.md).
   const rows: { label: string; value: string; score: number; detail?: string }[] = [
-    {
-      label: "Cost",
-      value: `${usd(s.cost.usd_per_order)} / order`,
-      score: s.cost.score,
-      detail: `${usd(option.packagingCost_usd)} packaging + ${usd(option.shippingCost_usd)} shipping (${option.billableWeight_lb} lb billed)`,
-    },
-    { label: "Protection", value: capitalize(s.protection.level), score: s.protection.score },
     {
       label: "Landfill waste",
       value: `${grams(s.waste.landfill_g_per_order)} / order`,
       score: s.waste.score,
       detail: `${grams(option.packagingWeight_g)} packaging, ${grams(s.plastic_g_per_order)} plastic`,
     },
+    {
+      label: "Cost",
+      value: `${usd(s.cost.usd_per_order)} / order`,
+      score: s.cost.score,
+      detail: `${usd(option.packagingCost_usd)} packaging + ${usd(option.shippingCost_usd)} shipping (${num(option.billableWeight_lb, 1)} lb${
+        option.shippingMethod === "cubic" ? ", Cubic price" : ""
+      })`,
+    },
+    { label: "Protection", value: capitalize(s.protection.level), score: s.protection.score },
     { label: "State fees", value: `${usdWhole(s.fees.usd_per_year)} / year`, score: s.fees.score },
     { label: "Carbon", value: `${num(s.carbon.kg_co2e_per_order * 1000, 0)} g CO2e / order`, score: s.carbon.score },
   ];
