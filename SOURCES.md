@@ -65,3 +65,9 @@ Full URLs for every figure are on each row of environment.json and the workbook.
 Full URLs are on each row of packing-rules.json, demo-products.json, epr-logic.json and the workbook.
 
 - USPS Domestic Zone Chart, origin ZIP3 972 (https://postcalc.usps.com/DomesticZoneChart), copied by the user 2026-11-16: data/rules/shipping.json zones_from_origin
+
+## Ship-from ZIP and estimated zones (2026-11-21)
+- USPS, "What are the Zone Charts and how can I obtain one?" (says charts update quarterly): https://faq.usps.com/articles/Knowledge/What-are-the-Zone-Charts-and-how-can-I-obtain-one
+- USPS Domestic Mail Manual G030, zone distance bands (archived 2004-12-09 copy): https://pe.usps.com/Archive/HTML/DMMArchive20041209/G030.htm
+- USPS Domestic Zone Chart, origins 100 and 770 (https://postcalc.usps.com/DomesticZoneChart), copied 2026-11-17: tests/fixtures/usps-zone-charts.json (with origin 972, used to test the estimate)
+- us-zips, Census ZCTA center points (MIT license, version 2022.9.1): https://github.com/blakek/us-zips. Averaged by first three digits into data/rules/zip3-centroids.json

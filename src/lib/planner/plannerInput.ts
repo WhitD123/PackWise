@@ -3,13 +3,21 @@
 // grams and 0..1 shares. Conversion happens only here.
 
 import type { AppData, ProductPackagingPart } from "../data.ts";
-import { zoneShareFromStates } from "../shipping/price.ts";
+import { zoneMixFromStates, type ZoneMix } from "../shipping/getZone.ts";
 import type { PresetName } from "../scoring/weights.ts";
 import type { Fragility, Product, SellerContext, Setup } from "../types.ts";
 import type { ExampleProduct } from "./examples.ts";
 import { EXAMPLE_PRODUCTS } from "./examples.ts";
 
 export const GRAMS_PER_OZ = 28.349523125;
+
+/** The demo seller ships from Portland, OR. Only the first three digits (972) matter: they select the exact USPS chart. */
+export const DEFAULT_SHIP_FROM_ZIP = "97201";
+
+/** The ship-from ZIP to use: the demo's Portland unless the seller entered or cleared one. */
+export function shipFromZipOf(input: PlannerInput): string {
+  return input.shipFromZip ?? DEFAULT_SHIP_FROM_ZIP;
+}
 
 export interface ProductLineInput {
   key: string;
@@ -32,6 +40,11 @@ export interface PlannerInput {
    * Optional: when missing, shipping assumes Zone 5 for every order and says so.
    */
   orderStatePercent?: Record<string, number>;
+  /**
+   * Where orders ship from: five digits, and only the first three are used (they set the USPS zones).
+   * Not set = the demo's Portland, OR (972). "" = left blank, so every order is priced as Zone 5 and labelled "assumed".
+   */
+  shipFromZip?: string;
   /** Today's packaging, as component ids. "" = not provided. */
   current: { outer_id: string; fill_id: string; wrap_id: string; insert_id: string };
   priority: PresetName;
@@ -84,6 +97,7 @@ export function defaultInput(data: AppData): PlannerInput {
     lines: [lineFromExample(EXAMPLE_PRODUCTS[1], "default-candle")],
     ...ordersFromSample(data),
     productPackaging: data.demoProductPackaging,
+    shipFromZip: DEFAULT_SHIP_FROM_ZIP,
     current: { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: "" },
     priority: "balanced",
   };
@@ -115,16 +129,20 @@ export function productPackagingGramsPerOrder(input: PlannerInput, includeCandle
   return grams;
 }
 
+/** Zones for the seller's order mix from their ship-from ZIP; null = no usable mix or ZIP, so Zone 5 is assumed. */
+export function zonesFor(input: PlannerInput, data: AppData): ZoneMix | null {
+  const byState = Object.fromEntries(Object.entries(input.orderStatePercent ?? {}).map(([s, pct]) => [s, (pct || 0) / 100]));
+  return zoneMixFromStates(byState, shipFromZipOf(input), data.shipping);
+}
+
 export function toContext(input: PlannerInput, data: AppData): SellerContext {
+  const zones = zonesFor(input, data);
   return {
     ordersPerYear: input.ordersPerYear,
     stateShare: Object.fromEntries(Object.entries(input.statePercent).map(([s, pct]) => [s, (pct || 0) / 100])),
     shipping: data.shipping,
-    zoneShare:
-      zoneShareFromStates(
-        Object.fromEntries(Object.entries(input.orderStatePercent ?? {}).map(([s, pct]) => [s, (pct || 0) / 100])),
-        data.shipping,
-      ) ?? undefined,
+    zoneShare: zones?.share,
+    zoneLabel: zones?.label,
     feeSchedules: data.feeSchedules,
     // The coverage card counts the jar and lid by default, so the Fees score does too.
     productPackagingGrams: productPackagingGramsPerOrder(input, true),

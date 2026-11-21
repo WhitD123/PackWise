@@ -11,6 +11,7 @@
 //   6. Average over the seller's destination zones, weighted by share of orders.
 
 import type { Dimensions, ShippingRules } from "../types.ts";
+import { zoneMixFromStates } from "./getZone.ts";
 
 const EPS = 1e-6;
 const CUBIC_FT_IN3 = 1728;
@@ -152,26 +153,14 @@ export function averagePrice(
 }
 
 /**
- * Share of orders by USPS zone, from share of orders by state, using the zone chart for
- * the ship-from ZIP in shipping.json (zones_from_origin). States missing from the chart are
- * left out and the rest rescaled; null if none are found.
+ * Share of orders by USPS zone, from share of orders by state. Zones come from `getZone`: the real chart
+ * for the ship-from ZIP in shipping.json (972), an estimate for any other ZIP. States that cannot be
+ * placed are left out and the rest rescaled; null if none can be.
  */
 export function zoneShareFromStates(
   stateShare: Record<string, number>,
   rules: ShippingRules,
+  originZip: string | undefined = rules.zones_from_origin?.origin_zip3,
 ): Record<string, number> | null {
-  const states = rules.zones_from_origin?.states;
-  if (!states) return null;
-  const zones: Record<string, number> = {};
-  let total = 0;
-  for (const [state, share] of Object.entries(stateShare)) {
-    const zone = states[state.toUpperCase()]?.zone;
-    if (!(share > 0) || zone === undefined) continue;
-    const z = String(zone === 9 ? 8 : zone);
-    zones[z] = (zones[z] ?? 0) + share;
-    total += share;
-  }
-  if (total <= 0) return null;
-  for (const z of Object.keys(zones)) zones[z] /= total;
-  return zones;
+  return zoneMixFromStates(stateShare, originZip, rules)?.share ?? null;
 }

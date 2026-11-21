@@ -1,5 +1,6 @@
 import { ScoreBar } from "@/components/ui/ScoreBar";
 import { grams, num, usd, usdWhole } from "@/lib/format";
+import { ZONE_SHORT } from "@/lib/shipping/getZone";
 import type { ScoredSetup } from "@/lib/types";
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -21,7 +22,7 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
       score: s.cost.score,
       detail: `${usd(option.packagingCost_usd)} packaging + ${usd(option.shippingCost_usd)} shipping (${num(option.billableWeight_lb, 1)} lb${
         option.shippingMethod === "cubic" ? ", Cubic price" : ""
-      })`,
+      }, ${ZONE_SHORT[option.zoneLabel ?? "assumed"]})`,
     },
     { label: "Protection", value: capitalize(s.protection.level), score: s.protection.score },
     { label: "State fees", value: `${usdWhole(s.fees.usd_per_year)} / year`, score: s.fees.score },

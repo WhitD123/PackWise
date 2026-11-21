@@ -198,7 +198,7 @@ The repo layout planned in `docs/project-brief.md` section 11 still holds, with 
 - `cubic`: Cubic pricing tiers 0.1 to 1.0 cu ft by zone, plus eligibility text.
 - `dim_divisor` 139, applied only above 1,728 cu in.
 - `surcharges_usd`: length over 22 in ($4.50), over 30 in ($10), volume over 2 cu ft ($21), etc.
-- `zones_from_origin` (origin 972, **filled 2026-11-16** from the chart Tyler copied): `states[XX] = { city, dest_zip3, zone, zones_in_state, zone_marker }` and `zip3_ranges` (the full chart for per-ZIP lookups). State zone = zone of its largest metro. Oregon = Zone 1 (rest of OR is 1 to 3). 56% of sample orders are Zone 8; about 20% Zone 5. The chart's `*` and `+` markers are stored but not interpreted (legend not copied).
+- `zones_from_origin` (origin 972, **filled 2026-11-16** from the chart Tyler copied): `states[XX] = { city, dest_zip3, zone, zones_in_state, zone_marker }` and `zip3_ranges` (the full chart for per-ZIP lookups). State zone = zone of its largest metro. Oregon = Zone 1 (rest of OR is 1 to 3). 56% of sample orders are Zone 8; about 20% Zone 5. The chart's `*` and `+` markers are stored but not interpreted (legend not copied). **Other origins are estimated** (added 2026-11-21): see `docs/findings-zones.md` for the method, the accuracy against real charts for origins 972, 100 and 770, and the limits.
 
 ### `data/rules/packing-rules.json` (box picker rules)
 - R1: fragile (glass) needs >= **2 in cushioning on every side**: box inside dims >= item dims + 4 in per axis (unless `has_fitted_insert` and the box is made for that jar).
@@ -257,7 +257,7 @@ Plastic weight = sum of weight of parts whose material `is_plastic`.
 3. Weight price = first row in `weight_rates_by_zone` with `max_lb` >= billable, at the destination zone.
 4. Cubic eligibility: outside volume <= 1 cu ft, weight <= 20 lb, longest side <= 22 in. Cubic volume uses each **outside** dimension rounded **down** to 1/4 in; tier = ceil(volume/1728 to 0.1). Soft packs (mailers) use length + width (max 36 in).
 5. Price paid = lower of weight price and Cubic price when eligible (our interpretation; Cubic needs commercial postage through shipping software, which most Shopify sellers have).
-6. Zone = `zones_from_origin.states[dest].zone`. For a whole order file, average the price over orders (weight each zone by its share of orders).
+6. Zone = `getZone(shipFromZip, destination)` in `src/lib/shipping/getZone.ts`, the only place a zone is decided. Origin ZIP3 972: the exact chart in `zones_from_origin` (labelled "Exact USPS zone"). Any other ship-from ZIP: an estimate from the distance between ZIP3 centers, `data/rules/zip3-centroids.json` (labelled "Estimated zone, typically within one zone of USPS's chart"). No usable ZIP: Zone 5, labelled "assumed". Zone 5 is a fallback, **not** a typical zone. Zone 9 is priced as Zone 8. Maya's example is preset to Portland (972) and never asks for a ZIP. For a whole order file, average the price over orders (weight each zone by its share of orders). Shipping estimates cover the 50 states and DC, USPS Ground Advantage only.
 7. Add surcharges when they apply (length over 22 in, etc.).
 
 ### Right-sizing (Whitman's, but scoring depends on it)

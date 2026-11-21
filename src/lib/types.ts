@@ -134,7 +134,13 @@ export interface ShippingRules {
     volume_over_2_cubic_ft: number;
   };
   /** Zone from the ship-from ZIP3 to each destination state. */
-  zones_from_origin?: { origin_zip3: string; states: Record<string, { zone: number }> };
+  zones_from_origin?: {
+    origin_zip3: string;
+    /** Zone to each state's largest metro; `dest_zip3` is that metro's ZIP3 (used to estimate zones from other origins). */
+    states: Record<string, { zone: number; dest_zip3?: string }>;
+    /** The full USPS chart from the origin, by destination ZIP3 range. */
+    zip3_ranges?: { from_zip3: string; to_zip3: string; zone: number }[];
+  };
   source_url: string;
   last_checked: string;
 }
@@ -195,6 +201,8 @@ export interface SellerContext {
   shipping: ShippingRules;
   /** Share of orders by USPS zone ("1".."9"), summing to 1. Missing = Zone 5 assumed. */
   zoneShare?: Record<string, number>;
+  /** How the zones were found: the real chart, a distance estimate, or assumed. Default "exact" when `zoneShare` is set. */
+  zoneLabel?: "exact" | "estimated";
   feeSchedules: FeeSchedule[];
   /**
    * Who the seller is, for the exemption tests. When set, fees follow the coverage
@@ -271,8 +279,11 @@ export interface EvaluatedSetup {
   shippedDims: Dimensions;
   /** Which price won: weight, Cubic, or a mix across zones. Undefined with the old single-zone table. */
   shippingMethod?: "weight" | "cubic" | "mixed";
-  /** "exact": zones from the order mix. "assumed": no order mix given, so Zone 5 for every order. */
-  zoneLabel?: "exact" | "assumed";
+  /**
+   * "exact": the real USPS chart. "estimated": distance between ZIP3 centers (other ship-from ZIPs).
+   * "assumed": no order mix or no usable ship-from ZIP, so Zone 5 for every order.
+   */
+  zoneLabel?: "exact" | "estimated" | "assumed";
   /** Empty space inside a box, cubic inches (0 for mailers). */
   voidVolume_in3: number;
   placements: Placement[];

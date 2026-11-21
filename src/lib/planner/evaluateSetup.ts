@@ -219,7 +219,7 @@ export function evaluateSetup(
   if (ctx.shipping.weight_rates_by_zone) {
     // Real USPS tables: prices by zone, Cubic, ounce tiers (src/lib/shipping/price.ts).
     const zoneShare = ctx.zoneShare ?? { "5": 1 };
-    zoneLabel = ctx.zoneShare ? "exact" : "assumed";
+    zoneLabel = ctx.zoneShare ? (ctx.zoneLabel ?? "exact") : "assumed";
     const avg = averagePrice(
       {
         dims: shippedDims,

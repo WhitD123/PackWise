@@ -1,8 +1,9 @@
 "use client";
 
-import { Field, NumberInput } from "@/components/ui/Field";
+import { Field, NumberInput, TextInput } from "@/components/ui/Field";
 import type { AppData } from "@/lib/data";
-import { ordersFromSample, type PlannerInput } from "@/lib/planner/plannerInput";
+import { ordersFromSample, shipFromZipOf, zonesFor, type PlannerInput } from "@/lib/planner/plannerInput";
+import { isValidZip, ZONE_LABEL_TEXT } from "@/lib/shipping/getZone";
 import { Button } from "@/components/ui/Button";
 
 const STATE_NAMES: Record<string, string> = {
@@ -25,6 +26,10 @@ export function ShippingStep({
   onChange: (patch: Partial<PlannerInput>) => void;
 }) {
   const s = data.shipping;
+  const zip = shipFromZipOf(input);
+  const zoneLabel = zonesFor(input, data)?.label ?? "assumed";
+  // A bad ZIP never blocks the flow: it just means zones are assumed until it is fixed.
+  const zipProblem = zip !== "" && !isValidZip(zip) ? "Use a five-digit ZIP code, like 30303." : null;
   return (
     <div className="space-y-6">
       <p className="max-w-2xl text-muted">
@@ -35,15 +40,24 @@ export function ShippingStep({
         <Field label="Orders per year">
           <NumberInput value={input.ordersPerYear} step={1} onChange={(ordersPerYear) => onChange({ ordersPerYear })} />
         </Field>
-        <div className="text-sm">
-          <span className="mb-1 block font-semibold">Shipping</span>
-          <p className="text-muted">
-            Prices are {s.carrier} {s.service} (commercial rates).{" "}
-            {input.orderStatePercent
-              ? `Zones are measured from Portland, OR (ZIP ${s.zones_from_origin?.origin_zip3}) to where your orders go.`
-              : "No order mix yet, so every order is priced as Zone 5. Load the sample orders for exact zones."}
-          </p>
-        </div>
+        <Field
+          label="Ship-from ZIP code"
+          hint={zipProblem ?? "Optional. We use the first three digits to work out USPS shipping zones."}
+        >
+          <TextInput value={zip} onChange={(v) => onChange({ shipFromZip: v.replace(/\D/g, "").slice(0, 5) })} />
+        </Field>
+      </div>
+      <div className="text-sm">
+        <span className="mb-1 block font-semibold">Shipping</span>
+        <p className="max-w-2xl text-muted">
+          Prices are {s.carrier} {s.service} (commercial rates).{" "}
+          {!input.orderStatePercent
+            ? "No order mix yet, so every order is priced as Zone 5 (assumed). Load the sample orders to price by where orders go."
+            : zoneLabel === "assumed"
+              ? `${ZONE_LABEL_TEXT.assumed}. Every order is priced as Zone 5.`
+              : `${ZONE_LABEL_TEXT[zoneLabel]}. Zones are measured from ZIP ${zip.slice(0, 3)} to where your orders go.`}{" "}
+          Shipping estimates cover the 50 states and DC, USPS Ground Advantage only.
+        </p>
       </div>
 
       <div>

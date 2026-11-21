@@ -10,9 +10,18 @@ import { describeSetup, indexCatalog, resolveSetup } from "@/lib/catalog";
 import type { AppData } from "@/lib/data";
 import { grams, usd, usdWhole } from "@/lib/format";
 import { planPackaging } from "@/lib/planner/planPackaging";
-import { currentSetup, defaultInput, toContext, toProducts, validateInput, type PlannerInput } from "@/lib/planner/plannerInput";
+import {
+  currentSetup,
+  defaultInput,
+  shipFromZipOf,
+  toContext,
+  toProducts,
+  validateInput,
+  type PlannerInput,
+} from "@/lib/planner/plannerInput";
 import { loadPlannerInput } from "@/lib/planner/storage";
 import { rightSize } from "@/lib/rightsizing/rightSize";
+import { ZONE_LABEL_TEXT, ZONE_SHORT } from "@/lib/shipping/getZone";
 import { PRESET_LABELS, WEIGHT_PRESETS } from "@/lib/scoring/weights";
 import { rankSwaps } from "@/lib/swaps/rankSwaps";
 
@@ -132,9 +141,9 @@ export function ResultsView({ data }: { data: AppData }) {
                 </p>
               )}
               <p className="mt-4 text-xs text-muted">
-                {rs.current.zoneLabel === "exact"
-                  ? `Shipping is the average over your order mix, with zones measured from Portland, OR (ZIP ${data.shipping.zones_from_origin?.origin_zip3}).`
-                  : "Zone assumed: every order is priced as Zone 5 because no order mix was given. Load your orders for exact zones."}{" "}
+                {rs.current.zoneLabel === "assumed" || !rs.current.zoneLabel
+                  ? `${ZONE_LABEL_TEXT.assumed}: every order is priced as Zone 5.`
+                  : `${ZONE_LABEL_TEXT[rs.current.zoneLabel]}. Shipping is the average over your order mix, with zones measured from ZIP ${shipFromZipOf(input).slice(0, 3)}.`}{" "}
                 {rs.recommended?.shippingMethod === "cubic" && "The right-sized package qualifies for Cubic pricing. "}
                 Prices include USPS temporary holiday rates through Jan 17, 2027.
               </p>
@@ -143,6 +152,7 @@ export function ResultsView({ data }: { data: AppData }) {
                   <Fact
                     label="Shipping per order"
                     value={`${usd(rs.current.shippingCost_usd)} → ${usd(rs.recommended.shippingCost_usd)}`}
+                    note={ZONE_SHORT[rs.current.zoneLabel ?? "assumed"]}
                   />
                   <Fact label="Saved per order" value={usd(rs.totalSavingsPerOrder_usd)} />
                   <Fact label="Saved per year" value={usdWhole(rs.totalSavingsPerYear_usd)} />
@@ -196,11 +206,12 @@ export function ResultsView({ data }: { data: AppData }) {
   );
 }
 
-function Fact({ label, value }: { label: string; value: string }) {
+function Fact({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
     <div>
       <dt className="text-xs text-muted">{label}</dt>
       <dd className="font-serif text-lg font-semibold">{value}</dd>
+      {note && <dd className="text-xs text-muted">{note}</dd>}
     </div>
   );
 }

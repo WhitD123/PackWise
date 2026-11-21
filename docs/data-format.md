@@ -48,6 +48,7 @@ Any record built from research has `source_url`, `last_checked` (a date), and `i
 | `data/samples/demo-products.json` | Maya's 8 oz and 12 oz candles (sourced jar, lid and wax weights) plus jar options | Tyler |
 | `data/rules/environment.json` | EU empty-space rule, empty-space and right-sizing benchmarks, reuse studies, void fill densities, impact baseline facts, the 1,000-seller projection formula | Tyler |
 | `data/rules/shipping.json` | Carrier size-pricing rules and a simple rate table | Tyler |
+| `data/rules/zip3-centroids.json` | Center point (`lat`, `lng`) of each of 896 three-digit ZIP areas, and `n`, the count of ZIPs averaged. Used to estimate USPS zones for any ship-from ZIP other than 972 | Tyler |
 | `data/samples/shopify-orders.csv` | Fake order file for the demo | Tyler |
 | `src/lib/types.ts` | The same shapes, written in code | Whitman |
 
@@ -529,3 +530,17 @@ Components with `has_fitted_insert: true` (7 jar shipper boxes) also carry a str
 | `fitted_insert.source` | Where the numbers came from |
 
 The clearance rule is skipped only when every item fits a cell (the two smaller item sizes fit the cell and are at most 0.75 in smaller; the tallest fits the box's inside height) and the order has no more items than cells. A fitted box is safe for the jars it is made for, not for any product that fits inside it.
+
+## Update 2026-11-21: ship-from ZIP and estimated zones
+
+The seller's ship-from ZIP drives the shipping zone. `PlannerInput.shipFromZip` holds five digits and only the first three are used. Not set means the demo's Portland (972); an empty string means "left blank".
+
+`getZone` in `src/lib/shipping/getZone.ts` is the only place a zone is decided:
+
+- **exact:** the ship-from ZIP3 is the origin in `shipping.json` (`zones_from_origin.origin_zip3`, 972). The zone comes from the real USPS chart: `zip3_ranges` when a destination ZIP is known, `states[XX].zone` when only the state is known.
+- **estimated:** any other origin. The zone comes from the straight-line distance between two ZIP3 centers (`zip3-centroids.json`) and the USPS distance bands. A state stands in for its anchor ZIP3, `states[XX].dest_zip3`.
+- **assumed:** no usable origin or destination. Zone 5, labelled "assumed". Zone 5 is a fallback, not a typical zone: from Portland, 56% of the sample orders are Zone 8 and about 20% are Zone 5.
+
+Zone 9 is priced as Zone 8. The estimate never returns 9. `EvaluatedSetup.zoneLabel` is `"exact" | "estimated" | "assumed"`. Accuracy against real USPS charts and the known limits are in `docs/findings-zones.md`.
+
+`zip3-centroids.json` is a new file: `{ "<zip3>": { "lat": number, "lng": number, "n": number } }`. Built from the Census ZCTA centers in the npm package `us-zips` (MIT, version 2022.9.1). Owner: Tyler.
