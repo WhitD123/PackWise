@@ -153,12 +153,12 @@ describe("Colorado", () => {
 
 describe("states with a law but no published fees", () => {
   for (const st of ["ME", "MD", "MN", "WA"]) {
-    it(`${st}: covered at $8.2M, no fee, "Fees not yet published"`, () => {
+    it(`${st}: covered at $8.2M, no fee, "No fees yet"`, () => {
       const r = checkState(rule(st), input(), schedules);
       assert.equal(r.result, "covered");
       assert.equal(r.fee_usd_per_year, null);
       assert.equal(r.fee_status, "none");
-      assert.match(r.reason, /Fees not yet published/);
+      assert.match(r.reason, /No fees yet/);
     });
   }
 });

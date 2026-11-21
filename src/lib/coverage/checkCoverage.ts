@@ -129,7 +129,7 @@ export function checkState(
     return {
       ...shared,
       result: "covered",
-      reason: `${reason} Fees not yet published.`,
+      reason: `${reason} No fees yet.`,
       fee_usd_per_year: null,
       fee_status: "none",
       needs_input: needsInput,
