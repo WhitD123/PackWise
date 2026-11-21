@@ -105,10 +105,27 @@ describe("fees follow the coverage check", () => {
     assert.ok(ev.values.fees > 0);
   });
 
-  it("the same seller at $2M is exempt, so fees are $0", () => {
-    const small = toContext({ ...input, revenueUsd: 2_000_000 }, data);
+  it("the same seller at $2M is exempt, so fees are $0 (California sales shrink with revenue, as on the coverage card)", () => {
+    const scale = 2_000_000 / input.revenueUsd!;
+    const small = toContext({ ...input, revenueUsd: 2_000_000, californiaSalesUsd: input.californiaSalesUsd! * scale }, data);
     const ev = evaluateSetup(products, FITTED, index, small)!;
     assert.equal(ev.values.fees, 0);
+  });
+
+  it("California counts in the Fees score: Maya's $1.15M of California sales is over the $1M line", () => {
+    const withCa = evaluateSetup(products, FITTED, index, ctx)!;
+    const noCaCtx = { ...ctx, feeSchedules: ctx.feeSchedules.filter((f) => f.state !== "CA") };
+    const noCa = evaluateSetup(products, FITTED, index, noCaCtx)!;
+    assert.ok(data.feeSchedules.some((f) => f.state === "CA"));
+    assert.ok(withCa.values.fees > noCa.values.fees);
+  });
+
+  it("California adds nothing under the $1M line (the seller applies for the exemption)", () => {
+    const under = toContext({ ...input, californiaSalesUsd: 500_000 }, data);
+    const underNoCa = { ...under, feeSchedules: under.feeSchedules.filter((f) => f.state !== "CA") };
+    const a = evaluateSetup(products, FITTED, index, under)!;
+    const b = evaluateSetup(products, FITTED, index, underNoCa)!;
+    assert.equal(a.values.fees, b.values.fees);
   });
 
   it("without seller information every state with a schedule counts as covered", () => {

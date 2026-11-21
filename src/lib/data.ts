@@ -81,7 +81,9 @@ export function loadData(): AppData {
       components: componentsJson as unknown as PackagingComponent[],
       materials: materialsJson as unknown as Material[],
     },
-    feeSchedules: [oregonFees, coloradoFees] as unknown as FeeSchedule[],
+    // Every state with a fee schedule counts toward the Fees score. California's 2027 rates are
+    // proposed (status "proposed"); the coverage card labels them that way.
+    feeSchedules: [oregonFees, coloradoFees, californiaFees] as unknown as FeeSchedule[],
     shipping: shippingJson as unknown as ShippingRules,
     coverageRules: coverageJson as unknown as StateCoverageRule[],
     coverageSchedules: {
