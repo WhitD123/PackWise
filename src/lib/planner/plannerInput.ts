@@ -29,6 +29,11 @@ export interface PlannerInput {
   /** Today's packaging, as component ids. "" = not provided. */
   current: { outer_id: string; fill_id: string; wrap_id: string; insert_id: string };
   priority: PresetName;
+  /**
+   * Worldwide yearly revenue, for the state exemption tests. Optional: when missing,
+   * every state with a fee schedule is treated as covered.
+   */
+  revenueUsd?: number;
 }
 
 /** `key` must be unique within the form; callers in event handlers can use Date.now(). */
@@ -53,6 +58,7 @@ export function defaultInput(): PlannerInput {
     statePercent: { OR: 8.23, CO: 1.25 }, // same file; fee states only
     current: { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: "" },
     priority: "balanced",
+    revenueUsd: 8_162_960, // data/samples/shopify-orders.csv: $156,980 a week x 52
   };
 }
 
@@ -74,6 +80,10 @@ export function toContext(input: PlannerInput, data: AppData): SellerContext {
     stateShare: Object.fromEntries(Object.entries(input.statePercent).map(([s, pct]) => [s, (pct || 0) / 100])),
     shipping: data.shipping,
     feeSchedules: data.feeSchedules,
+    coverage:
+      input.revenueUsd === undefined
+        ? undefined
+        : { rules: data.coverageRules, seller: { worldwideRevenueUsd: input.revenueUsd, californiaSalesUsd: null } },
   };
 }
 

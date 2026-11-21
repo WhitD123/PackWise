@@ -2,7 +2,8 @@
 // cheapest, best balance, and lowest waste (brief feature 2).
 //
 // 1. Measure every allowed outer x insert x wrap x fill combination that fits.
-// 2. Drop anything below the minimum protection for the product.
+// 2. Drop anything below the minimum protection for the product. If nothing is
+//    left, return no picks (never recommend an unsafe setup).
 // 3. Drop anything beaten on every factor (Pareto filter).
 // 4. Score the rest against each other and pick the three.
 
@@ -24,7 +25,7 @@ export interface PlanResult {
   /** Surviving options, best overall first. */
   options: ScoredSetup[];
   picks: PlanPicks | null;
-  /** True when nothing met the minimum protection, so picks come from unsafe options. */
+  /** True when setups fit but none met the minimum protection, so there are no picks. */
   noSafeOption: boolean;
   /** How many setups fit the order before filtering. */
   fittingCount: number;
@@ -40,17 +41,19 @@ export function planPackaging(
   const fitting = evaluateAll(products, indexCatalog(catalog), ctx);
 
   const safe = fitting.filter((e) => meetsMinimum(e.values.protection, fragility));
-  const noSafeOption = safe.length === 0;
-  const pool = noSafeOption ? fitting : safe;
+  const noSafeOption = fitting.length > 0 && safe.length === 0;
 
-  const options = scoreOptions(paretoFilter(pool), weights).sort((a, b) => b.score.overall - a.score.overall);
+  // Ties on overall go to less waste, then lower cost (scoring-spec.md section 5).
+  const byBalance = (a: ScoredSetup, b: ScoredSetup) =>
+    b.score.overall - a.score.overall || a.values.waste - b.values.waste || a.values.cost - b.values.cost;
+  const options = scoreOptions(paretoFilter(safe), weights).sort(byBalance);
   if (options.length === 0) {
     return { fragility, options, picks: null, noSafeOption, fittingCount: fitting.length };
   }
 
   const first = (order: (a: ScoredSetup, b: ScoredSetup) => number) => [...options].sort(order)[0];
   const picks: PlanPicks = {
-    cheapest: first((a, b) => a.values.cost - b.values.cost || b.score.overall - a.score.overall),
+    cheapest: first((a, b) => a.values.cost - b.values.cost || a.values.waste - b.values.waste),
     bestBalance: options[0],
     lowestWaste: first((a, b) => a.values.waste - b.values.waste || a.values.cost - b.values.cost),
   };

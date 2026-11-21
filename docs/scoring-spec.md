@@ -1,6 +1,6 @@
 # Packwise scoring spec
 
-**Status: DRAFT for Tyler to approve, then Whitman to code.** Items marked **PROPOSED** are my suggestions, not sourced facts. Items marked **OPEN** need a decision. Every number comes from `data/` or the answer key; nothing here is typed into the UI.
+**Status: DRAFT for Tyler to approve. Implemented on `integrate/engine-and-data` (2026-11-20): weights, protection rules, carbon end-of-life, fees via the coverage check, swap ranking.** Items marked **PROPOSED** are my suggestions, not sourced facts. Items marked **OPEN** need a decision. Every number comes from `data/` or the answer key; nothing here is typed into the UI.
 
 Scoring compares packaging setups **for the same product, the same orders and the same ship-from ZIP**. It is a transparent formula, not a trained model.
 
@@ -50,7 +50,7 @@ The library's own `protection` field is a poor basis: 27 of 29 boxes are `medium
 
 | Check | Source | Failing it means |
 | --- | --- | --- |
-| Clearance: box inside size >= item size + 4 in per axis (2 in per side), unless the box `has_fitted_insert` and is made for that jar | R1, R2 | Setup is **excluded** for fragile (high) products |
+| Clearance: box inside size >= item size + 4 in per axis (2 in per side), unless the box `has_fitted_insert` and every item sits in one of its cells (`fitted_insert` field: cell size and count; the jar must fit the cell and not rattle, 0.75 in slack) | R1, R2 | Setup is **excluded** for fragile (high) products |
 | Glass is individually wrapped, or sits in a fitted insert | R3 | Excluded for fragile products |
 | Void fill is an allowed type for glass: air pillows, foam peanuts, bubble wrap (crumpled paper is "non-fragile only") | R5 | **Downgrade** one level (R5 is guidance, not a hard block) |
 | Box strength matches shipped weight (32 ECT up to 30 lb) | R7 | Excluded over 30 lb with a 32 ECT box |
@@ -132,7 +132,7 @@ Demo A from `tests/fixtures/demo-answer-key.json`: poly bubble mailer (pe-film, 
 
 This matches the answer key's honest reading: the paper mailer removes all plastic and lowers fees, but it is about 1.3x heavier, so waste and carbon rise slightly.
 
-**OPEN, and this one matters:** plastic is not one of the five factors, so the overall score *prefers the poly mailer* and `score_change` for the paper swap is negative. Yet the swap card leads with plastic avoided, and the whole pitch is about plastic. Options: (a) rank swaps by plastic and landfill avoided first and show `score_change` as a secondary number, which fits the Theme Track best (my recommendation); (b) add plastic as a fifth weighted factor; (c) leave it and explain the trade-off on the card. This must be decided before the swap engine is finalized.
+**DECIDED (recommendation a), implemented:** plastic is not one of the five factors, so the overall score *prefers the poly mailer* and `score_change` for the paper swap is negative. Yet the swap card leads with plastic avoided, and the whole pitch is about plastic. Options: (a) rank swaps by plastic and landfill avoided first and show `score_change` as a secondary number, which fits the Theme Track best (my recommendation); (b) add plastic as a fifth weighted factor; (c) leave it and explain the trade-off on the card. This must be decided before the swap engine is finalized.
 
 ---
 

@@ -5,13 +5,16 @@ import coloradoFees from "../../data/fees/colorado-2027.json" with { type: "json
 import oregonFees from "../../data/fees/oregon-2027.json" with { type: "json" };
 import componentsJson from "../../data/library/components.json" with { type: "json" };
 import materialsJson from "../../data/materials.json" with { type: "json" };
+import coverageJson from "../../data/rules/state-coverage.json" with { type: "json" };
 import shippingJson from "../../data/rules/shipping.json" with { type: "json" };
+import type { StateCoverageRule } from "./coverage/types.ts";
 import type { Catalog, FeeSchedule, Material, PackagingComponent, ShippingRules } from "./types.ts";
 
 export interface AppData {
   catalog: Catalog;
   feeSchedules: FeeSchedule[];
   shipping: ShippingRules;
+  coverageRules: StateCoverageRule[];
 }
 
 export function loadData(): AppData {
@@ -23,6 +26,7 @@ export function loadData(): AppData {
     },
     feeSchedules: [oregonFees, coloradoFees] as unknown as FeeSchedule[],
     shipping: shippingJson as unknown as ShippingRules,
+    coverageRules: coverageJson as unknown as StateCoverageRule[],
   };
 }
 

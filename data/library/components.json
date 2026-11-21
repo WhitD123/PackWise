@@ -940,7 +940,14 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F0252-1F, roll end tuck front box plus two-piece insert, all 200# B flute kraft corrugated. Box internal 5.5 x 5.06 x 4.31 in; insert cell 2.88 x 2.88 x 3.94 in (fits 8 oz jelly jars 2.88 in dia x 3.94 in tall, e.g., CandleScience 1640). Weight: page lists 6.5 oz -> 6.5 x 28.3495 = 184.3 g (box plus insert). Price: $2.40/$2.25/$2.15/$2.05 at 30/60/90/180; highest listed tier 180 used (no 500 tier). Protection set to medium per the single-wall rule, although the fitted insert likely protects better than a plain single-wall box. Does not fit 12 oz jars; dimensions are the outer box interior, the jar cell is smaller.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 1,
+      "cell_length_in": 2.88,
+      "cell_width_in": 2.88,
+      "cell_height_in": 3.94,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "corrugated-mailer-9x6-5x2-75-white",
@@ -1294,7 +1301,14 @@
     "has_fitted_insert": true,
     "outside_length_in": 7.44,
     "outside_width_in": 6,
-    "outside_height_in": 3.81
+    "outside_height_in": 3.81,
+    "fitted_insert": {
+      "cells": 1,
+      "cell_length_in": 3.34,
+      "cell_width_in": 3.34,
+      "cell_height_in": 3.19,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "box-12oz-canning-jar-shipper",
@@ -1320,7 +1334,14 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F0221-2C, RETF box plus two-piece insert, 200# B flute kraft. Internal 5.5 x 4.88 x 5.13 in (external 6.38 x 5.25 x 5.44 in); cell 2.88 x 2.88 x 4.75 in, for CandleScience 12 oz Canning Jar (2.88 in dia x 4.75 in). Weight: 'Weight: 7.5 oz' -> 7.5 x 28.3495 = 212.6 g. Price: $4.50 sample; $2.50/$2.35/$2.30 at 30/75/150; tier 150 used. Protection set to medium per the single-wall rule (as for box-8oz-jelly-jar-shipper), although the fitted insert likely protects better than a plain single-wall box. Cell too narrow for 3.15-3.34 in diameter 12 oz tumblers or straight-sided jars.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 1,
+      "cell_length_in": 2.88,
+      "cell_width_in": 2.88,
+      "cell_height_in": 4.75,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "box-12oz-canning-jar-2pack",
@@ -1346,7 +1367,14 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F0622-2C, RETF box plus three-piece insert, 200# B flute kraft. Internal 8.13 x 4.94 x 5.13 in (external 9 x 5.31 x 5.44 in); cells 2.94 x 2.94 x 4.75 in, two CandleScience 12 oz Canning Jars. Weight: 'Weight: 9.9 oz' -> 9.9 x 28.3495 = 280.7 g (page lists it as box weight; assumed to include insert as on Flush's other listings). Price: $4.75 sample; $2.75/$2.60/$2.55 at 30/60/180; tier 180 used. Protection set to medium per the single-wall rule (as for box-8oz-jelly-jar-shipper), although the fitted insert likely protects better than a plain single-wall box.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 2,
+      "cell_length_in": 2.94,
+      "cell_width_in": 2.94,
+      "cell_height_in": 4.75,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "box-12oz-canning-jar-3pack",
@@ -1372,7 +1400,14 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F0623-2C, RETF box plus four-piece insert, 200# B flute kraft. Internal 11.25 x 4.94 x 5.13 in; cells 2.94 x 2.94 x 4.75 in, three CandleScience 12 oz Canning Jars. Weight: 'Weight per unit 13.2 oz' -> 13.2 x 28.3495 = 374.2 g. Price: $4.99 sample; $2.99/$2.84/$2.79 at 30/45/180; tier 180 used. Protection set to medium per the single-wall rule (as for box-8oz-jelly-jar-shipper), although the fitted insert likely protects better than a plain single-wall box.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 3,
+      "cell_length_in": 2.94,
+      "cell_width_in": 2.94,
+      "cell_height_in": 4.75,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "box-8oz-straight-jelly-jar-2pack",
@@ -1398,7 +1433,14 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F0251-1I, RETF box plus three-piece insert, 200# B flute kraft. Internal 8.19 x 5.06 x 4.31 in (external 9.06 x 5.44 x 4.63 in); cells 2.88 x 2.88 x 3.94 in; vessel 2.88 in dia x 3.69 in. Compatible: CandleScience 8 oz Straight Sided Jelly Jar, Fillmore A08-14C, Jar Store PSGA0008-140C1C-12. Weight: 'Weight: 8.7 oz' -> 8.7 x 28.3495 = 246.6 g. Price: $4.85 sample; $2.85/$2.55/$2.45/$2.35 at 30/45/90/180; tier 180 used. Protection set to medium per the single-wall rule (as for box-8oz-jelly-jar-shipper), although the fitted insert likely protects better than a plain single-wall box.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 2,
+      "cell_length_in": 2.88,
+      "cell_width_in": 2.88,
+      "cell_height_in": 3.94,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   },
   {
     "id": "box-8oz-straight-jelly-jar-4pack",
@@ -1424,6 +1466,13 @@
     "certifications": [],
     "reusable": null,
     "notes": "Flush Packaging SKU F1153-1I, RETF box plus four-piece insert, 200# B flute kraft. Internal 8 x 8 x 3.94 in (external 9.13 x 8.38 x 4.19 in); cells listed 2.88 x 2.88 x 3.56 in, but vessel listed 2.88 in dia x 3.69 in (cell height shorter than jar as printed; likely the insert sits below the jar top). Same compatible jars as F0251-1I. Weight: 'Weight: 12.3 oz' -> 12.3 x 28.3495 = 348.7 g. Price: $5.25 sample; $3.25/$3.20/$3.10/$3.00 at 30/45/90/180; tier 180 used. Protection set to medium per the single-wall rule (as for box-8oz-jelly-jar-shipper), although the fitted insert likely protects better than a plain single-wall box.",
-    "has_fitted_insert": true
+    "has_fitted_insert": true,
+    "fitted_insert": {
+      "cells": 4,
+      "cell_length_in": 2.88,
+      "cell_width_in": 2.88,
+      "cell_height_in": 3.56,
+      "source": "insert cell size from this component's notes (Flush Packaging product page)"
+    }
   }
 ]

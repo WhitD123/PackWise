@@ -123,11 +123,27 @@ describe("rankSwaps", () => {
     assert.ok(result.swaps.length > 0);
   });
 
-  it("requires a higher overall score when today's setup is already safe", () => {
-    const result = rankSwaps(oneCandle, setup(BOX_8, { fill: KRAFT_FILL }), CATALOG, CONTEXT);
+  it("ranks by plastic avoided, then landfill avoided (not by overall score)", () => {
+    const result = rankSwaps(oneCandle, current, CATALOG, CONTEXT, WEIGHT_PRESETS.balanced, 10);
     assert.ok(result);
-    assert.equal(result.currentMeetsMinimum, true);
-    for (const s of result.swaps) assert.ok(s.score_change > 0);
+    assert.ok(result.swaps.length > 1);
+    for (let i = 1; i < result.swaps.length; i++) {
+      const a = result.swaps[i - 1];
+      const b = result.swaps[i];
+      assert.ok(
+        a.plastic_avoided_lb_per_year > b.plastic_avoided_lb_per_year - 1e-9 ||
+          (Math.abs(a.plastic_avoided_lb_per_year - b.plastic_avoided_lb_per_year) < 1e-9 &&
+            a.landfill_avoided_lb_per_year >= b.landfill_avoided_lb_per_year - 1e-9),
+      );
+    }
+  });
+
+  it("every swap removes plastic or landfill weight", () => {
+    const result = rankSwaps(oneCandle, current, CATALOG, CONTEXT);
+    assert.ok(result);
+    for (const s of result.swaps) {
+      assert.ok(s.plastic_avoided_lb_per_year > 1e-9 || s.landfill_avoided_lb_per_year > 1e-9);
+    }
   });
 
   it("returns at most one swap per outer", () => {

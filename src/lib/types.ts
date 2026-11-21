@@ -2,6 +2,8 @@
 // sections 3-7 are the data files, section 9 is what code hands to code.
 // Units are in every field name: _in inches, _g grams, _lb pounds, _usd dollars, _rate 0..1.
 
+import type { SellerProfile, StateCoverageRule as CoverageRuleRecord } from "./coverage/types.ts";
+
 export type Level = "low" | "medium" | "high";
 export type Fragility = Level;
 export type ProtectionLevel = Level;
@@ -18,6 +20,8 @@ export interface Material {
   recycle_rate: number;
   curbside_recyclable: boolean;
   carbon_kg_co2e_per_kg: number;
+  /** End-of-life emissions, kg CO2e per kg (EPA Emission Factors Hub). A null recycling value counts as 0. */
+  eol_kg_co2e_per_kg?: { landfill: number; recycling: number | null };
   disposal_text: string;
   source_url: string;
   last_checked: string;
@@ -61,6 +65,10 @@ export interface PackagingComponent {
   protection: Level;
   /** Overrides the material's recycle_rate when set. */
   recycle_rate?: number;
+  /** Box with a built-in jar insert: safe for the jar it is made for without the clearance rule. */
+  has_fitted_insert?: boolean;
+  /** Size and count of the insert cells, for fitted-insert boxes. */
+  fitted_insert?: { cells: number; cell_length_in: number; cell_width_in: number; cell_height_in: number };
   supplier: string;
   source_url: string;
   is_estimate: boolean;
@@ -165,6 +173,12 @@ export interface SellerContext {
   stateShare: Record<string, number>;
   shipping: ShippingRules;
   feeSchedules: FeeSchedule[];
+  /**
+   * Who the seller is, for the exemption tests. When set, fees follow the coverage
+   * check (an exempt state costs $0). When missing, every state with a schedule is
+   * treated as covered.
+   */
+  coverage?: { rules: CoverageRuleRecord[]; seller: SellerProfile };
 }
 
 /** Internal geometry helper (not a data shape). */

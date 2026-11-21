@@ -91,14 +91,12 @@ export function ResultsView({ data }: { data: AppData }) {
           lead={`We tested ${plan.fittingCount} combinations of boxes, mailers, wraps, fills and inserts that fit this order and kept the ones that protect it well enough.`}
         />
         {plan.picks ? (
-          <>
-            {plan.noSafeOption && (
-              <p className="mb-4 text-sm text-brick">
-                Nothing in our library protects this order well enough. These are the best of what fits.
-              </p>
-            )}
-            <OptionsCompare picks={plan.picks} />
-          </>
+          <OptionsCompare picks={plan.picks} />
+        ) : plan.noSafeOption ? (
+          <Card>
+            {plan.fittingCount} setups fit this order, but none in our library protects it well enough, so we
+            aren&rsquo;t recommending any. Try a different fragility or add your own packaging.
+          </Card>
         ) : (
           <Card>Nothing in our library fits this order. Try fewer items per order.</Card>
         )}

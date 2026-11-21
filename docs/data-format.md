@@ -514,3 +514,18 @@ Things to know:
 - The chart is valid only for origin 972. A different ship-from ZIP needs a different chart.
 
 Workbook change: new `State_Zones` tab; Swap_Demo now prices shipping across the sample's zone mix, uses all 109,200 sample orders per year, and applies the EPR fee only to orders delivered into the fee state.
+
+
+---
+
+## Update 2026-11-20: fitted-insert boxes
+
+Components with `has_fitted_insert: true` (7 jar shipper boxes) also carry a structured `fitted_insert` object, read from each box's own notes (the Flush Packaging page lists the insert cell size):
+
+| Field | Meaning |
+| --- | --- |
+| `fitted_insert.cells` | How many jars the insert holds (1, 2, 3 or 4) |
+| `fitted_insert.cell_length_in`, `cell_width_in`, `cell_height_in` | Size of one cell, inches |
+| `fitted_insert.source` | Where the numbers came from |
+
+The clearance rule is skipped only when every item fits a cell (the two smaller item sizes fit the cell and are at most 0.75 in smaller; the tallest fits the box's inside height) and the order has no more items than cells. A fitted box is safe for the jars it is made for, not for any product that fits inside it.

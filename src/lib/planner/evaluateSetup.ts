@@ -8,7 +8,9 @@
 //   fill   fills the empty space left in a box. Used per cubic foot of empty space.
 //   outer  the box or mailer. Boxes keep padding between items and walls by fragility.
 
-import { dimsOf, resolveSetup, setupKey, type CatalogIndex } from "../catalog.ts";
+import { dimsOf, fittedInsertFits, resolveSetup, setupKey, type CatalogIndex } from "../catalog.ts";
+import { checkState } from "../coverage/checkCoverage.ts";
+import { estimateFees } from "../coverage/estimateFees.ts";
 import { GRAMS_PER_LB, shippingQuote } from "../rightsizing/dimWeight.ts";
 import { CLEARANCE_IN, fitMailer, packIntoBox, volume, WALL_IN, WRAP_THICKNESS_IN } from "../rightsizing/packItems.ts";
 import { rateProtection } from "../scoring/protection.ts";
@@ -16,6 +18,7 @@ import type {
   Dimensions,
   EvaluatedSetup,
   Fragility,
+  Material,
   PackagingComponent,
   PartUsage,
   Placement,
@@ -23,6 +26,16 @@ import type {
   SellerContext,
   Setup,
 } from "../types.ts";
+
+/**
+ * Kg CO2e per kg of a material over its life (CLAUDE.md section 7):
+ * production + recycle_rate x recycling + (1 - recycle_rate) x landfill. A null recycling factor counts as 0.
+ */
+export function lifecycleFactor(m: Material | undefined, recycleRate: number): number {
+  if (!m) return 0;
+  const eol = m.eol_kg_co2e_per_kg;
+  return m.carbon_kg_co2e_per_kg + (eol ? recycleRate * (eol.recycling ?? 0) + (1 - recycleRate) * eol.landfill : 0);
+}
 
 const FRAGILITY_RANK: Record<Fragility, number> = { low: 0, medium: 1, high: 2 };
 const NO_PAD = { wall: 0, gap: 0 };
@@ -91,14 +104,16 @@ export function evaluateSetup(
     blocks = [grow(inside, 2 * WALL_IN)];
   }
 
-  // 2. Fit into the outer.
+  // 2. Fit into the outer. A fitted-insert box counts as fitted only for jars that sit in its cells.
+  const fitted = fittedInsertFits(parts.outer, items);
   const outerDims = dimsOf(parts.outer)!;
   let placements: Placement[];
   let shippedDims: Dimensions;
   let voidVolume_in3 = 0;
 
   if (parts.outer.type === "box") {
-    const base = opts.strictClearance === false ? NO_PAD : CLEARANCE_IN[fragility];
+    // A fitted-insert box holds the jar it is made for snugly, so the clearance rule does not apply.
+    const base = opts.strictClearance === false || fitted ? NO_PAD : CLEARANCE_IN[fragility];
     // An insert holds items snugly; wrap counts toward the padding.
     const clearance = parts.insert
       ? NO_PAD
@@ -135,32 +150,46 @@ export function evaluateSetup(
   const usage: PartUsage[] = [usageOf(parts.outer, 1)];
   if (parts.insert) usage.push(usageOf(parts.insert, 1));
   if (parts.wrap) usage.push(usageOf(parts.wrap, items.reduce((s, d) => s + surfaceArea(d), 0) / IN2_PER_FT2));
-  if (parts.fill) usage.push(usageOf(parts.fill, voidVolume_in3 / IN3_PER_FT3));
+  // A fitted box has no loose fill (CLAUDE.md section 7), whatever empty space it has.
+  if (parts.fill) usage.push(usageOf(parts.fill, fitted ? 0 : voidVolume_in3 / IN3_PER_FT3));
 
-  // 4. Materials: waste, plastic, carbon, fees.
+  // 4. Materials: waste, plastic, carbon.
   const warnings = new Set<string>();
   let waste = 0;
   let plasticWeight_g = 0;
   let carbon = 0;
-  let feePerOrder = 0;
+  const gramsByMaterial: Record<string, number> = {};
   for (const u of usage) {
     const m = index.material(u.component.material);
     if (!m) warnings.add(`Unknown material "${u.component.material}" on ${u.component.name}.`);
     const recycle = u.component.recycle_rate ?? m?.recycle_rate ?? 0;
     waste += u.weight_g * (1 - recycle);
     if (m?.is_plastic) plasticWeight_g += u.weight_g;
-    carbon += (u.weight_g / 1000) * (m?.carbon_kg_co2e_per_kg ?? 0);
+    carbon += (u.weight_g / 1000) * lifecycleFactor(m, recycle);
+    gramsByMaterial[u.component.material] = (gramsByMaterial[u.component.material] ?? 0) + u.weight_g;
+  }
 
-    for (const [state, share] of Object.entries(ctx.stateShare)) {
-      if (!(share > 0)) continue;
-      const schedule = ctx.feeSchedules.find((f) => f.state === state);
-      if (!schedule) continue; // no fee schedule = no fees in that state
-      const rate = schedule.rates[u.component.material];
-      if (!rate) {
-        warnings.add(`No ${state} fee rate found for ${m?.name ?? u.component.material}; counted as $0 for now.`);
-        continue;
-      }
-      feePerOrder += share * (u.weight_g / GRAMS_PER_LB) * rate.rate_usd_per_lb;
+  // 5. Fees: pounds delivered to each state x its rate, via the coverage module so
+  //    scoring and the coverage card agree. An exempt state costs $0.
+  let feesPerYear = 0;
+  for (const [state, share] of Object.entries(ctx.stateShare)) {
+    if (!(share > 0)) continue;
+    const schedule = ctx.feeSchedules.find((f) => f.state === state);
+    if (!schedule) continue; // no fee schedule = no fees in that state
+    const orders = share * ctx.ordersPerYear;
+    const rule = ctx.coverage?.rules.find((r) => r.state === state);
+    if (ctx.coverage && rule) {
+      const r = checkState(
+        rule,
+        { seller: ctx.coverage.seller, ordersPerYearByState: { [state]: orders }, packagingGramsPerOrderByMaterial: gramsByMaterial },
+        rule.fee_file ? { [rule.fee_file]: schedule } : {},
+      );
+      feesPerYear += r.fee_usd_per_year ?? 0;
+      r.warnings.forEach((w) => warnings.add(w));
+    } else {
+      const fee = estimateFees(schedule, orders, gramsByMaterial);
+      feesPerYear += fee.fee_usd_per_year;
+      fee.warnings.forEach((w) => warnings.add(w));
     }
   }
 
@@ -185,9 +214,13 @@ export function evaluateSetup(
     warnings: [...warnings],
     values: {
       cost: packagingCost_usd + quote.price_usd,
-      protection: rateProtection(parts, fragility),
+      protection: rateProtection(parts, fragility, {
+        fitted,
+        voidVolume_in3,
+        shippedWeight_lb: (itemsWeight_g + packagingWeight_g) / GRAMS_PER_LB,
+      }),
       waste,
-      fees: feePerOrder * ctx.ordersPerYear,
+      fees: feesPerYear,
       carbon,
     },
   };

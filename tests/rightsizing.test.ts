@@ -198,17 +198,21 @@ describe("evaluateSetup", () => {
     const ev = evaluateSetup([TSHIRT], setup(PADDED_KRAFT_MAILER), INDEX, noPaperRate);
     assert.ok(ev);
     assert.equal(ev.values.fees, 0);
-    assert.match(ev.warnings.join(" "), /No OR fee rate found for kraft-paper/);
+    assert.match(ev.warnings.join(" "), /No OR fee rate found for: kraft-paper/);
   });
 
-  it("rates protection from each part's protection level", () => {
-    const parts = (s: ReturnType<typeof setup>) => evaluateSetup(oneCandle, s, INDEX, CONTEXT)!;
-    // Glass needs 4 points. Poly (0) + bubble wrap (3) = 3 -> low.
-    assert.equal(parts(setup(POLY_MAILER, { wrap: BUBBLE_WRAP })).values.protection, "low");
-    // Box (2) + kraft fill (2) = 4 -> medium.
-    assert.equal(parts(setup(BOX_8, { fill: KRAFT_FILL })).values.protection, "medium");
-    // Box (2) + bubble wrap (3) + kraft fill (2) = 7 -> high.
-    assert.equal(parts(setup(BOX_8, { wrap: BUBBLE_WRAP, fill: KRAFT_FILL })).values.protection, "high");
+  it("rates the whole setup with the packing rules (scoring-spec.md section 3)", () => {
+    const rate = (s: ReturnType<typeof setup>) => evaluateSetup(oneCandle, s, INDEX, CONTEXT)!.values.protection;
+    // Glass in a soft mailer is never better than low (R1).
+    assert.equal(rate(setup(POLY_MAILER, { wrap: BUBBLE_WRAP })), "low");
+    // Glass in a box with fill but no individual wrap fails R3.
+    assert.equal(rate(setup(BOX_8, { fill: KRAFT_FILL })), "low");
+    // Wrapped glass with its empty space filled passes everything, but crumpled paper is
+    // "non-fragile only" for glass (R5), so it drops one level.
+    assert.equal(rate(setup(BOX_8, { wrap: BUBBLE_WRAP, fill: KRAFT_FILL })), "medium");
+    // Wrapped glass with the empty space left unfilled fails the shake test: one level down.
+    assert.equal(rate(setup(BOX_8, { wrap: BUBBLE_WRAP })), "medium");
+    // A sturdy item in a box that fits is high.
     assert.equal(rateProtection({ outer: BOX_8, fill: null, wrap: null, insert: null }, "low"), "high");
   });
 });

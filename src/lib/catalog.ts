@@ -55,3 +55,24 @@ export function describeSetup(parts: ResolvedSetup): string {
   if (extras.length === 0) return parts.outer.name;
   return `${parts.outer.name} with ${extras.map((p) => p.name.toLowerCase()).join(" and ")}`;
 }
+
+/** How much smaller than its cell a jar can be and still count as snug (inches per side). */
+export const FITTED_CELL_SLACK_IN = 0.75;
+
+/**
+ * True when every item sits in a cell of this fitted-insert box. Only then does the
+ * box skip the clearance rule: a fitted box is safe for the jars it is made for, not
+ * for any product that happens to fit inside it.
+ * An item stands upright, so its two smaller sizes must fit the (square) cell and not
+ * rattle in it; its tallest size must fit the box's inside height.
+ */
+export function fittedInsertFits(outer: PackagingComponent, items: Dimensions[]): boolean {
+  const cell = outer.fitted_insert;
+  if (!outer.has_fitted_insert || !cell || outer.height_in === undefined) return false;
+  if (items.length === 0 || items.length > cell.cells) return false;
+  const side = Math.min(cell.cell_length_in, cell.cell_width_in);
+  return items.every((d) => {
+    const [s0, s1, s2] = [d.length, d.width, d.height].sort((a, b) => a - b);
+    return s1 <= side && s0 >= side - FITTED_CELL_SLACK_IN && s2 <= outer.height_in!;
+  });
+}

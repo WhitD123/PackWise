@@ -4,11 +4,11 @@
 //
 // A swap is only suggested when it
 //   - protects at least as well as today (and meets the product's minimum),
-//   - sends less to landfill or uses less plastic, and
-//   - scores higher overall with the seller's weights. This last rule is skipped
-//     when today's setup is below the minimum protection: an unsafe setup can
-//     look "best" on cost and grams simply because it barely protects anything.
-// Results are ranked by overall score, at most one per outer.
+//   - sends less to landfill or uses less plastic.
+// Results are ranked by plastic avoided, then landfill avoided, then overall score
+// (docs/scoring-spec.md section 6), at most one per outer. The overall score is
+// shown as score_change but does not decide the ranking: plastic is not one of
+// the five factors, so a swap that removes plastic can score slightly lower.
 
 import { describeSetup, indexCatalog } from "../catalog.ts";
 import { evaluateAll, expandOrder } from "../planner/evaluateSetup.ts";
@@ -24,11 +24,7 @@ const EPS = 1e-9;
 export interface SwapResult {
   current: ScoredSetup;
   currentHasPadding: boolean;
-  /**
-   * False when today's setup is below the minimum protection for the product
-   * (e.g. glass in a plain poly mailer). Then safe swaps are suggested even if
-   * they score lower overall, because the current setup should not be the bar.
-   */
+  /** False when today's setup is below the minimum protection for the product (e.g. glass in a plain poly mailer). */
   currentMeetsMinimum: boolean;
   swaps: Swap[];
 }
@@ -72,14 +68,15 @@ export function buildSwap(current: ScoredSetup, option: ScoredSetup, ordersPerYe
   }
   if (ov.carbon > cv.carbon + EPS) {
     worse_on.push("carbon");
-    tradeoffs.push(`${Math.round((ov.carbon - cv.carbon) * 1000)} g more CO2e per order from heavier material`);
+    tradeoffs.push(`${Math.round((ov.carbon - cv.carbon) * 1000)} g more CO2e per order`);
   }
 
+  // Waste first, then money (the theme is waste).
   const gains: string[] = [];
-  if (usd_saved_per_year > 0.5) gains.push(`save ${money(usd_saved_per_year)} a year`);
-  else if (usd_saved_per_year < -0.5) gains.push(`cost ${money(usd_saved_per_year)} more a year`);
   if (plastic_avoided_lb_per_year > 0.05) gains.push(`avoid ${pounds(plastic_avoided_lb_per_year)} of plastic`);
   else if (landfill_avoided_lb_per_year > 0.05) gains.push(`keep ${pounds(landfill_avoided_lb_per_year)} out of landfill`);
+  if (usd_saved_per_year > 0.5) gains.push(`save ${money(usd_saved_per_year)} a year`);
+  else if (usd_saved_per_year < -0.5) gains.push(`cost ${money(usd_saved_per_year)} more a year`);
   const summary = `Switch ${describeSetup(current.parts)} to ${describeSetup(option.parts)}${
     gains.length ? `: ${gains.join(" and ")}` : ""
   }.`;
@@ -134,15 +131,19 @@ export function rankSwaps(
 
   const seenOuters = new Set<string>();
   const swaps = scored
-    .filter((s) => !currentMeetsMinimum || s.score.overall > scoredCurrent.score.overall + EPS)
-    .sort((a, b) => b.score.overall - a.score.overall)
+    .map((s) => buildSwap(scoredCurrent, s, ctx.ordersPerYear))
+    .sort(
+      (a, b) =>
+        b.plastic_avoided_lb_per_year - a.plastic_avoided_lb_per_year ||
+        b.landfill_avoided_lb_per_year - a.landfill_avoided_lb_per_year ||
+        b.score_change - a.score_change,
+    )
     .filter((s) => {
-      if (seenOuters.has(s.setup.outer_id)) return false;
-      seenOuters.add(s.setup.outer_id);
+      if (seenOuters.has(s.to.outer_id)) return false;
+      seenOuters.add(s.to.outer_id);
       return true;
     })
-    .slice(0, limit)
-    .map((s) => buildSwap(scoredCurrent, s, ctx.ordersPerYear));
+    .slice(0, limit);
 
   return { current: scoredCurrent, currentHasPadding: now.hasPadding, currentMeetsMinimum, swaps };
 }
