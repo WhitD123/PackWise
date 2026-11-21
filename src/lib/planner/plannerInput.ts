@@ -2,7 +2,7 @@
 // The form works in seller-friendly units (ounces, percent); the engine works in
 // grams and 0..1 shares. Conversion happens only here.
 
-import type { AppData } from "../data.ts";
+import type { AppData, ProductPackagingPart } from "../data.ts";
 import { zoneShareFromStates } from "../shipping/price.ts";
 import type { PresetName } from "../scoring/weights.ts";
 import type { Fragility, Product, SellerContext, Setup } from "../types.ts";
@@ -40,6 +40,10 @@ export interface PlannerInput {
    * every state with a fee schedule is treated as covered.
    */
   revenueUsd?: number;
+  /** Gross sales delivered into California per year, for California's test. */
+  californiaSalesUsd?: number;
+  /** Packaging that comes with each product (jar, lid). Counted by the state coverage check. */
+  productPackaging?: ProductPackagingPart[];
 }
 
 /** `key` must be unique within the form; callers in event handlers can use Date.now(). */
@@ -57,7 +61,9 @@ export function lineFromExample(p: ExampleProduct, key: string): ProductLineInpu
 }
 
 /** Order volume, state mix and revenue taken from the built-in sample order file. */
-export function ordersFromSample(data: AppData): Pick<PlannerInput, "ordersPerYear" | "statePercent" | "orderStatePercent" | "revenueUsd"> {
+export function ordersFromSample(
+  data: AppData,
+): Pick<PlannerInput, "ordersPerYear" | "statePercent" | "orderStatePercent" | "revenueUsd" | "californiaSalesUsd"> {
   const sample = data.sampleOrders;
   return {
     ordersPerYear: sample.ordersPerYear,
@@ -65,6 +71,7 @@ export function ordersFromSample(data: AppData): Pick<PlannerInput, "ordersPerYe
     statePercent: Object.fromEntries(data.feeSchedules.map((f) => [f.state, sample.orderStatePercent[f.state] ?? 0])),
     orderStatePercent: sample.orderStatePercent,
     revenueUsd: sample.revenuePerYear_usd,
+    californiaSalesUsd: sample.californiaSalesUsd,
   };
 }
 
@@ -76,6 +83,7 @@ export function defaultInput(data: AppData): PlannerInput {
   return {
     lines: [lineFromExample(EXAMPLE_PRODUCTS[1], "default-candle")],
     ...ordersFromSample(data),
+    productPackaging: data.demoProductPackaging,
     current: { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: "" },
     priority: "balanced",
   };
@@ -107,7 +115,7 @@ export function toContext(input: PlannerInput, data: AppData): SellerContext {
     coverage:
       input.revenueUsd === undefined
         ? undefined
-        : { rules: data.coverageRules, seller: { worldwideRevenueUsd: input.revenueUsd, californiaSalesUsd: null } },
+        : { rules: data.coverageRules, seller: { worldwideRevenueUsd: input.revenueUsd, californiaSalesUsd: input.californiaSalesUsd ?? null } },
   };
 }
 

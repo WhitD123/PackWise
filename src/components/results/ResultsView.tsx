@@ -17,6 +17,7 @@ import { PRESET_LABELS, WEIGHT_PRESETS } from "@/lib/scoring/weights";
 import { rankSwaps } from "@/lib/swaps/rankSwaps";
 
 import { BoxFitDiagram } from "./BoxFitDiagram";
+import { CoverageSection } from "./CoverageSection";
 import { ImpactSummary } from "./ImpactSummary";
 import { SwapCard } from "./SwapCard";
 
@@ -178,6 +179,14 @@ export function ResultsView({ data }: { data: AppData }) {
           )}
         </section>
       )}
+
+      {(() => {
+        // Today's setup if we could measure it, otherwise the best-balance pick.
+        const today = swaps?.current ?? rs?.current ?? plan.picks?.bestBalance ?? null;
+        if (!today) return null;
+        const after = swaps?.swaps[0]?.option ?? (today === plan.picks?.bestBalance ? null : (rs?.recommended ?? null));
+        return <CoverageSection data={data} input={input} current={today} after={after} />;
+      })()}
 
       <p className="text-xs text-muted">
         Every number on this page is calculated from the packaging library, materials list, shipping rules and fee

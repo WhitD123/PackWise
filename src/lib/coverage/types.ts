@@ -14,6 +14,8 @@ export interface StateCoverageRule {
   application_required: boolean | null;
   key_dates: { date: string; event: string }[];
   fee_file: string | null;
+  /** Oregon and Colorado bill year Y using year Y - lag shipments. */
+  fee_data_year_lag?: number | null;
   source_url: string;
   last_checked: string;
 }
@@ -37,8 +39,8 @@ export interface FeeSchedule {
 }
 
 export interface SellerProfile {
-  /** Worldwide gross revenue for the year the user says their numbers cover. */
-  worldwideRevenueUsd: number;
+  /** Worldwide gross revenue for the year the user says their numbers cover. null = not known yet. */
+  worldwideRevenueUsd: number | null;
   /** Gross sales delivered into California. null = not known yet. */
   californiaSalesUsd: number | null;
 }
