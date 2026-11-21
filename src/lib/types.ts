@@ -286,6 +286,11 @@ export interface EvaluatedSetup {
   zoneLabel?: "exact" | "estimated" | "assumed";
   /** Empty space inside a box, cubic inches (0 for mailers). */
   voidVolume_in3: number;
+  /**
+   * EU empty-space ratio, 0 to 1: (box inside volume minus the products' bounding boxes) divided by the box
+   * inside volume. Filler counts as empty. Boxes only: a mailer's inside height is an estimate, so none is given.
+   */
+  emptySpaceRatio?: number;
   placements: Placement[];
   /** Things the user should know, e.g. a fee rate missing for a material. */
   warnings: string[];

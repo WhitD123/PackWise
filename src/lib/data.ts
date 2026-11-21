@@ -11,6 +11,7 @@ import demoProductsJson from "../../data/samples/demo-products.json" with { type
 import componentsJson from "../../data/library/components.json" with { type: "json" };
 import materialsJson from "../../data/materials.json" with { type: "json" };
 import coverageJson from "../../data/rules/state-coverage.json" with { type: "json" };
+import environmentJson from "../../data/rules/environment.json" with { type: "json" };
 import shippingJson from "../../data/rules/shipping.json" with { type: "json" };
 import type { FeeSchedule as CoverageFeeSchedule, StateCoverageRule } from "./coverage/types.ts";
 import { parseShopifyCsv } from "./orders/parseShopifyCsv.ts";
@@ -46,6 +47,8 @@ export interface AppData {
   coverageSchedules: Record<string, CoverageFeeSchedule>;
   /** Maya's jar and lid (data/samples/demo-products.json, Uline S-22916M-GLD). */
   demoProductPackaging: ProductPackagingPart[];
+  /** EU PPWR Article 24: maximum empty space for e-commerce packaging. A benchmark only, not a US law. */
+  euEmptySpace: { max_empty_space_ratio: number; application_date: string; source_url: string };
 }
 
 function loadSampleOrders(): SampleOrders {
@@ -92,6 +95,7 @@ export function loadData(): AppData {
       "california.json": californiaFees as unknown as CoverageFeeSchedule,
     },
     demoProductPackaging: loadDemoProductPackaging(),
+    euEmptySpace: environmentJson.eu_empty_space,
   };
 }
 

@@ -33,6 +33,7 @@ import { SwapCard } from "./SwapCard";
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export function ResultsView({ data }: { data: AppData }) {
+  const euLimit = { ratio: data.euEmptySpace.max_empty_space_ratio, year: data.euEmptySpace.application_date.slice(0, 4) };
   const [input, setInput] = useState<PlannerInput | null>(null);
   const [isDemo, setIsDemo] = useState(false);
 
@@ -125,9 +126,9 @@ export function ResultsView({ data }: { data: AppData }) {
           ) : (
             <Card>
               <div className="grid gap-8 md:grid-cols-2">
-                <BoxFitDiagram title="Today" option={rs.current} />
+                <BoxFitDiagram title="Today" option={rs.current} euLimit={euLimit} />
                 {rs.recommended ? (
-                  <BoxFitDiagram title="Right-sized" option={rs.recommended} />
+                  <BoxFitDiagram title="Right-sized" option={rs.recommended} euLimit={euLimit} />
                 ) : (
                   <p className="self-center text-muted">
                     {currentParts.outer.name} is already the smallest {currentParts.outer.type} in our library that

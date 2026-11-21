@@ -107,6 +107,40 @@ describe("oversized box (answer key: 362.8 g packaging, 58.9 g plastic, 0.69 kg 
   });
 });
 
+describe("EU empty-space ratio (answer key: 96% oversized, 72% fitted)", () => {
+  const OVERSIZED = { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: null };
+  const key = readJson("tests/fixtures/demo-answer-key.json").demo_B_right_size_12oz_candle.per_order["Empty space ratio (EU method)"];
+
+  it("oversized box: 0.9642, fitted jar box: 0.7174", () => {
+    const o = evaluateSetup(products, OVERSIZED, index, ctx, { strictClearance: false })!;
+    const f = evaluateSetup(products, FITTED, index, ctx)!;
+    close(o.emptySpaceRatio!, key.current, 0.0005, "oversized");
+    close(f.emptySpaceRatio!, key.right_sized, 0.0005, "fitted");
+  });
+
+  it("the fitted box is below the oversized one but still above the EU's 50% limit", () => {
+    const f = evaluateSetup(products, FITTED, index, ctx)!;
+    const limit = data.euEmptySpace.max_empty_space_ratio;
+    assert.equal(limit, 0.5);
+    assert.ok(f.emptySpaceRatio! > limit);
+  });
+
+  it("filler and wrap do not lower the ratio, because the EU counts filler as empty space", () => {
+    const bare = evaluateSetup(products, { ...OVERSIZED, fill_id: null, wrap_id: null }, index, ctx, { strictClearance: false })!;
+    const full = evaluateSetup(products, OVERSIZED, index, ctx, { strictClearance: false })!;
+    close(bare.emptySpaceRatio!, full.emptySpaceRatio!, 1e-12, "same box, same ratio");
+  });
+
+  it("a mailer gets no ratio, because its inside height is an estimate", () => {
+    const results = data.catalog.components
+      .filter((c) => c.type === "mailer")
+      .map((m) => evaluateSetup(products, { outer_id: m.id, fill_id: null, wrap_id: null, insert_id: null }, index, ctx, { strictClearance: false }))
+      .filter((ev) => ev !== null);
+    assert.ok(results.length > 0, "at least one mailer should hold the candle when padding is ignored");
+    for (const ev of results) assert.equal(ev!.emptySpaceRatio, undefined);
+  });
+});
+
 describe("fees follow the coverage check", () => {
   it("Maya ($8.2M, over a ton into Oregon) pays an Oregon fee", () => {
     const ev = evaluateSetup(products, FITTED, index, ctx)!;

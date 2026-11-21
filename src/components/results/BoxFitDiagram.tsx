@@ -6,7 +6,16 @@ const SCALE = 14; // px per inch
 const PAD = 8;
 
 /** Top-down view of the items inside the container. */
-export function BoxFitDiagram({ title, option }: { title: string; option: EvaluatedSetup }) {
+export function BoxFitDiagram({
+  title,
+  option,
+  euLimit,
+}: {
+  title: string;
+  option: EvaluatedSetup;
+  /** The EU's maximum empty space ratio (0 to 1) and the year it applies, shown as a benchmark. */
+  euLimit?: { ratio: number; year: string };
+}) {
   const c = option.parts.outer;
   const d = dimsOf(c)!;
   const L = d.length;
@@ -59,6 +68,13 @@ export function BoxFitDiagram({ title, option }: { title: string; option: Evalua
           ? `${Math.round(option.voidVolume_in3)} cubic inches to fill around the items`
           : "Items lie flat inside the mailer"}
       </p>
+      {isBox && option.emptySpaceRatio !== undefined && (
+        <p className="text-xs text-muted">
+          Empty space: {Math.round(option.emptySpaceRatio * 100)}% of the box.
+          {euLimit &&
+            ` The EU's e-commerce packaging rule (from ${euLimit.year}) allows at most ${Math.round(euLimit.ratio * 100)}%, counting filler as empty. A benchmark, not a US law.`}
+        </p>
+      )}
     </figure>
   );
 }

@@ -117,6 +117,7 @@ export function evaluateSetup(
   let placements: Placement[];
   let shippedDims: Dimensions;
   let voidVolume_in3 = 0;
+  let emptySpaceRatio: number | undefined;
 
   if (parts.outer.type === "box") {
     // A fitted-insert box holds the jar it is made for snugly, so the clearance rule does not apply.
@@ -132,6 +133,8 @@ export function evaluateSetup(
     // own bounding boxes. The wrap's thickness is not subtracted. With an insert, the insert block is the solid.
     const solids = parts.insert ? blocks : items;
     voidVolume_in3 = Math.max(0, volume(outerDims) - solids.reduce((s, d) => s + volume(d), 0));
+    // EU method (environment.json eu_empty_space): the products' own boxes are the contents, filler is empty space.
+    emptySpaceRatio = Math.max(0, volume(outerDims) - items.reduce((s, d) => s + volume(d), 0)) / volume(outerDims);
     // Outside size: the supplier's, if listed (the fitted jar boxes), else inside + the wall thickness.
     const o = parts.outer;
     shippedDims =
@@ -254,6 +257,7 @@ export function evaluateSetup(
     zoneLabel,
     shippedDims,
     voidVolume_in3,
+    emptySpaceRatio,
     placements,
     warnings: [...warnings],
     values: {
