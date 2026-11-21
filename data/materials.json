@@ -3,144 +3,1380 @@
     "id": "corrugated",
     "name": "Corrugated cardboard",
     "is_plastic": false,
-    "recycle_rate": 0.9,
+    "recycle_rate": 0.32,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.965,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": false,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 0.9,
-    "disposal_text": "Flatten and recycle curbside.",
-    "source_url": "",
+    "curbside_basis": "SPC 2020-21 Centralized Study on Availability of Recycling: corrugated boxes accepted for 88% of the U.S. population (87% explicit, 1% implicit; curbside and drop-off combined, not split).",
+    "carbon_kg_co2e_per_kg": 0.937,
+    "carbon_previous_warm_v16_virgin": 0.915,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.965,
+      "combusted_rate": 0.007,
+      "landfilled_rate": 0.028,
+      "data_year": 2018,
+      "status": "confirmed",
+      "basis": "EPA 2018: 33.3M tons generated, ~32.1M recycled, 230k combusted, 940k landfilled (corrugated boxes)."
+    },
+    "disposal_text": "Flatten the box and place it in your curbside recycling bin.",
+    "how2recycle_label": "Widely Recyclable (inferred, not looked up in the How2Recycle Label Explorer: 88% access exceeds How2Recycle's 60% threshold)",
+    "contamination_notes": "Keep it clean and dry; EPA says containers contaminated with food cannot be recycled. Flatten before recycling (EPA). Tape and shipping labels are normally fine, but this was not confirmed from a source opened for this research.",
+    "why_it_matters": "Cardboard is the most-recycled packaging in the U.S., so a box that fits well is usually the lowest-waste way to protect a product.",
+    "source_url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate: EPA Facts and Figures, Containers and Packaging product-specific page (page updated Oct 19, 2026; data year 2018): 'The recycling rate for corrugated boxes was 96.5 percent.' CAUTION: AF&PA (industry, released Aug 28, 2026) reports 70%-75% of cardboard available for recovery was recycled in 2025 (https://www.afandpa.org/news/2026/paper-industry-announces-2025-us-paper-recycling-rates). The two use different methods; EPA's 2018 figure is used here so all materials share one data year and method. Carbon: WARM v16 Exhibit 3-11/3-12, corrugated containers RMAM 0.83 MTCO2E per short ton (process energy 0.67, transport 0.15, non-energy 0.01; WARM notes it includes at least 9.8% recycled content), converted at 0.907185 t per short ton. is_estimate is true because the carbon factor is always an estimate.",
+    "recycle_rate_reason": "A box shipped to a home enters the residential stream. TRP's 32% is the end-to-end residential rate on the same method as every other material here. AF&PA's 70-75% and EPA's 96.5% are inflated for this use because they include retail and industrial back-of-store cardboard (and, for EPA 2018/old AF&PA, an undercounted denominator). EPA's 2019 residential estimate (53.5%) is a reasonable sensitivity case but uses state-reported per-capita data and does not cover film.",
+    "recycle_rate_options": [
+      {
+        "value": 0.32,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14 'National Residential Recycling Rates by Material Category', Cardboard)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "End-to-end residential rate. Published January 2024; National Database pulled Oct 20, 2023; participation inputs from 2020 survey, so data_year is approximate. Figure 18 national row matches. Resource Recycling (Jan 16, 2024, secondary) reports the same study as 'seven out of 10 cardboard boxes' going to the trash."
+      },
+      {
+        "value": 0.535,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA, 'An Assessment of the U.S. Recycling System: Financial Estimates to Modernize Material Recovery Infrastructure' (EPA 530-R-24-010, Aug 2024), Exhibit 2-1",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "Residential sector only. Exhibit 2-1 gives tons (cardboard 34.2M generated, 18.3M recycled); rate is recycled/generated. Resource Recycling (Jan 28, 2025, secondary) reports the same 53.5%. Built from per-capita rates in Ball Corporation's 2021 '50 States of Recycling' report, not field measurement."
+      },
+      {
+        "value": 0.725,
+        "metric": "generation_based_rate",
+        "data_year": 2025,
+        "publisher": "American Forest & Paper Association (AF&PA)",
+        "source_url": "https://www.afandpa.org/news/2026/paper-industry-announces-2025-us-paper-recycling-rates",
+        "source_type": "primary",
+        "notes": "Midpoint of reported range 70%-75% of cardboard 'available for recovery' (released Aug 2026). All collection channels: 'industrial, commercial, institutional and residential' (AF&PA methodology page). Not residential-specific."
+      },
+      {
+        "value": 0.735,
+        "metric": "generation_based_rate",
+        "data_year": 2023,
+        "publisher": "AF&PA via Recycling Today",
+        "source_url": "https://www.recyclingtoday.com/afpa-2023-paper-occ-recycling-rate-new-methodology/",
+        "source_type": "secondary",
+        "notes": "Midpoint of 71%-76% OCC for 2023, first year of AF&PA's updated methodology. Old method gave 93.6% (2022) and 91.4% (2021)."
+      },
+      {
+        "value": 0.936,
+        "metric": "generation_based_rate",
+        "data_year": 2022,
+        "publisher": "AF&PA (old methodology), reported by Fibre Box Association (Aug 15, 2023) and Packaging Dive (Nov 15, 2024)",
+        "source_url": "https://www.fibrebox.org/news/boxes-remain-a-recycling-success-story",
+        "source_type": "secondary",
+        "notes": "Superseded. Packaging Dive says the old model did not account for 'boxes imported with goods in them' and counted converting scrap, non-paper contaminants and moisture; recalculated 2022 containerboard under new method = 70%-75% (https://www.packagingdive.com/news/fiber-recycling-rates-afpa-paper-cardboard/732765/)."
+      },
+      {
+        "value": 0.965,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA Facts and Figures (carried_from_materials_json)",
+        "source_url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All-sector MSW figure of the same style as AF&PA's old method, which AF&PA itself has since replaced; overstates what happens to a box at a home."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": 0.52,
+      "source_url": "https://www.packagingdive.com/news/recycled-fiber-packaging-virgin-paper/832063/",
+      "source_type": "secondary",
+      "notes": "Packaging Dive (Oct 12, 2026): average corrugated box had 52% recycled content in 2025, per the Fibre Box Association (FBA primary page not opened). Same article: U.S. containerboard 56% recycled fiber in 2025 (Moore & Associates)."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "WARM v16 current mix (35% recycled), US data and the same family as the end-of-life factors. DESNZ board (0.80) and FEFCO fossil cradle-to-grave (0.67, EU) are both somewhat lower, so the WARM value is a mildly conservative choice. Recycled content barely changes the WARM value (0.915 virgin, 0.937 current mix, ~0.98 recycled), so the default choice matters little.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 0.937,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 35% recycled / 65% virgin (Exhibit 3-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.85 MTCO2E per short ton / 0.907185 = 0.937 kg/kg. Exhibit 3-11 current-mix source reduction value (0.85). Paper-mill stage; WARM paper factors exclude forest carbon storage from RMAM."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.9149,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin (WARM notes virgin corrugated includes at least 9.8% recycled content)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.83 MTCO2E per short ton / 0.907185 = 0.9149 kg/kg. Exhibits 3-11/3-12. This is the value currently in materials.json (0.915)."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.9811,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% recycled inputs",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.89 MTCO2E per short ton / 0.907185 = 0.9811 kg/kg. Derived by the WebFetch reader from Exhibit 3-21 components (0.78 process energy + 0.11 transport), not stated as a total; the reader also flagged that Exhibit 3-19 lists recycled transport as 0.06, so this value is uncertain. Note WARM's recycled value is higher than its virgin value; the reason was not stated in the text read."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.8015,
+        "boundary": "cradle-to-gate incl. product forming, primary material production. DESNZ material use: cradle-to-gate from raw material extraction to point of sale, INCLUDING product forming (2026 methodology report para 12.19: 'Conversion factors provided include emissions associated with product forming', e.g. blow moulding, casting).",
+        "recycled_content_basis": "'Primary material production' column (DESNZ 'Paper and board: board')",
+        "publisher": "UK DESNZ/BEIS (Greenhouse gas reporting: conversion factors 2023), value read via Climatiq summary page",
+        "year": 2023,
+        "data_year": "2023 dataset; Climatiq marks it 'Current'",
+        "source_url": "https://www.climatiq.io/data/emission-factor/e8cfe8fb-c610-883d-8f92-d9c67a0dd3c5",
+        "source_type": "secondary",
+        "notes": "801.52177 kg CO2e/tonne / 1000 = 0.8015 kg/kg. Read through Climatiq, not the gov.uk spreadsheet (the 2025/2026 xlsx files were blocked for fetching). Not confirmed that the 2025/2026 value is unchanged. 'Board' is a UK mix, not US corrugated specifically."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.669,
+        "boundary": "CRADLE-TO-GRAVE fossil GHG only (FEFCO states the value 'covers the cradle-to-grave carbon impact'); not comparable to cradle-to-gate",
+        "recycled_content_basis": "European average, recovered fibre ~88% in corrugated base papers",
+        "publisher": "FEFCO (European Federation of Corrugated Board Manufacturers), 15 July 2022",
+        "year": 2022,
+        "data_year": 2021,
+        "source_url": "https://www.fefco.org/sites/default/files/files/The%20carbon%20footprint%20of%20corrugated%20packaging%202021.pdf",
+        "source_type": "primary",
+        "notes": "669 kg CO2e fossil per tonne / 1000 = 0.669 kg/kg. FEFCO also reports 442 biogenic and a 491 total (after removals). Europe, cradle-to-grave, so only a sanity check: it is in the same range as WARM and DESNZ."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 1.1023,
+      "recycling": 0.1213,
+      "combustion": 0.0551,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.11 -> 0.1213, landfilled 1.0 -> 1.1023, combusted 0.05 -> 0.0551. Corrugated Containers row. For comparison, WARM v16 NET landfill for corrugated (Exhibit 3-26, includes credits) is 0.18 MTCO2E/short ton = 0.198 kg/kg: landfill CH4 0.88, landfill carbon storage (0.72), transport 0.02, avoided energy recovery (0.10). Using the EF Hub value (methane, no storage credit) is the stricter and non-double-counting choice."
+    }
   },
   {
     "id": "kraft-paper",
     "name": "Kraft paper",
     "is_plastic": false,
-    "recycle_rate": 0.7,
+    "recycle_rate": 0.23,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.208,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 1.1,
-    "disposal_text": "Recycle curbside with paper.",
-    "source_url": "",
+    "curbside_basis": "AF&PA: all-paper mailers 'can go in your curbside bin or be dropped off'. EPA common recyclables page covers paper generally. SPC 2020-21 access study did not study paper bags or kraft paper, so no access percentage is confirmed.",
+    "carbon_kg_co2e_per_kg": 1.0913,
+    "carbon_previous_warm_v16_virgin": 1.069,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.208,
+      "combusted_rate": 0.155,
+      "landfilled_rate": 0.637,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "EPA 2018 Table 5 subtotal 'Containers and Packaging excluding Corrugated Boxes' (bags and sacks, folding cartons, other paper packaging): 8,640k tons generated, 1,800k recycled, 1,340k combusted, 5,500k landfilled. No separate split for kraft paper."
+    },
+    "disposal_text": "Place clean, dry paper mailers and paper fill in your curbside recycling bin.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup; SPC access study did not cover paper bags or kraft paper)",
+    "contamination_notes": "Must be clean and dry; food-soiled paper cannot be recycled (EPA). Shiny or laminated coatings often make wrapping paper non-recyclable (EPA). Paper mailers with plastic bubble lining belong under paper-plastic-mix, not here.",
+    "why_it_matters": "Paper fill and paper mailers can go in most recycling bins, but non-box paper packaging is recycled far less often than cardboard, so using less of it still matters.",
+    "source_url": "https://epa.gov/facts-and-figures-about-materials-waste-and-recycling/paper-and-paperboard-material-specific-data",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate is a proxy: EPA paper and paperboard page gives a 20.8% 2018 recycling rate for 'paper containers and packaging, excluding corrugated boxes'; EPA 2018 Tables and Figures Table 5 confirms (8,640 generated, 1,800 recycled, thousand tons). EPA gives no separate rate for bags and sacks or wrapping paper. Tissue and crinkle paper may be treated differently by local programs; not confirmed. Carbon: WARM v16 Exhibit 3-11, office paper RMAM 0.97 MTCO2E per short ton (footnote 16: office paper is the proxy for bags and sacks, folding cartons and other paper packaging), converted to kg/kg.",
+    "recycle_rate_reason": "No source measures kraft mailers, void fill or tissue directly. TRP mixed paper (23%) is the closest residential category and uses the same method as film. EPA's 20.8% proxy is not a measurement of kraft mailers (it is mostly folding cartons, all sectors), but it lands close to TRP's residential mixed-paper rate, so it was not the main distortion. The bigger distortion in the demo was pe-film's 10%, an all-sector EPA number, versus TRP's residential film rate of under 1%. Tissue and crinkle paper may be rejected by some programs; not confirmed.",
+    "recycle_rate_options": [
+      {
+        "value": 0.23,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Mixed Paper)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Proxy: TRP has no kraft-paper or mailer category. Mixed paper is the conservative mapping."
+      },
+      {
+        "value": 0.32,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Cardboard)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Alternative proxy if kraft mailers are treated as entering the cardboard stream. AF&PA survey says paper padded mailers are accepted by members representing 85% of mixed paper consumption and 83% of OCC consumption, so mills take them in both streams."
+      },
+      {
+        "value": 0.296,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA (EPA 530-R-24-010, Aug 2024), Exhibit 2-1, Paper",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "Residential 'Paper' (42.3M generated, 12.5M recycled). EPA notes state paper data are self-reported and were missing for most states, so this is the weakest of EPA's residential rows."
+      },
+      {
+        "value": 0.208,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA Facts and Figures, paper containers and packaging excluding corrugated (carried_from_materials_json)",
+        "source_url": "https://epa.gov/facts-and-figures-about-materials-waste-and-recycling/paper-and-paperboard-material-specific-data",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All-sector category dominated by folding cartons (5,370k of 8,640k tons per materials.json); not a kraft mailer measurement."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not_found: no industry-average recycled content for kraft paper mailers or kraft void fill was found."
+    },
+    "recyclability_guidance": "AF&PA (Feb 22, 2022): all-paper padded mailers 'can go in your curbside bin or be dropped off at your nearest drop-off facility' (https://www.afandpa.org/news/2022/how-do-i-recycle-paper-padded-mailers). AF&PA survey release (undated page): padded mailers 'widely accepted at member mills'; accepted by members representing 85% of mixed paper and 83% of OCC consumption (https://afandpa.org/news/2022/afpa-validates-paper-padded-mailers-recyclable). Amazon (vendor, secondary): paper-padded mailers go 'right into your curbside recycling bin'. No How2Recycle guidance specific to paper mailers was found.",
+    "carbon_is_estimate": true,
+    "carbon_reason": "No US kraft-paper or paper-mailer factor was found in an opened source; WARM's own proxy for paper packaging (office paper) at current mix is used. DESNZ 'Paper and board: paper' value was not obtained (spreadsheet blocked). No peer-reviewed mailer LCA giving a per-kg factor was opened.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 1.0913,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 4% recycled / 96% virgin (Exhibit 3-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.99 MTCO2E per short ton / 0.907185 = 1.0913 kg/kg. Office paper, which WARM footnote 16 uses as the proxy for paperboard packaging, folding cartons, bags/sacks and other paper packaging. Exhibit 3-11 current mix."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.0692,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.97 MTCO2E per short ton / 0.907185 = 1.0692 kg/kg. Exhibits 3-11/3-12. Value currently in materials.json (1.069)."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.433,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% recycled inputs",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.3 MTCO2E per short ton / 0.907185 = 1.433 kg/kg. Derived by the reader from Exhibit 3-21 (1.28 process + 0.02 transport); not stated as a total in the text read."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 1.5543,
+      "recycling": 0.022,
+      "combustion": 0.0551,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.02 -> 0.022, landfilled 1.41 -> 1.5543, combusted 0.05 -> 0.0551. Office Paper row, matching WARM's own proxy for paper packaging. Alternative: Mixed Paper (general) row gives recycled 0.07 -> 0.0772, landfilled 0.89 -> 0.9811, combusted 0.05 -> 0.0551. WARM v16 NET landfill for office paper (Exhibit 3-26, with credits) is 1.13 -> 1.2456 kg/kg: CH4 1.23, carbon storage (0.12), transport 0.02, avoided energy (0.15). Office paper has high landfill methane because it is mostly cellulose; kraft packaging may decay differently, which is not quantified here."
+    }
   },
   {
     "id": "paperboard",
     "name": "Paperboard",
     "is_plastic": false,
-    "recycle_rate": 0.6,
+    "recycle_rate": 0.23,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.208,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 1.0,
-    "disposal_text": "Recycle curbside with paper.",
-    "source_url": "",
+    "curbside_basis": "SPC 2020-21 Centralized Study on Availability of Recycling: paperboard boxes accepted for 84% of the U.S. population (71% explicit, 13% implicit; curbside and drop-off combined).",
+    "carbon_kg_co2e_per_kg": 1.0913,
+    "carbon_previous_warm_v16_virgin": 1.069,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.208,
+      "combusted_rate": 0.155,
+      "landfilled_rate": 0.637,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "EPA 2018 Table 5 subtotal 'Containers and Packaging excluding Corrugated Boxes' (includes folding cartons, 5,370k tons generated). No separate split for folding cartons."
+    },
+    "disposal_text": "Flatten and place in your curbside recycling bin with other paper and cardboard.",
+    "how2recycle_label": "Widely Recyclable (inferred for paperboard boxes, not looked up in Label Explorer: 84% access exceeds the 60% threshold)",
+    "contamination_notes": "Must be clean and dry; food-soiled paperboard cannot be recycled (EPA). Plastic windows or laminated coatings are a common problem, but no source opened here quantified this.",
+    "why_it_matters": "Thin cartons are widely accepted for recycling, but only about one in five tons of non-box paper packaging actually gets recycled in the U.S.",
+    "source_url": "https://epa.gov/facts-and-figures-about-materials-waste-and-recycling/paper-and-paperboard-material-specific-data",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate is a proxy: EPA 20.8% (2018) for paper containers and packaging excluding corrugated boxes. EPA gives no separate rate for folding cartons. Carbon: WARM v16 office paper RMAM 0.97 MTCO2E per short ton (WARM's own proxy for folding cartons), converted to kg/kg.",
+    "recycle_rate_reason": "Same method as all other materials; mixed paper is the nearest TRP category for thin cartons. Flagged as a proxy.",
+    "recycle_rate_options": [
+      {
+        "value": 0.23,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Mixed Paper)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Proxy: TRP does not report paperboard/boxboard separately in Figure 14; whether boxboard sits inside 'Mixed Paper' was not confirmed. TRP 'Aseptic & Gabletop' cartons (8%) are liquid cartons and do not apply."
+      },
+      {
+        "value": 0.296,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA (EPA 530-R-24-010), Exhibit 2-1, Paper",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "Residential paper, all grades; EPA says paper data are self-reported and incomplete."
+      },
+      {
+        "value": 0.208,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA Facts and Figures (carried_from_materials_json)",
+        "source_url": "https://epa.gov/facts-and-figures-about-materials-waste-and-recycling/paper-and-paperboard-material-specific-data",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All-sector, paper packaging excluding corrugated."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": "https://www.packagingdive.com/news/recycled-fiber-packaging-virgin-paper/832063/",
+      "source_type": "secondary",
+      "notes": "not_found for folding-carton paperboard. Packaging Dive (Oct 2026) quotes 'up to 88%' recycled content for solid board (Moore & Associates, no data year), which is a maximum for a different grade, not a typical paperboard average."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "WARM uses office paper as its proxy for folding cartons and paperboard packaging; current mix used for consistency with corrugated. DESNZ board (0.80) is ~27% lower, a real conflict between proxies; WARM kept for one consistent US family.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 1.0913,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 4% recycled / 96% virgin (Exhibit 3-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.99 MTCO2E per short ton / 0.907185 = 1.0913 kg/kg. Office paper, which WARM footnote 16 uses as the proxy for paperboard packaging, folding cartons, bags/sacks and other paper packaging. Exhibit 3-11 current mix."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.0692,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.97 MTCO2E per short ton / 0.907185 = 1.0692 kg/kg. Exhibits 3-11/3-12. Value currently in materials.json (1.069)."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.433,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% recycled inputs",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.3 MTCO2E per short ton / 0.907185 = 1.433 kg/kg. Derived by the reader from Exhibit 3-21 (1.28 process + 0.02 transport); not stated as a total in the text read."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.8015,
+        "boundary": "cradle-to-gate incl. product forming. DESNZ material use: cradle-to-gate from raw material extraction to point of sale, INCLUDING product forming (2026 methodology report para 12.19: 'Conversion factors provided include emissions associated with product forming', e.g. blow moulding, casting).",
+        "recycled_content_basis": "Primary material production (DESNZ 'board')",
+        "publisher": "UK DESNZ/BEIS conversion factors 2023, read via Climatiq",
+        "year": 2023,
+        "data_year": 2023,
+        "source_url": "https://www.climatiq.io/data/emission-factor/e8cfe8fb-c610-883d-8f92-d9c67a0dd3c5",
+        "source_type": "secondary",
+        "notes": "801.52177 kg/t / 1000 = 0.8015. Read through Climatiq, not gov.uk. 'Board' in DESNZ is a general board category, not folding cartons specifically."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 1.5543,
+      "recycling": 0.022,
+      "combustion": 0.0551,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.02 -> 0.022, landfilled 1.41 -> 1.5543, combusted 0.05 -> 0.0551. Office Paper row, matching WARM's own proxy for paper packaging. Alternative: Mixed Paper (general) row gives recycled 0.07 -> 0.0772, landfilled 0.89 -> 0.9811, combusted 0.05 -> 0.0551. WARM v16 NET landfill for office paper (Exhibit 3-26, with credits) is 1.13 -> 1.2456 kg/kg: CH4 1.23, carbon storage (0.12), transport 0.02, avoided energy (0.15). Office paper has high landfill methane because it is mostly cellulose; kraft packaging may decay differently, which is not quantified here."
+    }
   },
   {
     "id": "molded-pulp",
     "name": "Molded pulp",
     "is_plastic": false,
-    "recycle_rate": 0.5,
-    "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 0.8,
-    "disposal_text": "Recycle curbside or compost.",
-    "source_url": "",
+    "recycle_rate": 0.23,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.208,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+    "curbside_recyclable": false,
+    "curbside_basis": "UNCONFIRMED. SPC 2020-21 access study lists molded fiber as 'inconclusive', so no national acceptance figure exists. Set to false as the conservative choice so the insert tells customers to check locally.",
+    "carbon_kg_co2e_per_kg": 1.0913,
+    "carbon_previous_warm_v16_virgin": 1.069,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.208,
+      "combusted_rate": 0.155,
+      "landfilled_rate": 0.637,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "EPA 2018 subtotal for paper containers and packaging excluding corrugated boxes. EPA does not report molded pulp separately."
+    },
+    "disposal_text": "Check whether your local recycling program accepts molded paper packaging; if not, put it in the trash.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup; SPC result inconclusive; likely Check Locally)",
+    "contamination_notes": "Acceptance varies by program. Food-soiled fiber cannot be recycled (EPA). Some molded fiber has added coatings; not quantified in sources opened here.",
+    "why_it_matters": "Molded pulp replaces plastic and foam inserts with paper fiber, but whether it gets recycled depends on the customer's local program.",
+    "source_url": "https://epa.gov/facts-and-figures-about-materials-waste-and-recycling/paper-and-paperboard-material-specific-data",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "No direct U.S. recycling rate for molded pulp was found. Estimate uses EPA 2018 rate for paper packaging excluding corrugated (20.8%) as a proxy. Curbside status unconfirmed (SPC 2020-21: 'inconclusive'). Carbon is a proxy (WARM office paper 0.97 MTCO2E per short ton, converted).",
+    "recycle_rate_reason": "No U.S. recycling rate for molded pulp exists in any source opened. Using the mixed-paper residential rate keeps the method consistent; label it an upper-bound estimate in the UI.",
+    "recycle_rate_options": [
+      {
+        "value": 0.23,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Mixed Paper)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Proxy only. TRP does not report molded fiber. Treat as an upper bound: materials.json records the SPC 2020-21 access study result for molded fiber as 'inconclusive', so acceptance is likely lower than for mixed paper."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not_found: no industry-average recycled content for molded pulp was opened (IMFA pages found in search did not state one in results; not fetched)."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "No per-kg molded pulp factor found in any opened source. WARM office paper proxy (current mix) kept; mixed paper (1.27) is an alternative proxy. Treat as a low-confidence estimate; the TNO per-pack result suggests molded pulp may not beat EPS on carbon per insert.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 1.0913,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 4% recycled / 96% virgin (Exhibit 3-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.99 MTCO2E per short ton / 0.907185 = 1.0913 kg/kg. Office paper, which WARM footnote 16 uses as the proxy for paperboard packaging, folding cartons, bags/sacks and other paper packaging. Exhibit 3-11 current mix."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.0692,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.97 MTCO2E per short ton / 0.907185 = 1.0692 kg/kg. Exhibits 3-11/3-12. Value currently in materials.json (1.069)."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.433,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% recycled inputs",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.3 MTCO2E per short ton / 0.907185 = 1.433 kg/kg. Derived by the reader from Exhibit 3-21 (1.28 process + 0.02 transport); not stated as a total in the text read."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.2677,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM mixed paper (general) current mix: 23% recycled (Exhibit 3-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.15 MTCO2E per short ton / 0.907185 = 1.2677 kg/kg. Offered as an alternative proxy; WARM has no molded pulp factor. Mixed paper 100% recycled is about 1.09 (derived from Exhibit 3-21) -> 1.2015 kg/kg."
+      },
+      {
+        "value_kg_co2e_per_kg": null,
+        "boundary": "delivery system per functional unit (materials, manufacturing, transport, end-of-life); no per-kg result",
+        "recycled_content_basis": "not stated",
+        "publisher": "TNO for EUMEPS (EPS industry association), report TNO 2026 R10863, 31 March 2026",
+        "year": 2026,
+        "data_year": "ecoinvent 3.10 background",
+        "source_url": "https://www.eps.co.uk/pdfs/2026.07.22_TNO_LCA packaging solutions white and brown goods_2026_signed.pdf",
+        "source_type": "secondary",
+        "notes": "Industry-commissioned, no critical review stated. Packaging material only, TV pack: molded pulp 0.75 vs EPS 0.71 vs paperboard 0.42 kg CO2 eq per functional unit. Shows molded pulp is not automatically lower-carbon than EPS per pack, but gives no per-kg factor."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 1.5543,
+      "recycling": 0.022,
+      "combustion": 0.0551,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.02 -> 0.022, landfilled 1.41 -> 1.5543, combusted 0.05 -> 0.0551. Office Paper row, matching WARM's own proxy for paper packaging. Alternative: Mixed Paper (general) row gives recycled 0.07 -> 0.0772, landfilled 0.89 -> 0.9811, combusted 0.05 -> 0.0551. WARM v16 NET landfill for office paper (Exhibit 3-26, with credits) is 1.13 -> 1.2456 kg/kg: CH4 1.23, carbon storage (0.12), transport 0.02, avoided energy (0.15). Office paper has high landfill methane because it is mostly cellulose; kraft packaging may decay differently, which is not quantified here. Proxy only; WARM has no molded pulp end-of-life factor."
+    }
   },
   {
     "id": "paper-plastic-mix",
-    "name": "Paper bonded to plastic",
-    "is_plastic": false,
-    "recycle_rate": 0.02,
+    "name": "Paper-plastic composite (bubble-lined paper mailer)",
+    "is_plastic": true,
+    "recycle_rate": 0.0,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.0,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": false,
-    "carbon_kg_co2e_per_kg": 2.0,
-    "disposal_text": "Not recyclable; put in the trash.",
-    "source_url": "",
+    "curbside_basis": "AF&PA: for bubble-wrap-lined mailers 'you need to separate the paper layer from the bubble wrap lining before the paper can be recycled.' Not recyclable intact. SPC access study did not cover padded mailers.",
+    "carbon_kg_co2e_per_kg": 1.6789,
+    "carbon_previous_warm_v16_virgin": 1.435,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": null,
+      "combusted_rate": null,
+      "landfilled_rate": null,
+      "data_year": null,
+      "status": "unconfirmed",
+      "basis": "EPA does not report paper-plastic composite mailers as a category. No split found."
+    },
+    "disposal_text": "Peel the paper away from the plastic bubble lining and recycle the paper; put the lining in the trash or a store film drop-off if accepted.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup)",
+    "contamination_notes": "Bonded plastic lining contaminates paper recycling unless separated (AF&PA). Contains plastic, so it counts toward plastic use. The plastic lining's eligibility for store drop-off was not confirmed.",
+    "why_it_matters": "Bubble-lined paper mailers look like paper but contain bonded plastic, so most end up in the trash unless the customer separates the layers.",
+    "source_url": "https://www.afandpa.org/news/2022/how-do-i-recycle-paper-padded-mailers",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "is_plastic set to true because the item contains a plastic bubble lining bonded to paper; the app should count its plastic portion (or whole weight, by team decision) toward plastic use. Recycle rate 0.0 is an estimate: no national data exist, and AF&PA says the item is not recyclable without the customer separating layers; any real recycling depends on that separation and is unmeasured. Carbon is an estimate using an assumed 60/40 paper/LDPE weight split; replace with a product-specific split if a supplier publishes one. Do not confuse with all-paper padded mailers (glue-dot cushioning), which AF&PA says can go curbside; those belong under kraft-paper.",
+    "recycle_rate_reason": "Per AF&PA the item is only recyclable if the household separates the layers, which is unmeasured. Keep 0.0 as an estimate; it is consistent with TRP's under-1% residential film rate.",
+    "recycle_rate_options": [
+      {
+        "value": 0.0,
+        "metric": "other",
+        "data_year": null,
+        "publisher": "AF&PA (guidance, not a rate)",
+        "source_url": "https://www.afandpa.org/news/2022/how-do-i-recycle-paper-padded-mailers",
+        "source_type": "primary",
+        "notes": "Not recyclable intact: the paper must be separated from the bubble lining first. No measured rate exists."
+      },
+      {
+        "value": 0.001,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 18 national row, Film & Flexible)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Bounding category for the plastic layer only (Figure 14 shows '<1%', Figure 18 shows 0.1%)."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not researched (not in the requested list)."
+    },
+    "recyclability_guidance": "AF&PA (Feb 22, 2022): for bubble-wrap-lined mailers 'you need to separate the paper layer from the bubble wrap lining before the paper can be recycled' and 'Only the paper should go in the recycling bin.' How2Recycle FAQ: 'In the US, only pure polyethylene (PE) films are recyclable through the Store Drop-off stream', so the separated lining qualifies only if it is pure PE (unconfirmed per product). Amazon (vendor, secondary) says its older 'mixed paper-and-plastic mailers' were not recyclable. No How2Recycle label or TRP guidance specific to paper-plastic mailers was found.",
+    "carbon_is_estimate": true,
+    "carbon_reason": "Weighted from the recommended kraft-paper and pe-film factors so it stays consistent with them. Bonding adhesive and the composite conversion step are not included.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 1.6789,
+        "boundary": "ESTIMATE: 60% paper (WARM office paper current mix) + 40% PE film (DESNZ average plastic film, includes forming)",
+        "recycled_content_basis": "paper 4% recycled; film virgin",
+        "publisher": "Packwise estimate",
+        "year": 2026,
+        "data_year": "n/a",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "secondary",
+        "notes": "0.6 x 1.0913 + 0.4 x 2.5603 = 1.6789. The 60/40 weight split is still an unverified team assumption; no mailer composition data was found in an opened source."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.9414,
+      "recycling": null,
+      "combustion": 1.2677,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA",
+      "year": 2025,
+      "notes": "60/40 weighting of EF Hub Office Paper and LDPE rows: landfill 0.6 x 1.5543 + 0.4 x 0.0220; combustion 0.6 x 0.0551 + 0.4 x 3.0865. Recycling null: not recyclable intact (AF&PA, per materials.json)."
+    }
   },
   {
     "id": "pe-film",
     "name": "Plastic film (HDPE/LDPE)",
     "is_plastic": true,
-    "recycle_rate": 0.05,
+    "recycle_rate": 0.01,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.1,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": false,
-    "carbon_kg_co2e_per_kg": 2.5,
-    "disposal_text": "Not accepted curbside. Return to a store drop-off bin if clean and dry.",
-    "source_url": "",
+    "curbside_basis": "EPA: plastic bags, wraps and film 'are recyclable, but they cannot go in your household recycling bin'; use retail/grocery drop-off. How2Recycle: 'In the US, plastic bags, wraps, and films aren't accepted in most curbside or drop-off programs.'",
+    "carbon_kg_co2e_per_kg": 2.5603,
+    "carbon_previous_warm_v16_virgin": 1.984,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.climatiq.io/data/emission-factor/c0579408-b4db-8283-a8b3-a94d51ebbc54",
+    "eol_split": {
+      "recycled_rate": 0.1,
+      "combusted_rate": 0.176,
+      "landfilled_rate": 0.724,
+      "data_year": 2018,
+      "status": "confirmed",
+      "basis": "EPA 2018 Tables and Figures, Table 8, plastic 'Bags, Sacks and Wraps' subtotal: 4,200k tons generated, 420k recycled (10.0%), 740k combusted, 3,040k landfilled. LDPE/LLDPE share: 2,780 generated, 370 recycled; HDPE: 640 generated, 50 recycled."
+    },
+    "disposal_text": "Do not put this in your curbside bin; if clean and dry, take it to a store plastic bag and film drop-off.",
+    "how2recycle_label": "Store Drop-off (US only), a label How2Recycle defines for PE film packages; applies only if the specific mailer carries that label",
+    "contamination_notes": "Film tangles in recycling-plant screens: ISRI's Scrap magazine reports film 'winds around the shaft' of disc screens, forcing shutdowns, and cites a Chicago MRF spending about $9,500 a month in labor untangling bags. Must be clean and dry for drop-off (How2Recycle).",
+    "why_it_matters": "Only about 1 in 10 tons of plastic bags and wraps is recycled in the U.S., and film put in curbside bins jams sorting machines.",
+    "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate: EPA Advancing Sustainable Materials Management 2018 Tables and Figures (Dec 2020, archived EPA snapshot), Table 8 'Bags, Sacks and Wraps' 10.0%. This category covers all film resins (HDPE, LDPE/LLDPE, PP, PVC, PS), so it is the closest EPA figure for poly mailers, bubble wrap and air pillows. The live EPA web pages do not break this category out. Carbon: WARM v16 Exhibit 5-6/5-7, LDPE RMAM 1.80 MTCO2E per short ton (HDPE 1.52, LLDPE 1.58), converted to kg/kg; resin only. is_estimate true because the carbon factor is an estimate.",
+    "recycle_rate_reason": "Use the top of TRP's reported '<1%' range (0.01) rather than the 0.1% point value, because it is not confirmed that TRP counts store drop-off film, and the ceiling avoids understating plastic's recycling. EPA's 10% is all-sector and inconsistent with the residential method used for paper.",
+    "recycle_rate_options": [
+      {
+        "value": 0.001,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 18 national row; Figure 14 shows '<1%')",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Film & Flexible. Methodology PDF: participant capture 20%, MRF capture 40%. Not confirmed whether retail store drop-off tonnage is inside TRP's residential system."
+      },
+      {
+        "value": 0.1,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA 2018 Tables and Figures, Table 8 'Bags, Sacks and Wraps' (carried_from_materials_json)",
+        "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All-sector, all film resins; not residential."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not_found: no industry-average recycled content for poly mailers or LDPE film was found."
+    },
+    "recyclability_guidance": "How2Recycle FAQ: 'In the U.S., most plastic bags, wraps, and films can't be recycled through curbside or standard drop-off programs.' 'Plastic mailers can only be recycled in the Store Drop-off stream if the paper label has been fully removed.' (https://how2recycle.info/frequently-asked-questions/)",
+    "carbon_is_estimate": true,
+    "carbon_reason": "Only DESNZ includes product forming, so it is the only finished-film factor found. It is 29% above WARM's resin-only LDPE (1.984); the two US resin values (WARM 1.984, ACC 1.927) agree. The implied film-forming increment is 2.560 - 1.984 = 0.576 kg/kg (cross-dataset difference, not a measured adder).",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 2.5603,
+        "boundary": "cradle-to-gate incl. product forming (finished film). DESNZ material use: cradle-to-gate from raw material extraction to point of sale, INCLUDING product forming (2026 methodology report para 12.19: 'Conversion factors provided include emissions associated with product forming', e.g. blow moulding, casting).",
+        "recycled_content_basis": "Primary material production (virgin)",
+        "publisher": "UK DESNZ/BEIS (Greenhouse gas reporting: conversion factors 2023), 'Average plastic film', read via Climatiq",
+        "year": 2023,
+        "data_year": "2023 dataset; Climatiq status 'Current'",
+        "source_url": "https://www.climatiq.io/data/emission-factor/c0579408-b4db-8283-a8b3-a94d51ebbc54",
+        "source_type": "secondary",
+        "notes": "2560.25566 kg CO2e/tonne / 1000 = 2.5603 kg/kg. Read through Climatiq (three chained Climatiq IDs all show the same 2023 value). The gov.uk 2025/2026 spreadsheets could not be fetched, so the latest value is unconfirmed. DESNZ 'average plastic film' is a UK resin mix, not LDPE-only."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.9842,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix for LDPE is 0% recycled, so virgin = current mix (Exhibit 5-5)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.8 MTCO2E per short ton / 0.907185 = 1.9842 kg/kg. RESIN ONLY: WARM Section 5.1 'EPA models all plastics in resin form only and does not include final processes'. Current value in materials.json (1.984). HDPE: 1.52 virgin -> 1.6755; current mix 10% recycled 1.42 -> 1.5653."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.927,
+        "boundary": "cradle-to-gate, ends at LDPE resin production (film conversion outside scope)",
+        "recycled_content_basis": "virgin resin",
+        "publisher": "Franklin Associates for American Chemistry Council, April 2020",
+        "year": 2020,
+        "data_year": "2015-2016 primary data (report also mentions 2016-2018 collection)",
+        "source_url": "https://www.americanchemistry.com/content/download/8060/file/Cradle-to-Gate-Life-Cycle-Analysis-of-Low-Density-Polyethylene-LDPE-Resin.pdf",
+        "source_type": "primary",
+        "notes": "Table 6: 1,927 kg CO2 eq per 1,000 kg = 1.927 kg/kg (IPCC AR5 GWP100). Industry body's own LCA. Cross-check: within 3% of WARM LDPE resin, so the resin value is confirmed."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.2315,
+      "combustion": 3.0865,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.21 -> 0.2315, landfilled 0.02 -> 0.022, combusted 2.8 -> 3.0865. LDPE row gives landfilled 0.02 and combusted 2.80; LDPE recycled is NA in EF Hub, so the HDPE recycled value (0.21) is used as a proxy. For comparison WARM v16 NET combustion for LDPE is 1.29 MTCO2E/short ton (Exhibit 5-3), lower because it credits avoided electricity."
+    }
   },
   {
     "id": "pp-film",
     "name": "Polypropylene film",
     "is_plastic": true,
-    "recycle_rate": 0.03,
+    "recycle_rate": 0.0,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.0,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": false,
-    "carbon_kg_co2e_per_kg": 2.3,
-    "disposal_text": "Not accepted curbside; put in the trash.",
-    "source_url": "",
+    "curbside_basis": "EPA: bags, wraps and film cannot go in household recycling bins. How2Recycle's Store Drop-off label is defined only for PE film, so PP film does not qualify for store drop-off.",
+    "carbon_kg_co2e_per_kg": 2.2516,
+    "carbon_previous_warm_v16_virgin": 1.698,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.0,
+      "combusted_rate": 0.176,
+      "landfilled_rate": 0.824,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "Combusted share borrowed from EPA 2018 Table 8 'Bags, Sacks and Wraps' subtotal (17.6%); the rest assigned to landfill because EPA lists no PP film recycling. Not an EPA-reported split for PP film."
+    },
+    "disposal_text": "Not recyclable in curbside bins or store film drop-off; place it in the trash.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup; likely Not Yet Recyclable)",
+    "contamination_notes": "Like other film, it tangles sorting equipment if placed in curbside bins. Store film drop-off is designed for polyethylene, so PP film there is a contaminant (inferred from How2Recycle defining Store Drop-off for PE film only).",
+    "why_it_matters": "Polypropylene film has no practical recycling route for most U.S. households, so nearly all of it ends up in landfills or incinerators.",
+    "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "EPA 2018 Table 8 lists 570k tons of PP in 'Bags, Sacks and Wraps' with no recycled tonnage reported, so recycle_rate 0.0 is an estimate (EPA's 'Neg.' means under 5,000 tons). Carbon: WARM v16 PP RMAM 1.54 MTCO2E per short ton, converted to kg/kg.",
+    "recycle_rate_reason": "How2Recycle says only pure PE films are accepted in Store Drop-off, and film is not accepted in most curbside programs, so PP film has no residential route; 0.0 within TRP's under-1% film figure.",
+    "recycle_rate_options": [
+      {
+        "value": 0.001,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 18, Film & Flexible)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Bounding category covering all film. TRP 'Polypropylene (PP) Containers' (8%) is rigid PP and does not apply."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not researched (not in the requested list)."
+    },
+    "recyclability_guidance": "How2Recycle FAQ: 'In the US, only pure polyethylene (PE) films are recyclable through the Store Drop-off stream.'",
+    "carbon_is_estimate": true,
+    "carbon_reason": "No finished PP-film factor was found (PlasticsEurope eco-profiles are only downloadable as zip files, which could not be read; DESNZ PP value not obtained). Resin value plus the same forming increment used for PE film keeps the two films comparable.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 1.6755,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 1% recycled (Exhibit 5-5)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.52 MTCO2E per short ton / 0.907185 = 1.6755 kg/kg. RESIN ONLY (Section 5.1)."
+      },
+      {
+        "value_kg_co2e_per_kg": 1.6976,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "1.54 MTCO2E per short ton / 0.907185 = 1.6976 kg/kg. RESIN ONLY. Current value in materials.json (1.698)."
+      },
+      {
+        "value_kg_co2e_per_kg": 2.2516,
+        "boundary": "ESTIMATE: WARM PP resin (current mix) + implied film-forming increment",
+        "recycled_content_basis": "1% recycled (WARM current mix)",
+        "publisher": "Packwise estimate from EPA WARM v16 and DESNZ (via Climatiq)",
+        "year": 2026,
+        "data_year": "n/a",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "secondary",
+        "notes": "1.6755 (WARM PP current mix, 1.52/0.907185) + 0.5761 (DESNZ average plastic film 2.5603 minus WARM LDPE resin 1.9841) = 2.2516. The increment mixes UK and US datasets."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.2205,
+      "combustion": 3.0865,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.2 -> 0.2205, landfilled 0.02 -> 0.022, combusted 2.8 -> 3.0865. PP row. PP film has no practical US recycling route, so the recycling value is shown for completeness only."
+    }
   },
   {
     "id": "plastic-laminate",
-    "name": "Mixed plastic laminate",
+    "name": "Multi-layer plastic laminate",
     "is_plastic": true,
-    "recycle_rate": 0.01,
+    "recycle_rate": 0.0,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.0,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": false,
-    "carbon_kg_co2e_per_kg": 3.0,
-    "disposal_text": "Not recyclable; put in the trash.",
-    "source_url": "",
+    "curbside_basis": "EPA: bags, wraps and film cannot go in household recycling bins. Multi-material pouches were not studied in the SPC access study. How2Recycle Store Drop-off applies only to PE film, which mixed-resin laminates are not.",
+    "carbon_kg_co2e_per_kg": 2.5933,
+    "carbon_previous_warm_v16_virgin": 2.039,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.027,
+      "combusted_rate": 0.191,
+      "landfilled_rate": 0.783,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "EPA 2018 Table 8 'Other Plastics Packaging' subtotal: 4,460k tons generated, 120k recycled (2.7%), 850k combusted, 3,490k landfilled. This category mixes rigid and flexible items; laminate-specific recycling is likely near zero, which is why recycle_rate is set to 0.0."
+    },
+    "disposal_text": "Not recyclable in curbside bins or store drop-off; place it in the trash.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup; likely Not Yet Recyclable)",
+    "contamination_notes": "Layers of different plastics (and sometimes foil) cannot be separated by standard recycling, and the film format tangles sorting equipment.",
+    "why_it_matters": "Multi-layer pouches are light but cannot be recycled by standard programs, so they almost always become trash.",
+    "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "No U.S. national recycling rate for multi-layer laminates was found. recycle_rate 0.0 is an estimate; the closest EPA category ('Other Plastics Packaging', 2.7% in 2018) is given in eol_split as an upper-bound proxy. Carbon is an estimate (average of three WARM resin factors, converted to kg/kg).",
+    "recycle_rate_reason": "Mixed-resin laminates are not pure PE (How2Recycle Store Drop-off rule) and are not accepted curbside; 0.0 within TRP's under-1% film figure.",
+    "recycle_rate_options": [
+      {
+        "value": 0.001,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 18, Film & Flexible)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Bounding category."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not researched (not in the requested list)."
+    },
+    "recyclability_guidance": "How2Recycle FAQ: 'In the US, only pure polyethylene (PE) films are recyclable through the Store Drop-off stream.'",
+    "carbon_is_estimate": true,
+    "carbon_reason": "No laminate-specific factor found. The estimate (2.59) sits between DESNZ average plastic film (2.56) and DESNZ average plastics (3.17). It still omits lamination adhesive and any foil layer, so it is likely a lower bound.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 2.5933,
+        "boundary": "ESTIMATE: mean of WARM resin factors (PET, LDPE, PP, current mix) + implied film-forming increment; excludes lamination adhesives, foil layers, printing",
+        "recycled_content_basis": "WARM current mix (PET 3%, LDPE 0%, PP 1%)",
+        "publisher": "Packwise estimate from EPA WARM v16 and DESNZ (via Climatiq)",
+        "year": 2026,
+        "data_year": "n/a",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "secondary",
+        "notes": "(PET 2.17 -> 2.3920, LDPE 1.80 -> 1.9842, PP 1.52 -> 1.6755) mean 2.0172 + 0.5761 = 2.5933. Equal one-third weights are an assumption."
+      },
+      {
+        "value_kg_co2e_per_kg": 2.5603,
+        "boundary": "cradle-to-gate incl. product forming (finished film). DESNZ material use: cradle-to-gate from raw material extraction to point of sale, INCLUDING product forming (2026 methodology report para 12.19: 'Conversion factors provided include emissions associated with product forming', e.g. blow moulding, casting).",
+        "recycled_content_basis": "Primary material production (virgin)",
+        "publisher": "UK DESNZ/BEIS (Greenhouse gas reporting: conversion factors 2023), 'Average plastic film', read via Climatiq",
+        "year": 2023,
+        "data_year": "2023 dataset; Climatiq status 'Current'",
+        "source_url": "https://www.climatiq.io/data/emission-factor/c0579408-b4db-8283-a8b3-a94d51ebbc54",
+        "source_type": "secondary",
+        "notes": "2560.25566 kg CO2e/tonne / 1000 = 2.5603 kg/kg. Read through Climatiq (three chained Climatiq IDs all show the same 2023 value). The gov.uk 2025/2026 spreadsheets could not be fetched, so the latest value is unconfirmed. DESNZ 'average plastic film' is a UK resin mix, not LDPE-only."
+      },
+      {
+        "value_kg_co2e_per_kg": 3.1725,
+        "boundary": "cradle-to-gate incl. forming; DESNZ 'Average plastics' (all plastics, rigid and film)",
+        "recycled_content_basis": "Primary material production",
+        "publisher": "UK DESNZ/BEIS conversion factors 2025, read via Climatiq",
+        "year": 2025,
+        "data_year": 2025,
+        "source_url": "https://www.climatiq.io/data/emission-factor/cff51016-407d-45c7-8755-694b82302162",
+        "source_type": "secondary",
+        "notes": "3172.49932 kg/t / 1000 = 3.1725 kg/kg. Climatiq marks this factor 'Replaced' in a later data release; the newer value was not read. Includes rigid plastics, so it is a broad upper proxy."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.2425,
+      "combustion": 2.5794,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.22 -> 0.2425, landfilled 0.02 -> 0.022, combusted 2.34 -> 2.5794. Mixed Plastics row used as proxy (no laminate row). Laminates are not recyclable in practice, so recycling is shown for completeness only."
+    }
   },
   {
     "id": "eps-foam",
     "name": "Expanded polystyrene foam",
     "is_plastic": true,
-    "recycle_rate": 0.02,
+    "recycle_rate": 0.01,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.06,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": false,
-    "carbon_kg_co2e_per_kg": 3.4,
-    "disposal_text": "Not accepted curbside; check for a foam drop-off.",
-    "source_url": "",
+    "curbside_basis": "EPA: 'Very few localities accept styrofoam in curbside recycling.'",
+    "carbon_kg_co2e_per_kg": 2.917,
+    "carbon_previous_warm_v16_virgin": 2.756,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.americanchemistry.com/content/download/10598/file/Cradle-to-Gate-Life-Cycle-Analysis-of-General-Purpose-Polystyrene-Resin.pdf",
+    "eol_split": {
+      "recycled_rate": 0.027,
+      "combusted_rate": 0.191,
+      "landfilled_rate": 0.783,
+      "data_year": 2018,
+      "status": "proxy",
+      "basis": "EPA 2018 Table 8 'Other Plastics Packaging' subtotal (PS is 330k of 4,460k tons generated). EPA gives combustion and landfill only for the subtotal, not by resin."
+    },
+    "disposal_text": "Not accepted in most curbside bins; reuse the foam peanuts or insert, find a foam drop-off, or place it in the trash.",
+    "how2recycle_label": "Unconfirmed (no Label Explorer lookup; SPC access study did not cover EPS foam)",
+    "contamination_notes": "Rarely accepted curbside (EPA). Foam is bulky and light, which makes collection costly; this point is general knowledge and not confirmed from a source opened here.",
+    "why_it_matters": "Foam peanuts and inserts are rarely accepted in curbside bins; the foam that does get recycled in North America comes mainly from business drop-off programs, not homes.",
+    "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "No EPS-specific U.S. recycling rate was found. Estimate 0.06 = EPA 2018 Table 8 PS in 'Other Plastics Packaging', 20k of 330k tons recycled (6.1%). This includes rigid PS, so it is an UPPER BOUND for EPS foam. Carbon: WARM v16 PS RMAM 2.50 MTCO2E per short ton, converted; proxy for EPS. The 'why_it_matters' persistence wording is general and not tied to a source opened here; the team may want to soften it.",
+    "recycle_rate_reason": "No residential EPS figure exists. EPS from a home, like film, has no curbside route and depends on drop-off, so it is assigned the same residential ceiling used for pe-film (0.01, top of TRP's under-1% film figure). This is a proxy choice, not a measurement; the EPS-IA 31% is mostly business-to-business and does not describe a home.",
+    "recycle_rate_options": [
+      {
+        "value": 0.31,
+        "metric": "other",
+        "data_year": 2022,
+        "publisher": "EPS Industry Alliance (survey by Resource Recycling Systems), press release Oct 9, 2024",
+        "source_url": "https://www.prweb.com/releases/alternative-recycling-channels-drive-eps-packagings-30-recycling-rate-in-north-america-diverting-168-million-pounds-from-landfills-302271360.html",
+        "source_type": "primary",
+        "notes": "Industry press release; headline says 30%, body says 31%. North America, post-consumer EPS packaging, 'primarily' via 'business-to-business systems and alternative channels' rather than curbside. Not residential and not U.S.-only."
+      },
+      {
+        "value": 0.061,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA 2018 Table 8, PS in 'Other Plastics Packaging' (carried_from_materials_json)",
+        "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All PS packaging, all sectors."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": null,
+      "source_type": null,
+      "notes": "not researched (not in the requested list)."
+    },
+    "recyclability_guidance": "EPS-IA (Oct 2024): EPS recycling 'primarily occurs through by business-to-business systems and alternative channels' rather than 'traditional curbside programs for consumers'; cites 'more than 400 drop-off locations'.",
+    "carbon_is_estimate": true,
+    "carbon_reason": "Both values are polystyrene resin only; no EPS-specific or foam-expansion factor could be read (PlasticsEurope EPS eco-profile is only offered as a zip file). ACC GPPS 2022 is newer than WARM's PS data and 6% higher; treat it as a LOWER BOUND for EPS foam because pentane blowing agent and steam expansion are excluded.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 2.917,
+        "boundary": "cradle-to-gate, GPPS resin only; EPS bead and foam expansion NOT covered",
+        "recycled_content_basis": "virgin",
+        "publisher": "Franklin Associates for American Chemistry Council, March 2022",
+        "year": 2022,
+        "data_year": "2015 or 2016",
+        "source_url": "https://www.americanchemistry.com/content/download/10598/file/Cradle-to-Gate-Life-Cycle-Analysis-of-General-Purpose-Polystyrene-Resin.pdf",
+        "source_type": "primary",
+        "notes": "Table 7: 2,917 kg CO2 eq per 1,000 kg = 2.917 kg/kg (AR5). The report does not mention EPS."
+      },
+      {
+        "value_kg_co2e_per_kg": 2.7558,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "PS current mix 0% recycled, so virgin = current mix",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "2.5 MTCO2E per short ton / 0.907185 = 2.7558 kg/kg. RESIN ONLY (Section 5.1); WARM has no EPS factor. Current value in materials.json (2.756)."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.2425,
+      "combustion": 3.329,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.22 -> 0.2425, landfilled 0.02 -> 0.022, combusted 3.02 -> 3.329. PS row gives landfilled 0.02 and combusted 3.02; PS recycled is NA, so Mixed Plastics recycled (0.22) is used as proxy. WARM NET combustion for PS is 1.65 (with energy credit)."
+    }
   },
   {
     "id": "glass",
     "name": "Glass",
     "is_plastic": false,
-    "recycle_rate": 0.3,
+    "recycle_rate": 0.27,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.313,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": false,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 0.9,
-    "disposal_text": "Rinse and recycle curbside.",
-    "source_url": "",
+    "curbside_basis": "SPC 2020-21: glass bottles and jars accepted for 74% of the U.S. population without deposit (curbside and drop-off combined). EPA: 'Most curbside recycling programs accept different glass colors and types mixed together.' Some programs take glass only at drop-off; not quantified.",
+    "carbon_kg_co2e_per_kg": 0.5842,
+    "carbon_previous_warm_v16_virgin": 0.661,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.313,
+      "combusted_rate": 0.134,
+      "landfilled_rate": 0.554,
+      "data_year": 2018,
+      "status": "confirmed",
+      "basis": "EPA 2018 glass containers: 9,790k tons generated, 3,060k recycled (31.3%), 1,310k combusted (13.4%), 5,420k landfilled (55.4%)."
+    },
+    "disposal_text": "Empty and rinse the jar, then place it in your curbside recycling bin.",
+    "how2recycle_label": "Widely Recyclable (inferred for bottles and jars, not looked up in Label Explorer: 74% access exceeds the 60% threshold)",
+    "contamination_notes": "Keep broken glass out of the bin: EPA says shards 'can harm workers and damage equipment.' Recycle metal caps separately from the glass (EPA).",
+    "why_it_matters": "Glass jars are accepted in most recycling programs, but fewer than a third are actually recycled, and their weight raises shipping cost and carbon.",
+    "source_url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate: EPA product-specific page, 2018: 'glass containers recycled in 2018 was 3.1 million tons, or 31.3 percent of generation.' Tonnages from EPA 2018 Table 6. Carbon: WARM v16 glass RMAM 0.60 MTCO2E per short ton, converted. Glass is the product container in the candle demo, not packaging the seller chooses; include it only where the app scores the jar.",
+    "recycle_rate_reason": "Same TRP residential method as the other materials; a glass jar shipped to a home is a residential container.",
+    "recycle_rate_options": [
+      {
+        "value": 0.27,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Glass Containers)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Participant capture 61.7%, MRF capture 90% (methodology PDF). Whether deposit-return volumes are included was not confirmed."
+      },
+      {
+        "value": 0.414,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA (EPA 530-R-24-010), Exhibit 2-1, Glass",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "9.9M generated, 4.1M recycled; residential; per-capita data from Ball 2021."
+      },
+      {
+        "value": 0.313,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "Glass Packaging Institute (citing 2018 data)",
+        "source_url": "https://gpi.org/glass-recycling-facts",
+        "source_type": "primary",
+        "notes": "'In 2018, 31.3% of glass food and beverage packaging containers were recycled.' Same value as EPA 2018 in materials.json."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": null,
+      "source_url": "https://gpi.org/glass-recycling-facts",
+      "source_type": "primary",
+      "notes": "not_found as an average. GPI says glass is made with 'typically up to 70% recycled glass' (a ceiling, no data year); no U.S. average cullet share was given."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "WARM current mix. No second source was opened (Glass Packaging Institute LCA and DESNZ glass value not read in the time available).",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 0.5842,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 23% recycled / 77% virgin (Exhibit 1-8)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.53 MTCO2E per short ton / 0.907185 = 0.5842 kg/kg. Exhibit 1-9."
+      },
+      {
+        "value_kg_co2e_per_kg": 0.6614,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin (WARM assumes 'virgin' glass still has 5% recycled content, Section 1.4)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "0.6 MTCO2E per short ton / 0.907185 = 0.6614 kg/kg. Exhibit 1-9. Current value in materials.json (0.661)."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.0551,
+      "combustion": 0.011,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.05 -> 0.0551, landfilled 0.02 -> 0.022, combusted 0.01 -> 0.011. Glass row. WARM NET: recycling (0.28), combustion 0.03, landfill 0.02 (Exhibit 1-4); no landfill carbon storage for glass."
+    }
   },
   {
     "id": "aluminum",
     "name": "Aluminum",
     "is_plastic": false,
-    "recycle_rate": 0.5,
+    "recycle_rate": 0.3,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.349,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": true,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 8.0,
-    "disposal_text": "Rinse and recycle curbside.",
-    "source_url": "",
+    "curbside_basis": "SPC 2020-21: aluminum beverage cans accepted for 89%-90% of the population, aluminum food cans 75%, but foil and foil pans/trays only 37%. Tins and lids are closest to food cans; not separately studied.",
+    "carbon_kg_co2e_per_kg": 5.2911,
+    "carbon_previous_warm_v16_virgin": 12.114,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.349,
+      "combusted_rate": 0.13,
+      "landfilled_rate": 0.521,
+      "data_year": 2018,
+      "status": "confirmed",
+      "basis": "EPA 2018 Table 7 total aluminum packaging: 1,920k tons generated, 670k recycled (cans only; other cans and foil 'NA'), 250k combusted (13%), 1,000k landfilled (52.1%)."
+    },
+    "disposal_text": "Empty and rinse the tin, then place it in your curbside recycling bin.",
+    "how2recycle_label": "Unconfirmed for tins and lids (beverage cans would be Widely Recyclable at 89%-90% access; foil/trays at 37% would be Check Locally)",
+    "contamination_notes": "Remove food residue (EPA). EPA advises not crushing aluminum cans, since crushed cans are harder to detect in single-stream sorting.",
+    "why_it_matters": "Making aluminum from scratch is carbon-intensive: EPA's factor is about 12 kg CO2e per kg for virgin can metal versus about 5 at today's typical recycled content, so recycling it matters.",
+    "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "EPA 2018 recycling rate for aluminum beverage cans is 50.4% (product-specific page), but tins and lids are not beverage cans and EPA says 'Recycling data for other aluminum packaging categories were not available for 2018.' recycle_rate 0.349 = all aluminum packaging (670/1,920), which counts only can recycling and so is conservative. Carbon uses WARM's aluminum cans factor (10.99 MTCO2E per short ton virgin) converted to kg/kg; aluminum ingot is 7.48. The 'why it matters' claim about recycling savings is directional; recycled-content factors were not pulled.",
+    "recycle_rate_reason": "TRP residential rate for aluminum cans, same method as the rest. Marked an estimate because Packwise's aluminum items are tins and lids, not beverage cans; foil and trays have much lower access (37% per SPC in materials.json), so 0.30 is likely an upper bound.",
+    "recycle_rate_options": [
+      {
+        "value": 0.3,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Aluminum Cans)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Beverage cans. Participant capture 54.7%, MRF capture 90% (methodology PDF)."
+      },
+      {
+        "value": 0.369,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA (EPA 530-R-24-010), Exhibit 2-1, Aluminum",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "1.5M generated, 553k recycled; residential."
+      },
+      {
+        "value": 0.43,
+        "metric": "generation_based_rate",
+        "data_year": 2023,
+        "publisher": "Aluminum Association and Can Manufacturers Institute, 'The Aluminum Can Advantage' KPI report (Dec 2024)",
+        "source_url": "https://aluminum.org/sites/default/files/2024-12/2024_Aluminum-Can-KPI-Report_Final.pdf",
+        "source_type": "primary",
+        "notes": "Consumer recycling rate for beverage cans, 43.0% in 2023 (41.8% in 2022). Industry recycling rate 57% (2023). Includes deposit-state returns; not residential-only."
+      },
+      {
+        "value": 0.349,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA 2018, all aluminum packaging (carried_from_materials_json)",
+        "source_url": "https://19january2021snapshot.epa.gov/sites/static/files/2020-11/documents/2018_tables_and_figures_fnl_508.pdf",
+        "source_type": "primary",
+        "notes": "Not re-opened this session."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": 0.71,
+      "source_url": "https://aluminum.org/sites/default/files/2024-12/2024_Aluminum-Can-KPI-Report_Final.pdf",
+      "source_type": "primary",
+      "notes": "Average recycled content of U.S. aluminum beverage cans, 71% (production year 2022, survey conducted 2024). Applies to cans; tins may differ."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "WARM current mix (5.29) for family consistency; the Aluminum Association finished-can value (5.94, 73% recycled) is 12% higher and is a good cross-check. 100% virgin (12.11) would more than double the score, so the recycled-content default matters a lot for aluminum.",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 5.2911,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 67.8% recycled / 32.2% virgin (Exhibit 2-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "4.8 MTCO2E per short ton / 0.907185 = 5.2911 kg/kg. Aluminum cans, Exhibit 2-11."
+      },
+      {
+        "value_kg_co2e_per_kg": 12.1144,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% virgin",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "10.99 MTCO2E per short ton / 0.907185 = 12.1144 kg/kg. Aluminum cans, Exhibit 2-11. Current value in materials.json (12.114)."
+      },
+      {
+        "value_kg_co2e_per_kg": 5.9353,
+        "boundary": "cradle-to-gate, raw material extraction to finished can (includes can making)",
+        "recycled_content_basis": "73% recycled content (North American average can)",
+        "publisher": "Aluminum Association (study by Sphera), 2021",
+        "year": 2021,
+        "data_year": "not stated (report dated 2021)",
+        "source_url": "https://www.aluminum.org/sites/default/files/2021-11/2021_CanLCA_Summary.pdf",
+        "source_type": "primary",
+        "notes": "77.1 g CO2e per can / 12.99 g metallic weight per can = 5.935 kg/kg. Beverage can, not a tin or lid. Industry body's own LCA summary."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.0661,
+      "combustion": 0.011,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.06 -> 0.0661, landfilled 0.02 -> 0.022, combusted 0.01 -> 0.011. Aluminum Cans row. WARM NET: recycling (9.13), combustion 0.03, landfill 0.02 (Exhibit 2-7)."
+    }
   },
   {
     "id": "steel",
     "name": "Steel",
     "is_plastic": false,
-    "recycle_rate": 0.6,
+    "recycle_rate": 0.19,
+    "recycle_rate_metric": "residential_recycling_rate",
+    "recycle_rate_epa_2018": 0.738,
+    "recycle_rate_year": 2023,
+    "recycle_rate_is_estimate": false,
+    "recycle_rate_source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
     "curbside_recyclable": true,
-    "carbon_kg_co2e_per_kg": 2.0,
-    "disposal_text": "Rinse and recycle curbside.",
-    "source_url": "",
+    "curbside_basis": "SPC 2020-21: steel food cans accepted for 87% of the U.S. population (curbside and drop-off combined).",
+    "carbon_kg_co2e_per_kg": 3.34,
+    "carbon_previous_warm_v16_virgin": 4.012,
+    "carbon_boundary": "cradle-to-gate, finished form where available; see carbon_reason",
+    "carbon_source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+    "eol_split": {
+      "recycled_rate": 0.738,
+      "combusted_rate": 0.05,
+      "landfilled_rate": 0.212,
+      "data_year": 2018,
+      "status": "confirmed",
+      "basis": "EPA 2018 steel packaging: 2,210k tons generated, 1,630k recycled (73.8%), 110k combusted (about 5%), 470k landfilled (21.2%)."
+    },
+    "disposal_text": "Empty and rinse the tin, then place it in your curbside recycling bin.",
+    "how2recycle_label": "Widely Recyclable (inferred for steel cans, not looked up in Label Explorer: 87% access exceeds the 60% threshold)",
+    "contamination_notes": "Remove food residue before recycling (EPA). EPA notes metal options vary by locality.",
+    "why_it_matters": "Steel tins are among the most-recycled packaging materials in the U.S., with about three in four tons recovered.",
+    "source_url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
     "last_checked": "2026-11-16",
-    "is_estimate": true
+    "is_estimate": true,
+    "notes": "Recycle rate: EPA product-specific page: 'recycling of steel packaging in 2018 as 1.6 million tons, or 73.8 percent of generation'; landfill 21.2% and combustion about 5% from the same page. One read of the 2018 Tables PDF reported a landfilled total of 440k, but the web page and the component rows (370 + 100) give 470k, which also makes the shares sum to 100%; 470k is used. Carbon: WARM v16 steel cans RMAM 3.64 MTCO2E per short ton, converted.",
+    "recycle_rate_reason": "Same TRP residential method. Note the large gap to EPA 2018's 73.8%, which is all-sector and generation-based.",
+    "recycle_rate_options": [
+      {
+        "value": 0.19,
+        "metric": "residential_capture_rate",
+        "data_year": 2023,
+        "publisher": "The Recycling Partnership (State of Recycling 2024, Figure 14, Steel Cans)",
+        "source_url": "https://recyclingpartnership.org/wp-content/uploads/2024/01/Recycling-Partnership-State-of-Recycling-Report-1.9.23.pdf",
+        "source_type": "primary",
+        "notes": "Participant capture 46.9%, MRF capture 96% (methodology PDF). Resource Recycling (Jan 2024, secondary) reports 'four out of five steel cans' trashed."
+      },
+      {
+        "value": 0.312,
+        "metric": "residential_capture_rate",
+        "data_year": 2019,
+        "publisher": "U.S. EPA (EPA 530-R-24-010), Exhibit 2-1, Steel",
+        "source_url": "https://www.epa.gov/system/files/documents/2024-12/financial_assessment_of_us_recycling_system_infrastructure.pdf",
+        "source_type": "primary",
+        "notes": "1.8M generated, 562k recycled; residential."
+      },
+      {
+        "value": 0.738,
+        "metric": "generation_based_rate",
+        "data_year": 2018,
+        "publisher": "U.S. EPA Facts and Figures, steel packaging (carried_from_materials_json)",
+        "source_url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
+        "source_type": "primary",
+        "notes": "Not re-opened this session. All-sector."
+      }
+    ],
+    "recycled_content_typical": {
+      "value": 0.25,
+      "source_url": "https://waste360.com/metals/profiles-in-garbage-steel-cans",
+      "source_type": "secondary",
+      "notes": "Waste360 'Profiles in Garbage: Steel Cans' (July 2, 2012, citing AISI/Steel Recycling Institute): basic-oxygen-furnace can sheet has 'at least 25% recycled content'; electric-arc-furnace steel 'almost 100%'. Old and a floor, not an average; replace if a current AISI figure is found."
+    },
+    "recyclability_guidance": null,
+    "carbon_is_estimate": true,
+    "carbon_reason": "WARM current mix. No second source opened (worldsteel tinplate LCI pages and DESNZ steel cans value not read).",
+    "carbon_options": [
+      {
+        "value_kg_co2e_per_kg": 3.34,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "WARM current mix: 32.7% recycled / 67.3% virgin (Exhibit 2-10)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "3.03 MTCO2E per short ton / 0.907185 = 3.34 kg/kg. Steel cans, Exhibit 2-11."
+      },
+      {
+        "value_kg_co2e_per_kg": 4.0124,
+        "boundary": "cradle-to-gate RMAM (raw materials acquisition and manufacturing)",
+        "recycled_content_basis": "100% 'virgin' (WARM says virgin steel itself contains 28% recycled content, Exhibit 2-9; Section 2.4 says 33%)",
+        "publisher": "U.S. EPA (WARM v16 documentation, Containers, Packaging and Non-Durable Goods Materials chapter)",
+        "year": 2023,
+        "data_year": "WARM v16 (Dec 2023); underlying LCI years vary by material",
+        "source_url": "https://www.epa.gov/system/files/documents/2023-12/warm_containers_packaging_and_non-durable_goods_materials_v16_dec.pdf",
+        "source_type": "primary",
+        "notes": "3.64 MTCO2E per short ton / 0.907185 = 4.0124 kg/kg. Exhibit 2-11. Current value in materials.json (4.012)."
+      }
+    ],
+    "eol_kg_co2e_per_kg": {
+      "landfill": 0.022,
+      "recycling": 0.3527,
+      "combustion": 0.011,
+      "includes": "EPA GHG Emission Factors Hub 2025, Table 9 (Scope 3 Cat 5/12), based on WARM v16 (Dec 2023), AR4 GWPs. All options include transport to the facility. Landfill INCLUDES landfill CH4 from biogenic carbon decay and landfill equipment; EXCLUDES landfill carbon storage and avoided energy recovery. Recycling includes transport and MRF sorting only; EXCLUDES avoided virgin production and forest carbon storage credits. Combustion includes fossil CO2 and N2O; biogenic CO2 not counted; EXCLUDES avoided grid electricity. No credits anywhere, so these can be added to cradle-to-gate without double counting.",
+      "source_url": "https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf",
+      "source_type": "primary",
+      "publisher": "U.S. EPA Center for Corporate Climate Leadership",
+      "year": 2025,
+      "notes": "Converted /0.907185: recycled 0.32 -> 0.3527, landfilled 0.02 -> 0.022, combusted 0.01 -> 0.011. Steel Cans row. WARM NET: recycling (1.83), combustion (1.59) (credit for recovered steel), landfill 0.02 (Exhibit 2-7)."
+    }
   }
 ]

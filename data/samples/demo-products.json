@@ -1,0 +1,223 @@
+{
+  "last_checked": "2026-11-16",
+  "note": "Maya demo candles. \"8 oz\" and \"12 oz\" are jar capacities in fluid ounces, not wax weight. Jar and cap weights from Uline (rounded to 0.01 lb); wax from comparable CandleScience jars.",
+  "demo_candles": {
+    "8oz": {
+      "height_in": 3.5625,
+      "diameter_in": 2.875,
+      "packed_weight_lb": 0.877,
+      "basis": "Uline S-17983M-GLD 8 oz straight-sided jar with gold metal cap: unit weight 0.49 lb (jar + cap, stated) = 222.3 g; height with cap 3 9/16 in; diameter = cap diameter 2 7/8 in. Wax: 6.20 oz = 6.20 x 28.3495 = 175.8 g, taken from CandleScience's comparable 8 oz straight-sided jelly jar (8.30 fl oz overflow, same #70 cap size) because Uline gives no fill guidance. Total 222.3 + 175.8 = 398.0 g = 0.877 lb (about 14.0 oz). Wick, label and fragrance-load differences ignored (fragrance is part of the fill weight). is_estimate: wax weight is borrowed from a comparable jar; jar+lid weight is stated but rounded to 0.01 lb. Cross-check jar-only: O.Berk 1010071 200.2 g vs Uline S-25165 208.7 g. Fits Flush F0252-1F/1I cell (2.88 x 2.88 x 3.94 in) by dimensions, an inference: Flush does not list the Uline jar as compatible."
+    },
+    "12oz": {
+      "height_in": 3.25,
+      "diameter_in": 3.25,
+      "packed_weight_lb": 1.021,
+      "basis": "Uline S-22916M-GLD 12 oz straight-sided jar with gold metal cap: unit weight 0.49 lb (jar + cap, stated) = 222.3 g; height with cap 3 1/4 in; diameter = cap diameter 3 1/4 in (Flush lists 3.34 in vessel diameter for its compatible 12 oz straight-sided jar group, so the glass body may be slightly wider than the cap). Wax: 8.50 oz = 8.50 x 28.3495 = 241.0 g, from CandleScience's Libbey Straight Sided Tumbler (12.10 fl oz overflow, fill-line wax 8.50 oz), a comparable 12 fl oz straight-sided jar. Total 222.3 + 241.0 = 463.2 g = 1.021 lb (about 16.3 oz). If filled closer to brim per GlassNow's 0.86 rule (10.32 oz = 292.6 g), total would be 514.8 g = 1.135 lb. is_estimate: wax borrowed from comparable jar; Uline weight rounded and suspiciously identical to the 8 oz model. Flush Packaging lists this exact Uline model as compatible with its F0190-1E single-jar box."
+    }
+  },
+  "jars": [
+    {
+      "id": "candlescience-8oz-straight-sided-jelly-jar",
+      "name": "8 oz. Straight Sided Jelly Jar",
+      "supplier": "CandleScience",
+      "sku": null,
+      "size_class": "8oz",
+      "height_in": 3.56,
+      "diameter_in": 2.6,
+      "jar_weight_g": null,
+      "lid_type": "#70 G threaded metal lid (compatible lids listed; lid inclusion and lid weight not stated)",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 8.3,
+      "recommended_wax_oz": 6.2,
+      "price_usd": 0.66,
+      "price_basis_qty": 12,
+      "source_url": "https://www.candlescience.com/containers/8oz-straight-sided-jelly-jar",
+      "is_estimate": false,
+      "notes": "supplier. Page: Height 3.56 in; Top Outside 2.60 in, Top Inside 2.35 in; 'Volume (to Overflow)' 8.30 fl oz (235.83 mL); 'Wax Weight (to Fill Line)' 6.20 oz (175.77 g). Price $0.66/pc for a 12 pc case ($7.93); $0.63 at 8-84 cases, $0.61 at 85-169, $0.59 at 170+. No SKU or empty weight listed. Fits Flush Packaging F0252 boxes (Flush lists it as compatible)."
+    },
+    {
+      "id": "candlescience-8oz-jelly-jar-1640",
+      "name": "8 oz. Jelly Jar (1640)",
+      "supplier": "CandleScience",
+      "sku": "1640 (in product title/URL; not labeled SKU)",
+      "size_class": "8oz",
+      "height_in": 3.75,
+      "diameter_in": 2.5,
+      "jar_weight_g": null,
+      "lid_type": "#70 G threaded metal lid (compatible lids listed; lid weight not stated)",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 8.3,
+      "recommended_wax_oz": 6.2,
+      "price_usd": 0.69,
+      "price_basis_qty": 12,
+      "source_url": "https://www.candlescience.com/containers/8-oz-jelly-jar-1640",
+      "is_estimate": false,
+      "notes": "supplier. Page: Height 3.75 in; Top Outside 2.50 in, Bottom Outside 2.15 in (tapered); Volume to Overflow 8.30 fl oz (235.83 mL); Wax Weight to Fill Line 6.20 oz (175.77 g). $0.69/pc for 12 pc case ($8.30); $0.67/$0.65/$0.61 at 8-84/85-169/170+ cases. Empty weight not listed."
+    },
+    {
+      "id": "uline-s-17983m-gld-8oz-straight-sided",
+      "name": "Clear Straight-Sided Glass Jar, 8 oz, Gold Metal Cap",
+      "supplier": "Uline",
+      "sku": "S-17983M-GLD",
+      "size_class": "8oz",
+      "height_in": 3.5625,
+      "diameter_in": 2.875,
+      "jar_weight_g": 208.7,
+      "lid_type": "70/400 gold metal screw cap, electrolytic tin coated steel, plastisol liner (included)",
+      "lid_weight_g": 13.6,
+      "brimful_capacity_oz": 8.0,
+      "recommended_wax_oz": null,
+      "price_usd": 1.7,
+      "price_basis_qty": 24,
+      "source_url": "https://www.uline.com/Product/Detail/S-17983M-GLD/Jars/Clear-Straight-Sided-Glass-Jars-8-oz-Gold-Metal-Cap",
+      "is_estimate": false,
+      "notes": "supplier. Page: 'Height with cap 3 9/16 in', 'Cap diameter 2 7/8 in', opening 2 3/8 in, capacity '8 oz. (measured in fluid ounces)' (nominal; brimful/overflow not separately stated), 'Unit Weight 0.49 lbs.' (jar + cap) -> 0.49 x 453.592 = 222.3 g. 24/case; $1.70 at 1 case, $1.60 at 3+. diameter_in = cap diameter (jar outside diameter not listed). jar_weight_g from the jars-only model S-25165 (https://uline.com/Product/Detail/S-25165/Jars/Clear-Straight-Sided-Glass-Jars-8-oz): 'Unit weight 0.46 lbs.' -> 0.46 x 453.592 = 208.7 g. lid_weight_g DERIVED: 0.49 - 0.46 = 0.03 lb x 453.592 = 13.6 g; Uline rounds to 0.01 lb, so true lid weight could be about 9 to 18 g. No wax fill guidance (Uline sells it as a food/cosmetic jar)."
+    },
+    {
+      "id": "oberk-1010071-8oz-straight-sided",
+      "name": "8oz Flint Straight Sided Round Glass Jar, 70-405 neck",
+      "supplier": "O.Berk",
+      "sku": "1010071",
+      "size_class": "8oz",
+      "height_in": 3.5,
+      "diameter_in": 2.87,
+      "jar_weight_g": 200.2,
+      "lid_type": "70-405 neck; cap not included, not listed",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 9.22,
+      "recommended_wax_oz": null,
+      "price_usd": null,
+      "price_basis_qty": null,
+      "source_url": "https://oberk.com/containers/glass/glass-jar/1010071--8oz-flint-straight-sided-round-glass-jar---70-405-neck",
+      "is_estimate": false,
+      "notes": "supplier (industrial; min order 2,376, price 'INQUIRE'). Included as the only 8 oz straight-sided candle-style jar found with an exact glass weight: 'Item weight 200.20 g', height 3.50 in, width 2.87 in, overflow 272.60 cc -> 272.60 / 29.5735 = 9.22 fl oz. Corroborates Uline S-25165 (208.7 g). Not a small-seller purchase option."
+    },
+    {
+      "id": "candlescience-straight-sided-tumbler-libbey",
+      "name": "Straight Sided Tumbler Jar (Libbey)",
+      "supplier": "CandleScience",
+      "sku": null,
+      "size_class": "12oz",
+      "height_in": 3.5,
+      "diameter_in": 3.15,
+      "jar_weight_g": null,
+      "lid_type": "No lid included; optional metal flat, 3.25 in bamboo, glass, or 3.25 in pine lids",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 12.1,
+      "recommended_wax_oz": 8.5,
+      "price_usd": 1.3,
+      "price_basis_qty": 12,
+      "source_url": "https://www.candlescience.com/containers/straight-sided-tumbler-jar-libbey",
+      "is_estimate": false,
+      "notes": "supplier. Page: Height 3.50 in; Top Outside 3.15 in, Top Inside 3.06 in; 'Volume (to Overflow)' 12.10 fl oz (343.80 mL); 'Wax Weight (to Fill Line)' 8.50 oz (240.97 g). $1.30/pc for 12 pc case ($15.57); $1.26/$1.22/$1.19 at 6-83/84-153/154+ cases. Not named '12 oz' on the page; classed 12oz by its 12.10 fl oz overflow volume. Weight not listed."
+    },
+    {
+      "id": "candlescience-12oz-canning-jar",
+      "name": "12 oz. Canning Jar",
+      "supplier": "CandleScience",
+      "sku": null,
+      "size_class": "12oz",
+      "height_in": 4.75,
+      "diameter_in": 2.91,
+      "jar_weight_g": null,
+      "lid_type": "#70 G threaded metal lid (compatible lids listed; lid weight not stated)",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 10.3,
+      "recommended_wax_oz": 8.5,
+      "price_usd": 0.64,
+      "price_basis_qty": 12,
+      "source_url": "https://www.candlescience.com/containers/12oz-canning-jar",
+      "is_estimate": false,
+      "notes": "supplier. Page: Height 4.75 in; Top Outside 2.91 in; Volume to Overflow 10.30 fl oz (292.65 mL); Wax Weight to Fill Line 8.50 oz (240.97 g). $0.64/pc per 12 pc case ($7.68); $0.59/$0.55/$0.51 at 6-67/68-135/136+ cases. Named '12 oz' but holds only 10.30 fl oz to overflow, an example of CandleScience's warning that size labels may not reflect volume or wax weight. Weight not listed. Fits Flush F0221-2C / F0622-2C / F0623-2C boxes."
+    },
+    {
+      "id": "uline-s-22916m-gld-12oz-straight-sided",
+      "name": "Clear Straight-Sided Glass Jar, 12 oz, Gold Metal Cap",
+      "supplier": "Uline",
+      "sku": "S-22916M-GLD",
+      "size_class": "12oz",
+      "height_in": 3.25,
+      "diameter_in": 3.25,
+      "jar_weight_g": 204.1,
+      "lid_type": "83/400 gold metal screw cap, electrolytic tin coated steel, plastisol liner (included)",
+      "lid_weight_g": 18.1,
+      "brimful_capacity_oz": 12.0,
+      "recommended_wax_oz": null,
+      "price_usd": 1.9,
+      "price_basis_qty": 12,
+      "source_url": "https://www.uline.com/Product/Detail/S-22916M-GLD/Jars/Clear-Straight-Sided-Glass-Jars-12-oz-Gold-Metal-Cap",
+      "is_estimate": false,
+      "notes": "supplier. Page: 'Height with cap 3 1/4 in', 'Cap diameter 3 1/4 in', opening 2 3/4 in, capacity '12 oz. (measured in fluid ounces)' (nominal), 'Unit weight 0.49 lbs.' (jar + cap) -> 222.3 g. 12/case; $1.90 at 1 case, $1.80 at 3+. diameter_in = cap diameter (jar outside not listed). jar_weight_g from jars-only S-25166 (https://www.uline.com/Product/Detail/S-25166/Jars/Clear-Straight-Sided-Glass-Jars-12-oz): 'Unit weight 0.45 lbs.' -> 204.1 g. lid_weight_g DERIVED 0.49 - 0.45 = 0.04 lb -> 18.1 g (rounding to 0.01 lb gives about 14 to 23 g). CAUTION: Uline lists the same 0.49 lb for the 8 oz and 12 oz capped jars, and a lower jar-only weight for the 12 oz (0.45) than the 8 oz (0.46); treat as rounded and approximate. Flush Packaging lists this exact model as compatible with its F0190-1E box (vessel 3.34 in dia x 3.19 in tall)."
+    },
+    {
+      "id": "glassnow-6184-12oz-calypso",
+      "name": "12 oz Calypso Glass Jar - 80mm",
+      "supplier": "GlassNow",
+      "sku": "6184",
+      "size_class": "12oz",
+      "height_in": 4.29,
+      "diameter_in": 3.15,
+      "jar_weight_g": null,
+      "lid_type": "Cork finish neck; lid not listed",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": 12.0,
+      "recommended_wax_oz": 10.3,
+      "price_usd": 1.78,
+      "price_basis_qty": 12,
+      "source_url": "https://www.glassnow.com/12oz-calypso-glass-jar",
+      "is_estimate": false,
+      "notes": "supplier. Page: '12.0 oz (350ml)' (page defines volume as to the overflow line), 'Wax Weight: 10.3 oz.', height 4.29 in (109 mm), width/depth 3.15 in (80 mm). Case of 12 $21.36 ($1.780/unit) at 1-119 units; 4.85% off at 120-599, 16.97% off at 600+. Note 10.3 = 12.0 x 0.86 (wax-to-brim, GlassNow's own rule of thumb), higher than CandleScience's fill-line figures. Glass weight not listed."
+    },
+    {
+      "id": "candlesandsupplies-stjar-clr-11-5oz-tumbler",
+      "name": "11.5 oz. Clear Straight Sided Tumbler",
+      "supplier": "Candles and Supplies (candlesandsupplies.com)",
+      "sku": "STJAR-CLR",
+      "size_class": "12oz",
+      "height_in": 3.5,
+      "diameter_in": 3.5,
+      "jar_weight_g": null,
+      "lid_type": "Not included; medium metal lids (fits 9-12 oz tumblers) sold separately from $1.10, wood lid $1.59",
+      "lid_weight_g": null,
+      "brimful_capacity_oz": null,
+      "recommended_wax_oz": 8.5,
+      "price_usd": null,
+      "price_basis_qty": null,
+      "source_url": "https://candlesandsupplies.com/11-5-oz-clear-straight-sided-tumblers",
+      "is_estimate": true,
+      "notes": "supplier. Page: 'Measures: 3 1/2\"H x 3 1/2\" W'; 'Holds 8-9 oz. of wax comfortably' (recommended_wax_oz = midpoint 8.5, hence is_estimate). '11.5 oz' not defined on page. Price unclear: $2.99 add-to-cart vs '$2.99 - $42.99' range with 'Sample Case of 36' option; per-jar price not confirmable, left null. Weight not listed."
+    }
+  ],
+  "wax_fill_guidance": [
+    {
+      "claim": "CandleScience warns that container size names are not reliable: 'some of the size labels on the boxes do not reflect wax weight or overflow volume.' Wax weight is defined as 'Approximately how much wax by weight the container will hold' (an estimate).",
+      "source_url": "https://www.candlescience.com/support/container-info/",
+      "notes": "supplier. Page does not say whether '8 oz' means volume or wax weight, and gives no conversion multiplier."
+    },
+    {
+      "claim": "CandleScience '8 oz.' jelly jars hold 8.30 fl oz to overflow but 6.20 oz (175.77 g) of wax to the fill line.",
+      "source_url": "https://www.candlescience.com/containers/8oz-straight-sided-jelly-jar",
+      "notes": "supplier. Same figures on the 8 oz Jelly Jar (1640) page. So for these jars '8 oz' is the jar capacity, and net wax is about 6.2 oz."
+    },
+    {
+      "claim": "CandleScience '12 oz.' Canning Jar holds 10.30 fl oz to overflow and 8.50 oz wax to fill line; the Libbey Straight Sided Tumbler holds 12.10 fl oz to overflow and 8.50 oz wax to fill line.",
+      "source_url": "https://www.candlescience.com/containers/12oz-canning-jar",
+      "notes": "supplier. Tumbler: https://www.candlescience.com/containers/straight-sided-tumbler-jar-libbey. Fill-line wax / overflow volume = 6.20/8.30 = 0.75 (8 oz jelly), 8.50/12.10 = 0.70 (tumbler)."
+    },
+    {
+      "claim": "Uline jar capacities are 'Measured in fluid ounces.'",
+      "source_url": "https://www.uline.com/Product/Detail/S-22916M-GLD/Jars/Clear-Straight-Sided-Glass-Jars-12-oz-Gold-Metal-Cap",
+      "notes": "supplier. Confirms the jar-side '8 oz'/'12 oz' convention is volume."
+    },
+    {
+      "claim": "GlassNow: container size is 'typically provided in fluid ounces (FL OZ.) or milliliters (ML)'; 'Wax Weight (oz) = Container Volume (fl oz) x Wax Density'; 'a good rule of thumb is to use .86'; example '9 fluid oz candle jar is 7.74 oz (9 x .86 = 7.74)'.",
+      "source_url": "https://www.glassnow.com/blog/how-to-calculate-wax-weight-for-candle-containers/",
+      "notes": "supplier. The 0.86 rule gives wax to the brim; real fills stop below the rim, which is why CandleScience fill-line figures are lower (ratio about 0.70 to 0.75). 8 x 0.86 = 6.88 oz; 12 x 0.86 = 10.32 oz (brimful upper bounds)."
+    },
+    {
+      "claim": "Candles and Supplies: 11.5 oz Clear Straight Sided Tumbler 'Holds 8-9 oz. of wax comfortably.'",
+      "source_url": "https://candlesandsupplies.com/11-5-oz-clear-straight-sided-tumblers",
+      "notes": "supplier. Another example of a jar named by volume holding about 0.7 to 0.8 of that in wax weight."
+    }
+  ]
+}

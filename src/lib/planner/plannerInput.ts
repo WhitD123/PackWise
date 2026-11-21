@@ -45,13 +45,13 @@ export function lineFromExample(p: ExampleProduct, key: string): ProductLineInpu
   };
 }
 
-/** The demo seller from the brief: a candle brand shipping in poly mailers with bubble wrap. */
+/** The demo seller from the brief: Maya's 12 oz candle shipped in an oversized box with foam peanuts and bubble wrap (tests/fixtures/demo-answer-key.json). */
 export function defaultInput(): PlannerInput {
   return {
-    lines: [lineFromExample(EXAMPLE_PRODUCTS[0], "default-candle")],
-    ordersPerYear: 200000,
-    statePercent: { OR: 1.3, CO: 1.8 },
-    current: { outer_id: "poly-mailer-10x13", fill_id: "", wrap_id: "bubble-wrap", insert_id: "" },
+    lines: [lineFromExample(EXAMPLE_PRODUCTS[1], "default-candle")],
+    ordersPerYear: 233116, // data/samples/shopify-orders.csv, annualized (4,483 orders x 52)
+    statePercent: { OR: 8.23, CO: 1.25 }, // same file; fee states only
+    current: { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: "" },
     priority: "balanced",
   };
 }

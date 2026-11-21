@@ -1,0 +1,277 @@
+{
+  "_about": "Known-answer values computed by the research workbook (Packwise_Research_Data.xlsx, Swap_Demo tab, recalculated 2026-11-16). Use as test expectations with a small tolerance (about 1 cent, 0.5 g). If code and this file disagree, find out which is wrong before changing either.",
+  "demo_B_right_size_12oz_candle": {
+    "inputs": {
+      "product": "Maya 12 oz candle (demo-products.json 12oz): 3.25 x 3.25 x 3.25 in, 1.021 lb",
+      "current_setup": {
+        "box": "box-12x10x8-single",
+        "fill": "foam-peanuts-fill (fills box volume minus product bounding box)",
+        "wrap": "bubble-wrap-3-16, 1.0 sq ft"
+      },
+      "new_setup": {
+        "box": "box-12oz-straight-jar-shipper (has_fitted_insert, no fill or wrap)"
+      },
+      "origin_zip3": "972",
+      "fee_state": "OR",
+      "fee_year": 2027,
+      "orders_per_year": 109200,
+      "share_of_orders_to_OR": 0.0838
+    },
+    "per_order": {
+      "Box material id": {
+        "current": "corrugated",
+        "right_sized": "corrugated"
+      },
+      "Fill material id": {
+        "current": "eps-foam",
+        "right_sized": null
+      },
+      "Wrap material id": {
+        "current": "pe-film",
+        "right_sized": null
+      },
+      "Box has a fitted insert?": {
+        "current": false,
+        "right_sized": true
+      },
+      "Box inside volume (cu in)": {
+        "current": 960,
+        "right_sized": 121.4594
+      },
+      "Product volume, bounding box (cu in)": {
+        "current": 34.3281,
+        "right_sized": 34.3281
+      },
+      "Safe fit for glass?": {
+        "current": "Meets 2 in clearance",
+        "right_sized": "Fitted insert (supplier-listed jar)"
+      },
+      "Empty space ratio (EU method)": {
+        "current": 0.9642,
+        "right_sized": 0.7174
+      },
+      "Meets EU 50% empty-space limit?": {
+        "current": "No",
+        "right_sized": "No"
+      },
+      "Fill volume (cu ft)": {
+        "current": 0.5357,
+        "right_sized": 0
+      },
+      "Box weight (g)": {
+        "current": 303.9,
+        "right_sized": 215.5
+      },
+      "Fill weight (g)": {
+        "current": 50.3013,
+        "right_sized": 0
+      },
+      "Wrap weight (g)": {
+        "current": 8.55,
+        "right_sized": 0
+      },
+      "Packaging weight (g)": {
+        "current": 362.7513,
+        "right_sized": 215.5
+      },
+      "Plastic weight (g)": {
+        "current": 58.8513,
+        "right_sized": 0
+      },
+      "Shipped weight (lb)": {
+        "current": 1.8207,
+        "right_sized": 1.4961
+      },
+      "Outside volume, each side rounded down to 1/4 in (cu in)": {
+        "current": 1035.8906,
+        "right_sized": 163.125
+      },
+      "Billable weight (lb; dimensional weight only above 1,728 cu in)": {
+        "current": 1.8207,
+        "right_sized": 1.4961
+      },
+      "Weight price ($)": {
+        "current": 13.42,
+        "right_sized": 13.42
+      },
+      "Cubic tier (cu ft)": {
+        "current": 0.6,
+        "right_sized": 0.1
+      },
+      "Cubic price ($)": {
+        "current": 21.41,
+        "right_sized": 10.68
+      },
+      "Shipping price paid ($, lower of the two, averaged over destination zones)": {
+        "current": 12.1709,
+        "right_sized": 9.9642
+      },
+      "Packaging material cost ($)": {
+        "current": 2.1253,
+        "right_sized": 2.3
+      },
+      "EPR fee if covered ($)": {
+        "current": 0.0811,
+        "right_sized": 0.0095
+      },
+      "CO2e, production + end of life (kg)": {
+        "current": 0.6944,
+        "right_sized": 0.3718
+      },
+      "Unrecycled packaging (g)": {
+        "current": 264.9148,
+        "right_sized": 146.54
+      }
+    },
+    "shipping_by_zone": [
+      {
+        "zone": 1,
+        "share_of_orders": 0.0838,
+        "current_price_usd": 8.39,
+        "right_sized_price_usd": 7.85
+      },
+      {
+        "zone": 2,
+        "share_of_orders": 0.0224,
+        "current_price_usd": 8.48,
+        "right_sized_price_usd": 7.91
+      },
+      {
+        "zone": 3,
+        "share_of_orders": 0,
+        "current_price_usd": 8.66,
+        "right_sized_price_usd": 8.23
+      },
+      {
+        "zone": 4,
+        "share_of_orders": 0.0052,
+        "current_price_usd": 8.91,
+        "right_sized_price_usd": 8.39
+      },
+      {
+        "zone": 5,
+        "share_of_orders": 0.1981,
+        "current_price_usd": 10.5,
+        "right_sized_price_usd": 9.04
+      },
+      {
+        "zone": 6,
+        "share_of_orders": 0.0143,
+        "current_price_usd": 12.13,
+        "right_sized_price_usd": 9.76
+      },
+      {
+        "zone": 7,
+        "share_of_orders": 0.111,
+        "current_price_usd": 12.55,
+        "right_sized_price_usd": 10.08
+      },
+      {
+        "zone": 8,
+        "share_of_orders": 0.5652,
+        "current_price_usd": 13.42,
+        "right_sized_price_usd": 10.68
+      },
+      {
+        "zone": 9,
+        "share_of_orders": 0,
+        "current_price_usd": 13.42,
+        "right_sized_price_usd": 10.68
+      }
+    ],
+    "per_year": {
+      "Packaging weight (lb)": {
+        "current": 87330.55,
+        "right_sized": 51880.54
+      },
+      "Plastic weight (lb)": {
+        "current": 14168.15,
+        "right_sized": 0
+      },
+      "Shipping cost ($)": {
+        "current": 1329057.6,
+        "right_sized": 1088094.8
+      },
+      "Packaging material cost ($)": {
+        "current": 232085.6,
+        "right_sized": 251160
+      },
+      "EPR fee if covered, fee-state orders only ($)": {
+        "current": 742.14,
+        "right_sized": 86.96
+      },
+      "CO2e (kg)": {
+        "current": 75826.94,
+        "right_sized": 40602.68
+      },
+      "Unrecycled packaging (lb)": {
+        "current": 63776.9,
+        "right_sized": 35278.77
+      }
+    }
+  },
+  "demo_A_mailer_swap": {
+    "inputs": {
+      "current": "poly-bubble-mailer-8-4x10-8",
+      "swap": "padded-paper-mailer-11x9",
+      "orders_per_year": 109200,
+      "fee_state": "OR",
+      "fee_year": 2027
+    },
+    "rows": {
+      "Material id": {
+        "current": "pe-film",
+        "swap": "kraft-paper"
+      },
+      "Weight per unit (lb)": {
+        "current": 0.0507,
+        "swap": 0.0669
+      },
+      "Plastic?": {
+        "current": true,
+        "swap": false
+      },
+      "Material cost per unit ($)": {
+        "current": 0.29,
+        "swap": 0.37
+      },
+      "Residential recycle rate": {
+        "current": 0.01,
+        "swap": 0.23
+      },
+      "Lifecycle CO2e factor (kg per kg)": {
+        "current": 2.5844,
+        "swap": 2.2932
+      },
+      "EPR fee rate ($ per lb)": {
+        "current": 0.12,
+        "swap": 0.02
+      },
+      "Packaging weight per year (lb)": {
+        "current": 5537.1347,
+        "swap": 7306.6103
+      },
+      "Plastic weight per year (lb)": {
+        "current": 5537.1347,
+        "swap": 0
+      },
+      "Unrecycled weight per year (lb)": {
+        "current": 5481.7633,
+        "swap": 5626.09
+      },
+      "Material cost per year ($)": {
+        "current": 31668,
+        "swap": 40404
+      },
+      "CO2e per year, production + end of life (kg)": {
+        "current": 6490.9665,
+        "swap": 7600.0732
+      },
+      "EPR fee per year if covered, fee-state orders only ($)": {
+        "current": 55.6878,
+        "swap": 12.2473
+      }
+    },
+    "honest_reading": "Paper mailer removes all plastic and lowers fees, but is about 1.3x heavier, so unrecycled weight and CO2e rise slightly. Claim plastic avoided and fees only."
+  }
+}

@@ -40,8 +40,13 @@ Any record built from research has `source_url`, `last_checked` (a date), and `i
 | --- | --- | --- |
 | `data/library/components.json` | Every box, mailer, filler, and wrap the app can recommend | Tyler |
 | `data/materials.json` | One record per material: recycling rate, carbon, plastic or not, disposal text | Tyler |
-| `data/fees/oregon.json` (and one per state with fees) | Fee rate per material for that state | Tyler |
-| `data/rules/state-coverage.json` | Exemption rules and status for all 7 EPR states | Tyler |
+| `data/fees/<state>-<year>.json` (`oregon-2026`, `oregon-2027`, `colorado-2026`, `colorado-2027`; `california.json`) | Fee rate per material for that state and year | Tyler |
+| `data/rules/state-coverage.json` | Exemption rules and status for all 50 states plus DC (51 records) | Tyler |
+| `data/rules/state-population.json` | Census population per state, used to spread the sample orders | Tyler |
+| `data/rules/packing-rules.json` | Cushioning, wrap, box strength and drop-test rules for the box picker (UPS, FedEx, ISTA), each marked sourced or interpretation | Tyler |
+| `data/rules/epr-logic.json` | Answers on fee basis, producer definition, candle jars, exemption years, categories, with sources | Tyler |
+| `data/samples/demo-products.json` | Maya's 8 oz and 12 oz candles (sourced jar, lid and wax weights) plus jar options | Tyler |
+| `data/rules/environment.json` | EU empty-space rule, empty-space and right-sizing benchmarks, reuse studies, void fill densities, impact baseline facts, the 1,000-seller projection formula | Tyler |
 | `data/rules/shipping.json` | Carrier size-pricing rules and a simple rate table | Tyler |
 | `data/samples/shopify-orders.csv` | Fake order file for the demo | Tyler |
 | `src/lib/types.ts` | The same shapes, written in code | Whitman |
@@ -217,7 +222,7 @@ About 30 items for the candle and glass-jar demo, plus about 20 general items:
 
 ## 5. State fee rates (`data/fees/<state>.json`)
 
-One file per state that has published rates. File names are lowercase state names: `oregon.json`, `colorado.json`, `california.json`. Rates are keyed by **our** material IDs, so the code never needs each state's own category names. The state's official name is kept alongside for checking.
+One file per state that has published rates. File names are lowercase state names plus the program year: `oregon-2026.json`, `oregon-2027.json`, `colorado-2026.json`, `colorado-2027.json`, and `california.json` (proposed 2027). Rates are keyed by **our** material IDs, so the code never needs each state's own category names. The state's official name is kept alongside for checking.
 
 ### Fields
 
@@ -256,13 +261,14 @@ If a material isn't in a state's schedule, leave it out. The code treats a missi
 
 ## 6. State coverage rules (`data/rules/state-coverage.json`)
 
-One record for each of the 7 EPR states. States without a law aren't listed; the code treats any missing state as "no packaging law yet."
+One record for every state plus DC (51 records). States without a packaging EPR law are listed with `law_status` set to `none`, so the app can say "no packaging law yet" with a source and date.
 
 ### Allowed `law_status` values
 
 - `fees_active`: producers are being billed (Oregon, Colorado)
 - `fees_upcoming`: law passed, fees not billed yet
 - `registration_only`: must register, no fees yet
+- `none`: no enacted packaging EPR law. Thresholds are `null`, `key_dates` is empty, and `fee_file` is `null`
 
 ### Fields
 
@@ -445,3 +451,66 @@ These aren't data files. They're what one piece of code hands to another. Agreei
 - [ ] Shopify column names for the order file
 - [ ] The shapes in section 9
 - [ ] Merging carbon and disposal data into `materials.json`
+
+---
+
+## 11. Changes made after the research (approve at kickoff)
+
+The research found a few things the first draft did not plan for. These are already in the data files.
+
+**Materials (section 3).** Each record also has: `recycle_rate_year`, `recycle_rate_is_estimate`, `recycle_rate_source_url`, `curbside_basis`, `carbon_boundary` (what the carbon number covers), `carbon_source_url`, `eol_split` (`recycled_rate`, `combusted_rate`, `landfilled_rate`, `data_year`, `status`, `basis`; null for paper-plastic-mix), `how2recycle_label`, `contamination_notes`, and `why_it_matters` (one sentence for the app). Recommended: add a 13th material ID `compostable-film`, since the compostable mailer is filed under `plastic-laminate` for now. Needs approval.
+
+**Components (section 4).** Six new fields, null unless the supplier page states the value: `recycled_content_rate`, `post_consumer_rate`, `recyclability_claim` (`curbside`, `store_drop_off`, `compostable`, `not_recyclable`, `recyclable_unspecified`), `claim_wording` (exact quote), `certifications` (list), `reusable`. Mailer `height_in` is estimated as (width minus 0.5) divided by 2, so the fit check should also test item width plus item height against mailer width.
+
+**Fees (section 5).** Each rate entry also has `base_rate_usd_per_lb`, `acceptance`, and `rate_usd_per_lb` can be **negative** (Oregon 2027 aluminum is a credit of 0.09). Each file has `source_type` (`primary` or `secondary`), a `modulation` block (bonus and discount rules), and `official_schedule_url`. California also has `plastic_component_fees`. Oregon 2027 final rates are base rates minus a one-time reserve return, so show both.
+
+**State coverage (section 6).** 51 records. `law_status` is one of `fees_active`, `fees_upcoming`, `registration_only`, `none`. `fee_file` points at the latest year file. Oregon is confirmed by DEQ; Colorado's dollar figure is not (see Could_Not_Confirm).
+
+**Shipping (section 7).** DIM divisor is 139 (since 2026-07-12), applied above 1,728 cubic inches. Prices are Zone 5 USPS Ground Advantage commercial, effective 2026-10-04, temporary holiday prices through 2027-01-17. Under 1 lb uses four ounce tiers priced the same.
+
+**Sample orders (section 8).** 2,100 fake orders for the week 2026-10-05 to 2026-10-11, about $157,000 of sales, which is about $8.2M a year when multiplied by 52. Oregon (8%) and California (15%) are deliberately over-represented so Maya clearly passes Oregon's 1 metric ton test and California's $1M test; the other states follow population.
+
+### Environmental research update (2026-11-16, later the same day)
+
+**Materials.** `recycle_rate` now uses one method for all 12 materials: The Recycling Partnership's national residential recycling rate (State of Recycling 2024, Figure 14), the share of each material thrown out by US households that actually gets recycled. The old EPA 2018 all-sector value is kept as `recycle_rate_epa_2018`. New fields: `recycle_rate_metric`, `recycle_rate_reason`, `recycle_rate_options` (every candidate figure with its source), `recycled_content_typical`, `recyclability_guidance`.
+
+**Carbon.** `carbon_kg_co2e_per_kg` is now cradle-to-gate for the finished form where a source exists (plastic film includes forming). The old value is kept as `carbon_previous_warm_v16_virgin`. New fields: `carbon_is_estimate`, `carbon_reason`, `carbon_options`, and `eol_kg_co2e_per_kg` with `landfill`, `recycling` and `combustion` (EPA Emission Factors Hub 2025, no credits, landfill methane included). Suggested lifecycle factor for the carbon score: `carbon + recycle_rate x recycling + (1 - recycle_rate) x landfill` (treat a null recycling factor as 0).
+
+**Components.** The two paper fillers have `weight_range_g`: crinkle 660 to 1,296, crumpled kraft 60 to 297. Show the range until they are weighed.
+
+**New file `data/rules/environment.json`.** Keys: `eu_empty_space` (50% limit, Article 24 of Regulation (EU) 2025/40; filler counts as empty space), `empty_space_benchmarks`, `reuse`, `void_fill_density`, `void_fill_recommended`, `impact_baseline` (33 sourced facts), `projection` (formula and caveats), `writeup_problem_statement`, `recycling_method_note`, `carbon_method_note`.
+
+**For Whitman's right-sizing code.** Empty space ratio = (box volume minus product volume) / box volume, compared against 0.5. USPS Ground Advantage applies dimensional weight only above 1,728 cubic inches, so for small boxes the shipping saving comes from dropping a price tier, not from dimensional weight.
+
+### Round 3 update (2026-11-16, night)
+
+**Shipping (`shipping.json`).** New `weight_rates_by_zone` (zones 1 to 9) and `cubic` (USPS Ground Advantage Cubic: commercial postage only; 1 cu ft or less, 20 lb or less, longest side 22 in or less; round each OUTSIDE dimension down to 1/4 in, multiply, divide by 1,728, use the lowest 0.1 tier that fits; soft packs use length plus width). The price shown should be the lower of the weight price and the Cubic price when eligible. `zones_from_origin` (Portland, 972) is pending; use Zone 5 and label it until filled.
+
+**Components.** New fields `has_fitted_insert` (true for jar shipper boxes with built-in inserts) and, where the supplier lists them, `outside_length_in`, `outside_width_in`, `outside_height_in`. If outside dimensions are missing, use inside + 0.25 in and label it an estimate. Six Flush Packaging candle shipper boxes were added.
+
+**Box picker rules (`packing-rules.json`).** For glass: at least 2 in of clearance per side (UPS), so inside dimensions must be at least the item plus 4 in, unless the box has a fitted insert made for that jar. Wrap each glass item. Reuse 2 in between jars (no source gives a number). Box strength by package weight: 32 ECT up to 30 lb. Say "designed for the ISTA 3A drop profile", never "passes".
+
+**Coverage check (`state-coverage.json`, `epr-logic.json`).** New fields: `revenue_year_basis`, `weight_year_basis`, `shipping_packaging_producer`, `state_allocation_basis`, `fee_data_year_lag` (OR and CO bill year Y on year Y-2 data), `candle_jar_status`, `revenue_threshold_confidence`. Compute each state's weight from the seller's own ship-to data; population share is only a labeled fallback. A seller who packs and ships its own orders is the producer of the jar packaging and the shipping box and fill. Count the candle jar as likely covered glass and offer a toggle.
+
+## Zones update (2026-11-16)
+
+`data/rules/shipping.json` now has real zones. `zone_assumption` no longer means "Zone 5 for everyone": it describes the zones listed below.
+
+`zones_from_origin` (origin ZIP3 `972`, Portland OR, from the USPS Domestic Zone Chart):
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `status` | text | `filled` |
+| `states` | object | Keyed by 2-letter state code (51 jurisdictions). Each has `city` (largest metro), `dest_zip3`, `zone` (1 to 9, the zone of that metro), `zones_in_state` (every zone in the state), `zone_marker` (`*`, `+` or null) |
+| `zip3_ranges` | list | The full chart: `{ "from_zip3", "to_zip3", "zone", "marker" }` for each of the 3-digit ZIP ranges, if you want a per-ZIP lookup instead of per-state |
+
+How to use it: for a destination state, `weight_rates_by_zone[...].prices_by_zone[str(zone)]` and `cubic.tiers[...].prices_by_zone[str(zone)]`. If the user gives a ZIP, look up its first three digits in `zip3_ranges` for a more exact zone.
+
+Things to know:
+- 56% of the sample orders land in Zone 8 (the East Coast and most of the South and Midwest). Zone 5 is only about 20%. Price with the real zone, not a flat Zone 5.
+- Oregon is Zone 1 from Portland, but the rest of the state is Zones 1 to 3. The state value uses Portland.
+- The chart marks some ranges with `*` (Oregon, Washington) and `+` (APO/FPO, Guam). We did not copy the legend, so the markers are stored but not interpreted.
+- Hawaii ZIP3 967 is not listed except 96700, so Hawaii uses 968 (Zone 8).
+- The chart is valid only for origin 972. A different ship-from ZIP needs a different chart.
+
+Workbook change: new `State_Zones` tab; Swap_Demo now prices shipping across the sample's zone mix, uses all 109,200 sample orders per year, and applies the EPR fee only to orders delivered into the fee state.

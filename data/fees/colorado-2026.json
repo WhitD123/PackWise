@@ -1,0 +1,73 @@
+{
+  "state": "CO",
+  "program_year": 2026,
+  "status": "final",
+  "unit": "usd_per_lb",
+  "source_type": "secondary",
+  "rates": {
+    "corrugated": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Corrugated Cardboard"
+    },
+    "kraft-paper": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Kraft Paper"
+    },
+    "paperboard": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Paperboard"
+    },
+    "paper-plastic-mix": {
+      "rate_usd_per_lb": 0.3,
+      "official_category": "Other Paper Laminates"
+    },
+    "pe-film": {
+      "rate_usd_per_lb": 0.48,
+      "official_category": "HDPE (#2)/LDPE (#4) Flexible and Film Items"
+    },
+    "pp-film": {
+      "rate_usd_per_lb": 0.64,
+      "official_category": "PP (#5) Flexible and Film Items"
+    },
+    "plastic-laminate": {
+      "rate_usd_per_lb": 0.74,
+      "official_category": "Plastic Laminates and Other Flexible Plastic Packaging"
+    },
+    "glass": {
+      "rate_usd_per_lb": 0.04,
+      "official_category": "Glass Bottles and Jars & Other Containers"
+    },
+    "aluminum": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "Aluminum Containers"
+    },
+    "steel": {
+      "rate_usd_per_lb": 0.07,
+      "official_category": "Steel Containers"
+    }
+  },
+  "modulation": {
+    "dues_include_eco_modulation": true,
+    "passive_factors_in_rates": "Yes. Published dues already include the passive factors required by law: Detriments Malus +5% (materials that disrupt recycling), Not-on-MRL Malus (AML materials priced at least 20% above the average of similar Minimum Recyclables List materials; Not Collected materials at least 10% above similar AML), High Recycling Rate Bonus -5%. In 2026 the bonus showed on corrugated (base 0.083, bonus -0.003), glass, aluminum, steel and PET; no basket line carried a malus (per SPI).",
+    "active_bonuses": "Statute (C.R.S. 25-17-709) requires CDPHE to publish an eco-modulation bonus schedule by 2026-01-01 to lower dues for producers meeting benchmarks. Statute (25-17-705) lists the behaviors to reward: less packaging, recyclability or commodity-value improvements, high postconsumer recycled content, reuse/refill design, high recycling and refill rates. CAA lists four active incentive forms (PCR Content, Reuse/Refill, Reduction, Enhancement; published April 2026). Benchmark values and bonus amounts were NOT confirmed.",
+    "state_targets": [
+      "C.R.S. 25-17-705(4)(p): plan must set minimum collection, recycling and postconsumer-recycled-content targets for paper, glass, metal and plastic to strive to meet by 2030-01-01 and 2035-01-01 (statute has no percentages)",
+      "Approved CAA plan (2025-12-10), per secondary sources: recycling rate from about 25% (2022 baseline) to 41% in 2030 (Recycling Today); up to 60% of consumer packaging recycled by 2035 (Eco-Cycle)"
+    ],
+    "sources": [
+      "https://www.strategicpackaginginsights.com/insights/oregon-colorado-epr-fee-schedules-line-by-line/",
+      "https://colorado.public.law/statutes/crs_25-17-705",
+      "https://colorado.public.law/statutes/crs_25-17-709",
+      "https://circularactionalliance.org/producer-guidance-co",
+      "https://www.recyclingtoday.com/news/caas-final-plan-for-colorados-epr-system-receives-approval",
+      "https://ecocycle.org/?p=25995"
+    ]
+  },
+  "source_url": "https://www.strategicpackaginginsights.com/insights/oregon-colorado-epr-fee-schedules-line-by-line/",
+  "additional_sources": [
+    "https://www.ecoenclose.com/resources/epr-packaging-requirements/fees-by-state"
+  ],
+  "official_schedule_url": "https://static1.squarespace.com/static/64260ed078c36925b1cf3385/t/693b45923163e42ba98d634f/1765492118120/CO+2026+Dues+Schedule+Public.pdf",
+  "last_checked": "2026-11-16",
+  "notes": "SECONDARY. The CAA 2026 Colorado Producer Dues Schedule (posted 2025-10-13) could not be opened (host blocked). Corrugated, film, PP film, laminates, glass, aluminum and steel come from SPI (2026-10-26) and agree with EcoEnclose (2026-10-14) where both print them. Kraft Paper, Paperboard and Other Paper Laminates come only from EcoEnclose. Rates are final dues (base plus maluses minus bonus), rounded to the cent. Left out: molded-pulp (no 2026 'Other Paper Packaging' rate found) and eps-foam (only the PS foamed CONTAINERS row, $1.72/lb, was found; the cushioning row was not)."
+}

@@ -1,8 +1,8 @@
 // Loads the JSON files in data/ (docs/data-format.md section 2).
 // The only file in src/ that knows where data lives.
 
-import coloradoFees from "../../data/fees/colorado.json" with { type: "json" };
-import oregonFees from "../../data/fees/oregon.json" with { type: "json" };
+import coloradoFees from "../../data/fees/colorado-2027.json" with { type: "json" };
+import oregonFees from "../../data/fees/oregon-2027.json" with { type: "json" };
 import componentsJson from "../../data/library/components.json" with { type: "json" };
 import materialsJson from "../../data/materials.json" with { type: "json" };
 import shippingJson from "../../data/rules/shipping.json" with { type: "json" };
