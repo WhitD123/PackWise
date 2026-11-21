@@ -352,7 +352,7 @@ Research not confirmed:
 - USPS zone chart `*` and `+` markers (legend not copied).
 - 2026 Oregon/Colorado rates are secondary; molded pulp and EPS have no 2026 rate.
 - Census Q3 2026 e-commerce release (Nov 19, 2026) may revise baseline figures; recheck before submitting.
-- Hackathon rules: prize breakdown (cash now listed at $7,800), whether AI coding tools are allowed (nothing bans them; ask in the event Discord), exact judging weights on the rules page.
+- Hackathon rules, **confirmed 2026-11-21** from the Devpost page (Tyler pasted it): prizes total $7,800 (Theme 1st $2,100, 2nd $1,550, participation $500); Theme weights are Impact on waste 35%, Technical execution 25%, Feasibility 20%, Presentation and demo 20%; Tyler reports that AI coding tools are allowed. Teams of 1 to 4. Still not seen on the page text: the exact deadline (our notes say Dec 20, 9:00pm PST).
 - UPS and FedEx dimensional rules (not researched; we use USPS only).
 
 ---
