@@ -544,3 +544,14 @@ The seller's ship-from ZIP drives the shipping zone. `PlannerInput.shipFromZip` 
 Zone 9 is priced as Zone 8. The estimate never returns 9. `EvaluatedSetup.zoneLabel` is `"exact" | "estimated" | "assumed"`. Accuracy against real USPS charts and the known limits are in `docs/findings-zones.md`.
 
 `zip3-centroids.json` is a new file: `{ "<zip3>": { "lat": number, "lng": number, "n": number } }`. Built from the Census ZCTA centers in the npm package `us-zips` (MIT, version 2022.9.1). Owner: Tyler.
+
+## Update 2026-11-21: uploading a Shopify order export
+
+The planner's shipping step accepts a seller's own Shopify order export (CSV, up to 25 MB). It is read in the browser with `parseShopifyCsv` and is never sent to a server. Only the six columns in section 8 are read.
+
+`ordersFromParsedFile` (in `src/lib/planner/plannerInput.ts`) turns the parsed file into planner answers, the same fields the sample file fills in: `ordersPerYear`, `statePercent` (fee states), `orderStatePercent` (all states, for shipping zones), `revenueUsd` and `californiaSalesUsd`, plus `ordersNote`, a line saying where the numbers came from.
+
+- **Scaling:** counts and dollars are scaled from the period the file covers to 364 days (52 weeks). A one-week file scales by 52, a two-week file by 26, matching the sample file and the answer key.
+- **Revenue** is the sum of order subtotals (before shipping), scaled to a year. It feeds the state exemption tests.
+- **Warnings shown to the seller:** rows skipped (no order number, date, quantity or two-letter state), a file under 7 days, orders to states outside the 50 states and DC (counted for volume, not for zones or state laws), and orders with more than one item (the planner sizes packaging for the products described in the planner, so items per order should match a typical order).
+- **Product packaging:** the jar and lid (`productPackaging`) belong to Maya's candle. They count toward fees only while the planner still describes her unchanged 12 oz candle (`productPackagingOf`).

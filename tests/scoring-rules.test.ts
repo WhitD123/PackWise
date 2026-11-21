@@ -10,7 +10,14 @@ import { coverageForSetup } from "../src/lib/coverage/forSetup.ts";
 import { loadData } from "../src/lib/data.ts";
 import { evaluateSetup, lifecycleFactor } from "../src/lib/planner/evaluateSetup.ts";
 import { planPackaging } from "../src/lib/planner/planPackaging.ts";
-import { currentSetup, defaultInput, toContext, toProducts } from "../src/lib/planner/plannerInput.ts";
+import {
+  currentSetup,
+  defaultInput,
+  productPackagingGramsPerOrder,
+  productPackagingOf,
+  toContext,
+  toProducts,
+} from "../src/lib/planner/plannerInput.ts";
 import { minimumProtection } from "../src/lib/scoring/protection.ts";
 import { FACTORS, WEIGHT_PRESETS } from "../src/lib/scoring/weights.ts";
 import { rankSwaps } from "../src/lib/swaps/rankSwaps.ts";
@@ -143,6 +150,29 @@ describe("the Fees score and the coverage card agree", () => {
     const cardTotal = cards.reduce((s, c) => s + (c.fee_usd_per_year ?? 0), 0);
     close(ev.values.fees, cardTotal, 0.01, "label vs cards");
     assert.ok(ev.values.fees > 0);
+  });
+});
+
+describe("the jar and lid belong to Maya's candle only", () => {
+  it("counted for her unchanged candle: glass and steel", () => {
+    assert.equal(productPackagingOf(input).length, 2);
+    const g = productPackagingGramsPerOrder(input, true);
+    assert.ok(g.glass > 0 && g.steel > 0);
+  });
+
+  it("not counted once the product is changed, so another seller's fees exclude her jar", () => {
+    const mug = { ...input, lines: [{ ...input.lines[0], name: "Ceramic mug", weight_oz: 12 }] };
+    assert.deepEqual(productPackagingOf(mug), []);
+    assert.deepEqual(productPackagingGramsPerOrder(mug, true), {});
+    const two = { ...input, lines: [input.lines[0], { ...input.lines[0], key: "second" }] };
+    assert.deepEqual(productPackagingOf(two), []);
+  });
+
+  it("the Fees score drops the jar and lid for another product", () => {
+    const mug = { ...input, lines: [{ ...input.lines[0], name: "Ceramic mug" }] };
+    const withJar = evaluateSetup(products, FITTED, index, ctx)!;
+    const without = evaluateSetup(toProducts(mug), FITTED, index, toContext(mug, data))!;
+    assert.ok(without.values.fees < withJar.values.fees);
   });
 });
 

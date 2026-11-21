@@ -7,7 +7,7 @@ import { coverageForSetup } from "@/lib/coverage/forSetup";
 import type { CoverageResult, StateCoverageRule } from "@/lib/coverage/types";
 import type { AppData } from "@/lib/data";
 import { usdWhole } from "@/lib/format";
-import type { PlannerInput } from "@/lib/planner/plannerInput";
+import { productPackagingOf, type PlannerInput } from "@/lib/planner/plannerInput";
 import type { EvaluatedSetup } from "@/lib/types";
 
 /** The "smaller seller" view from the demo story: a brand at about $2M a year. */
@@ -126,7 +126,7 @@ export function CoverageSection({
   /** The top swap, for the "after" fee. */
   after: EvaluatedSetup | null;
 }) {
-  const hasJar = (input.productPackaging ?? []).some((p) => p.is_candle_container);
+  const hasJar = productPackagingOf(input).some((p) => p.is_candle_container);
   const [includeJar, setIncludeJar] = useState(true);
   const [smallSeller, setSmallSeller] = useState(false);
   const today = new Date().toISOString().slice(0, 10);

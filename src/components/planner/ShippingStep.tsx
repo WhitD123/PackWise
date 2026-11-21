@@ -1,10 +1,16 @@
 "use client";
 
+import { useRef, useState } from "react";
+
 import { Field, NumberInput, TextInput } from "@/components/ui/Field";
 import type { AppData } from "@/lib/data";
-import { ordersFromSample, shipFromZipOf, zonesFor, type PlannerInput } from "@/lib/planner/plannerInput";
+import { OrderFileError, parseShopifyCsv } from "@/lib/orders/parseShopifyCsv";
+import { ordersFromParsedFile, ordersFromSample, shipFromZipOf, zonesFor, type PlannerInput } from "@/lib/planner/plannerInput";
 import { isValidZip, ZONE_LABEL_TEXT } from "@/lib/shipping/getZone";
 import { Button } from "@/components/ui/Button";
+
+/** A year of Shopify orders is a few megabytes; a cap keeps the browser responsive. */
+const MAX_ORDER_FILE_BYTES = 25 * 1024 * 1024;
 
 const STATE_NAMES: Record<string, string> = {
   OR: "Oregon",
@@ -26,6 +32,30 @@ export function ShippingStep({
   onChange: (patch: Partial<PlannerInput>) => void;
 }) {
   const s = data.shipping;
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [upload, setUpload] = useState<{ summary: string; warnings: string[] } | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  // The file is read here in the browser and never sent anywhere.
+  async function readOrderFile(file: File) {
+    setUploadError(null);
+    if (file.size > MAX_ORDER_FILE_BYTES) {
+      setUpload(null);
+      setUploadError("That file is over 25 MB. Export a shorter date range from Shopify.");
+      return;
+    }
+    try {
+      const result = ordersFromParsedFile(parseShopifyCsv(await file.text()), data);
+      onChange(result.patch);
+      setUpload({ summary: result.summary, warnings: result.warnings });
+    } catch (e) {
+      setUpload(null);
+      setUploadError(
+        e instanceof OrderFileError ? e.message : "We couldn't read that file. Export your orders from Shopify as a CSV and try again.",
+      );
+    }
+  }
+
   const zip = shipFromZipOf(input);
   const zoneLabel = zonesFor(input, data)?.label ?? "assumed";
   // A bad ZIP never blocks the flow: it just means zones are assumed until it is fixed.
@@ -74,14 +104,47 @@ export function ShippingStep({
           ))}
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Button variant="secondary" onClick={() => onChange(ordersFromSample(data))}>
+          <input
+            ref={fileInput}
+            type="file"
+            accept=".csv,text/csv"
+            className="sr-only"
+            aria-label="Upload a Shopify orders CSV"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) void readOrderFile(f);
+              e.target.value = "";
+            }}
+          />
+          <Button onClick={() => fileInput.current?.click()}>Upload your Shopify orders</Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setUpload(null);
+              setUploadError(null);
+              onChange(ordersFromSample(data));
+            }}
+          >
             Use the sample orders
           </Button>
-          <span className="text-xs text-muted">
-            {data.sampleOrders.label}. Fills in order volume, revenue and where orders go. A Shopify export upload is
-            coming.
-          </span>
         </div>
+        <p className="mt-2 max-w-2xl text-xs text-muted">
+          Fills in order volume, revenue and where orders go. In Shopify, open Orders, choose Export and pick a CSV. The
+          file is read in your browser and is not uploaded. We read only order number, date, state, product, quantity and
+          subtotal.
+        </p>
+        {input.ordersNote && <p className="mt-2 text-sm">Using: {input.ordersNote}.</p>}
+        {upload && <p className="mt-1 text-sm text-muted">{upload.summary}</p>}
+        {upload?.warnings.map((w) => (
+          <p key={w} className="mt-1 text-sm text-ochre">
+            {w}
+          </p>
+        ))}
+        {uploadError && (
+          <p role="alert" className="mt-2 text-sm text-brick">
+            {uploadError}
+          </p>
+        )}
       </div>
     </div>
   );

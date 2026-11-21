@@ -3,6 +3,7 @@
 // grams and 0..1 shares. Conversion happens only here.
 
 import type { AppData, ProductPackagingPart } from "../data.ts";
+import type { ParsedOrders } from "../orders/parseShopifyCsv.ts";
 import { zoneMixFromStates, type ZoneMix } from "../shipping/getZone.ts";
 import type { PresetName } from "../scoring/weights.ts";
 import type { Fragility, Product, SellerContext, Setup } from "../types.ts";
@@ -40,6 +41,8 @@ export interface PlannerInput {
    * Optional: when missing, shipping assumes Zone 5 for every order and says so.
    */
   orderStatePercent?: Record<string, number>;
+  /** Where the order numbers came from, in words: the sample file, or the seller's uploaded file and how it was scaled. */
+  ordersNote?: string;
   /**
    * Where orders ship from: five digits, and only the first three are used (they set the USPS zones).
    * Not set = the demo's Portland, OR (972). "" = left blank, so every order is priced as Zone 5 and labelled "assumed".
@@ -76,15 +79,66 @@ export function lineFromExample(p: ExampleProduct, key: string): ProductLineInpu
 /** Order volume, state mix and revenue taken from the built-in sample order file. */
 export function ordersFromSample(
   data: AppData,
-): Pick<PlannerInput, "ordersPerYear" | "statePercent" | "orderStatePercent" | "revenueUsd" | "californiaSalesUsd"> {
+): Pick<
+  PlannerInput,
+  "ordersPerYear" | "statePercent" | "orderStatePercent" | "revenueUsd" | "californiaSalesUsd" | "ordersNote"
+> {
   const sample = data.sampleOrders;
   return {
+    ordersNote: sample.label,
     ordersPerYear: sample.ordersPerYear,
     // Fee states only: these drive packaging fees.
     statePercent: Object.fromEntries(data.feeSchedules.map((f) => [f.state, sample.orderStatePercent[f.state] ?? 0])),
     orderStatePercent: sample.orderStatePercent,
     revenueUsd: sample.revenuePerYear_usd,
     californiaSalesUsd: sample.californiaSalesUsd,
+  };
+}
+
+export interface OrderUpload {
+  /** Planner answers taken from the file. */
+  patch: ReturnType<typeof ordersFromSample>;
+  /** One line saying what the file covered and how it was scaled to a year. */
+  summary: string;
+  /** Things the seller should know before trusting the numbers. */
+  warnings: string[];
+}
+
+/**
+ * Planner answers from a seller's own Shopify export (already read by parseShopifyCsv): yearly order
+ * volume, where orders go, revenue and California sales. Everything is scaled from the period the file
+ * covers to 364 days (52 weeks), the same rule as the sample file.
+ */
+export function ordersFromParsedFile(parsed: ParsedOrders, data: AppData): OrderUpload {
+  const orderStatePercent = Object.fromEntries(Object.entries(parsed.stateShare).map(([s, v]) => [s, v * 100]));
+  const warnings = [...parsed.warnings];
+
+  const usStates = new Set(data.coverageRules.map((r) => r.state));
+  const outside = Object.entries(parsed.orderCountByState).filter(([s]) => !usStates.has(s));
+  if (outside.length > 0) {
+    const n = outside.reduce((sum, [, c]) => sum + c, 0);
+    warnings.push(
+      `${n} order(s) ship outside the 50 states and DC (${outside.map(([s]) => s).join(", ")}). They count toward volume but not toward zones or state laws.`,
+    );
+  }
+  if (parsed.multiItemShare > 0) {
+    warnings.push(
+      `${Math.round(parsed.multiItemShare * 100)}% of orders have more than one item. Packwise sizes packaging for the products you describe in the planner, so set items per order to match a typical order.`,
+    );
+  }
+
+  return {
+    patch: {
+      ordersNote: `Your order file: ${parsed.orders.length.toLocaleString("en-US")} orders from ${parsed.firstDate} to ${parsed.lastDate}`,
+      ordersPerYear: Math.max(1, Math.round(parsed.ordersPerYear)),
+      // Fee states only: these drive packaging fees.
+      statePercent: Object.fromEntries(data.feeSchedules.map((f) => [f.state, orderStatePercent[f.state] ?? 0])),
+      orderStatePercent,
+      revenueUsd: Math.round(parsed.revenuePerYear_usd),
+      californiaSalesUsd: Math.round(parsed.salesPerYearByState_usd.CA ?? 0),
+    },
+    summary: `${parsed.orders.length.toLocaleString("en-US")} orders over ${parsed.periodDays} day${parsed.periodDays === 1 ? "" : "s"} (${parsed.firstDate} to ${parsed.lastDate}), scaled by ${Number(parsed.annualizationFactor.toFixed(2))} to a year of 52 weeks.`,
+    warnings,
   };
 }
 
@@ -116,13 +170,28 @@ export function toProducts(input: PlannerInput): Product[] {
 }
 
 /**
+ * The jar and lid are Maya's candle's own packaging, so they count only while the planner still describes
+ * her unchanged 12 oz candle. Change the product and a different seller's fees are not charged for her jar.
+ */
+export function productPackagingOf(input: PlannerInput): ProductPackagingPart[] {
+  const parts = input.productPackaging ?? [];
+  if (parts.length === 0 || input.lines.length !== 1) return [];
+  const demo = lineFromExample(EXAMPLE_PRODUCTS[1], "default-candle");
+  const line = input.lines[0];
+  const unchanged = (["name", "length_in", "width_in", "height_in", "weight_oz", "fragility", "items_per_order"] as const).every(
+    (k) => line[k] === demo[k],
+  );
+  return unchanged ? parts : [];
+}
+
+/**
  * Grams per order by material of the packaging that comes with the product (jar, lid).
  * `includeCandleContainer` false = treat the jar and lid as part of the product, not packaging.
  */
 export function productPackagingGramsPerOrder(input: PlannerInput, includeCandleContainer: boolean): Record<string, number> {
   const grams: Record<string, number> = {};
   const itemsPerOrder = input.lines.reduce((s, l) => s + l.items_per_order, 0) || 1;
-  for (const part of input.productPackaging ?? []) {
+  for (const part of productPackagingOf(input)) {
     if (part.is_candle_container && !includeCandleContainer) continue;
     grams[part.material] = (grams[part.material] ?? 0) + part.weight_g * itemsPerOrder;
   }
