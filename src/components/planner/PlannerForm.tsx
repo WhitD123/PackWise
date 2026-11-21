@@ -18,7 +18,7 @@ const STEPS = ["Products", "Shipping", "Today's packaging"];
 export function PlannerForm({ data }: { data: AppData }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [input, setInput] = useState<PlannerInput>(() => defaultInput());
+  const [input, setInput] = useState<PlannerInput>(() => defaultInput(data));
   const [showErrors, setShowErrors] = useState(false);
 
   // Pick up earlier answers after the page loads (localStorage is browser-only).
@@ -66,7 +66,7 @@ export function PlannerForm({ data }: { data: AppData }) {
           variant="ghost"
           className="ml-auto"
           onClick={() => {
-            setInput(defaultInput());
+            setInput(defaultInput(data));
             setStep(0);
             setShowErrors(false);
           }}

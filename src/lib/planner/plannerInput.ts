@@ -56,15 +56,28 @@ export function lineFromExample(p: ExampleProduct, key: string): ProductLineInpu
   };
 }
 
-/** The demo seller from the brief: Maya's 12 oz candle shipped in an oversized box with foam peanuts and bubble wrap (tests/fixtures/demo-answer-key.json). */
-export function defaultInput(): PlannerInput {
+/** Order volume, state mix and revenue taken from the built-in sample order file. */
+export function ordersFromSample(data: AppData): Pick<PlannerInput, "ordersPerYear" | "statePercent" | "orderStatePercent" | "revenueUsd"> {
+  const sample = data.sampleOrders;
+  return {
+    ordersPerYear: sample.ordersPerYear,
+    // Fee states only: these drive packaging fees.
+    statePercent: Object.fromEntries(data.feeSchedules.map((f) => [f.state, sample.orderStatePercent[f.state] ?? 0])),
+    orderStatePercent: sample.orderStatePercent,
+    revenueUsd: sample.revenuePerYear_usd,
+  };
+}
+
+/**
+ * The demo seller: Maya's 12 oz candle shipped in an oversized box with foam peanuts and
+ * bubble wrap (tests/fixtures/demo-answer-key.json), with orders from the sample file.
+ */
+export function defaultInput(data: AppData): PlannerInput {
   return {
     lines: [lineFromExample(EXAMPLE_PRODUCTS[1], "default-candle")],
-    ordersPerYear: 233116, // data/samples/shopify-orders.csv, annualized (4,483 orders x 52)
-    statePercent: { OR: 8.23, CO: 1.25 }, // same file; fee states only
+    ...ordersFromSample(data),
     current: { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: "" },
     priority: "balanced",
-    revenueUsd: 8_162_960, // data/samples/shopify-orders.csv: $156,980 a week x 52
   };
 }
 

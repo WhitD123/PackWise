@@ -29,9 +29,9 @@ export function ResultsView({ data }: { data: AppData }) {
   useEffect(() => {
     const saved = loadPlannerInput();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read from browser storage
-    setInput(saved ?? defaultInput());
+    setInput(saved ?? defaultInput(data));
     setIsDemo(!saved);
-  }, []);
+  }, [data]);
 
   const results = useMemo(() => {
     if (!input || validateInput(input).length) return null;
@@ -130,6 +130,13 @@ export function ResultsView({ data }: { data: AppData }) {
                   Today’s {currentParts.outer.type} leaves less padding than we recommend for fragile items.
                 </p>
               )}
+              <p className="mt-4 text-xs text-muted">
+                {rs.current.zoneLabel === "exact"
+                  ? `Shipping is the average over your order mix, with zones measured from Portland, OR (ZIP ${data.shipping.zones_from_origin?.origin_zip3}).`
+                  : "Zone assumed: every order is priced as Zone 5 because no order mix was given. Load your orders for exact zones."}{" "}
+                {rs.recommended?.shippingMethod === "cubic" && "The right-sized package qualifies for Cubic pricing. "}
+                Prices include USPS temporary holiday rates through Jan 17, 2027.
+              </p>
               {rs.recommended && (
                 <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-4 sm:grid-cols-4">
                   <Fact

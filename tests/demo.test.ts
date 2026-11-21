@@ -13,7 +13,7 @@ import { rankSwaps } from "../src/lib/swaps/rankSwaps.ts";
 import { MATERIAL_IDS } from "../src/lib/types.ts";
 
 const data = loadData();
-const input = defaultInput();
+const input = defaultInput(data);
 const products = toProducts(input);
 const ctx = toContext(input, data);
 

@@ -21,7 +21,7 @@ const readJson = (p: string) => JSON.parse(readFileSync(new URL(`../${p}`, impor
 
 const data = loadData();
 const index = indexCatalog(data.catalog);
-const input = defaultInput();
+const input = defaultInput(data);
 const products = toProducts(input);
 const ctx = toContext(input, data);
 
@@ -138,6 +138,21 @@ describe("planner and swaps on Maya's candle (real data)", () => {
   });
 });
 
+describe("the default demo uses the sample order file", () => {
+  it("takes volume, revenue and the full state mix from the CSV, not typed numbers", () => {
+    assert.equal(input.ordersPerYear, 233_116);
+    assert.ok(input.orderStatePercent && Object.keys(input.orderStatePercent).length === 51);
+    assert.ok(Math.abs(input.revenueUsd! - 8_162_960) < 1);
+    assert.ok(Math.abs(input.statePercent.OR - (369 / 4483) * 100) < 1e-9);
+  });
+
+  it("so shipping zones are exact by default", () => {
+    const ev = evaluateSetup(products, FITTED, index, ctx)!;
+    assert.equal(ev.zoneLabel, "exact");
+    assert.equal(ev.shippingMethod, "cubic");
+  });
+});
+
 describe("shipping in the engine (answer key: $12.17 oversized, $9.96 fitted, averaged over zones)", () => {
   const csv = readFileSync(new URL("../data/samples/shopify-orders.csv", import.meta.url), "utf8");
   const mix = parseShopifyCsv(csv).stateShare;
@@ -183,7 +198,8 @@ describe("shipping in the engine (answer key: $12.17 oversized, $9.96 fitted, av
   });
 
   it("with no order mix, shipping assumes Zone 5 and says so", () => {
-    const ev = evaluateSetup(products, FITTED, index, ctx)!;
+    const noMix = toContext({ ...input, orderStatePercent: undefined }, data);
+    const ev = evaluateSetup(products, FITTED, index, noMix)!;
     assert.equal(ev.zoneLabel, "assumed");
     close(ev.shippingCost_usd, 9.04, 0.01, "zone 5 fitted");
   });

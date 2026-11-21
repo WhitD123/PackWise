@@ -2,7 +2,8 @@
 
 import { Field, NumberInput } from "@/components/ui/Field";
 import type { AppData } from "@/lib/data";
-import type { PlannerInput } from "@/lib/planner/plannerInput";
+import { ordersFromSample, type PlannerInput } from "@/lib/planner/plannerInput";
+import { Button } from "@/components/ui/Button";
 
 const STATE_NAMES: Record<string, string> = {
   OR: "Oregon",
@@ -37,7 +38,10 @@ export function ShippingStep({
         <div className="text-sm">
           <span className="mb-1 block font-semibold">Shipping</span>
           <p className="text-muted">
-            Costs assume {s.carrier} {s.service}, {s.zone_assumption}.
+            Prices are {s.carrier} {s.service} (commercial rates).{" "}
+            {input.orderStatePercent
+              ? `Zones are measured from Portland, OR (ZIP ${s.zones_from_origin?.origin_zip3}) to where your orders go.`
+              : "No order mix yet, so every order is priced as Zone 5. Load the sample orders for exact zones."}
           </p>
         </div>
       </div>
@@ -55,7 +59,15 @@ export function ShippingStep({
             </Field>
           ))}
         </div>
-        <p className="mt-3 text-xs text-muted">Tip: a Shopify orders export will fill this in automatically (coming soon).</p>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <Button variant="secondary" onClick={() => onChange(ordersFromSample(data))}>
+            Use the sample orders
+          </Button>
+          <span className="text-xs text-muted">
+            {data.sampleOrders.label}. Fills in order volume, revenue and where orders go. A Shopify export upload is
+            coming.
+          </span>
+        </div>
       </div>
     </div>
   );
