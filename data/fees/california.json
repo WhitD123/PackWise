@@ -1,0 +1,90 @@
+{
+  "state": "CA",
+  "program_year": 2027,
+  "status": "proposed",
+  "unit": "usd_per_lb",
+  "source_type": "primary",
+  "rates": {
+    "corrugated": {
+      "rate_usd_per_lb": 0.03,
+      "official_category": "25_PF9N - Paper/Fiber - Cardboard w/o plastic component"
+    },
+    "kraft-paper": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "25_PF1N - Paper/Fiber - Kraft Paper - All Forms w/o plastic component"
+    },
+    "paperboard": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "25_PF10N - Paper/Fiber - Paperboard - All Forms w/o plastic component"
+    },
+    "molded-pulp": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "25_PF14N - Paper/Fiber - Molded Fiber - All Forms w/o plastic component"
+    },
+    "paper-plastic-mix": {
+      "rate_usd_per_lb": 0.17,
+      "official_category": "25_PF7P - Paper/Fiber - Multi-Material Laminate - Other Forms w/plastic component",
+      "plastic_component_fees_apply": true
+    },
+    "pe-film": {
+      "rate_usd_per_lb": 0.24,
+      "official_category": "25_P16P - LDPE (#4) - Other Flexible and Film Items",
+      "plastic_component_fees_apply": true
+    },
+    "pp-film": {
+      "rate_usd_per_lb": 0.27,
+      "official_category": "25_P22P - PP (#5) - Other Flexible and Film Items",
+      "plastic_component_fees_apply": true
+    },
+    "plastic-laminate": {
+      "rate_usd_per_lb": 0.25,
+      "official_category": "25_P46P - Multi-Material Laminate - Pouches and Envelopes",
+      "plastic_component_fees_apply": true
+    },
+    "eps-foam": {
+      "rate_usd_per_lb": 0.15,
+      "official_category": "25_P42P - PS (#6) - Other Expanded/Foamed Forms",
+      "plastic_component_fees_apply": true
+    },
+    "glass": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "25_G1N - Glass - Bottles and Jars w/o plastic component"
+    },
+    "aluminum": {
+      "rate_usd_per_lb": 0.01,
+      "official_category": "25_M1N - Aluminum - Non-aerosol Container w/o plastic component"
+    },
+    "steel": {
+      "rate_usd_per_lb": 0.02,
+      "official_category": "25_M6N - Tin/Steel/Bimetal - Non-aerosol Container w/o plastic component"
+    }
+  },
+  "plastic_component_fees": {
+    "reuse_investment_usd_per_lb_plastic": 0.03,
+    "ppmf_weight_usd_per_lb_plastic": 0.26,
+    "ppmf_component_usd_per_unit_plastic": 0.001,
+    "applies_to": "Plastic components only (rows ending in P). Charged on top of the base rate. Per-unit fee is per plastic component, not per pound.",
+    "source_url": "https://eprfeecheck.com/fee-schedules/CA-2027-Fee-Schedule.pdf"
+  },
+  "modulation": {
+    "passive_factors_in_rates": "Yes. CAA: 'The 2027 fee rates include the passive eco-modulation factors.' High Recycling Rate Bonus -5% for materials with a higher recycling rate than the 2028 target; Not Recyclable or Compostable Malus +5% for materials that are both non-recyclable and not compostable. Applied automatically from supply data; the schedule does not mark which rows carry them.",
+    "active_bonuses": "Proposed in CAA's final plan (submitted 2026-10-13), NOT final: bonuses for cutting plastic, recycled content, and switching to reuse/refill starting at $500/ton (about $0.25/lb) for reductions against a 2026 baseline and $1,500/ton (about $0.75/lb) against a 2023 baseline (Resource Recycling, secondary). EcoEnclose (secondary) reports illustrative 2027 values: source reduction tier 1 $0.10/lb, tier 2 $0.75/lb, reuse $0.25/lb of plastic avoided; PCR content bonus from $0.01/lb (natural HDPE bottles) to $0.60/lb (mono PP flexible film), mono PE flexible film $0.50/lb. These two secondary sources do not line up exactly; treat as unconfirmed.",
+    "maluses": "Proposed virgin-plastic malus: Resource Recycling reports about $100/ton in 2027, $150 in 2028, $200 in 2029, designed to be revenue-neutral; EcoEnclose reports an illustrative $0.0125/lb starting 2027. Conflicting secondary figures; unconfirmed.",
+    "state_targets": [
+      "SB 54 (CalRecycle): by 2032, 100% of single-use packaging and single-use plastic food service ware recyclable or compostable",
+      "SB 54: 65% of single-use plastic packaging and food service ware recycled by 2032 (interim 30% by 2028 and 40% by 2030 per Resource Recycling)",
+      "SB 54: 25% source reduction of single-use plastic packaging and food service ware by 2032, measured against 2023",
+      "SB 54: producers fund the Plastic Pollution Mitigation Fund at $500 million a year starting 2027 ($5 billion over 10 years)"
+    ],
+    "sources": [
+      "https://eprfeecheck.com/fee-schedules/CA-2027-Fee-Schedule.pdf",
+      "https://calrecycle.ca.gov/Laws/Rulemaking/SB54Regulations/",
+      "https://resource-recycling.com/recycling/2026/10/13/caa-trims-first-year-sb-54-budget-in-final-plan/",
+      "https://www.ecoenclose.com/resources/epr-packaging-requirements/reporting-requirements-by-state"
+    ]
+  },
+  "source_url": "https://eprfeecheck.com/fee-schedules/CA-2027-Fee-Schedule.pdf",
+  "last_checked": "2026-11-16",
+  "notes": "PROPOSED. CAA '2027 California Producer Fees Schedule' (published 2026-10-01), read from a third-party copy at eprfeecheck.com (official copy is in the login-only Producer Portal). The schedule says 2027 rates 'remain preliminary pending regulatory approval of the California program plan' and are non-binding until then. CAA submitted its final plan 2026-10-13; CalRecycle has 75 days (to about 2026-12-27) to decide (Resource Recycling). This schedule gives single preliminary rates, not low-high ranges; the earlier 'Early Fee Rate Schedule - Estimated Ranges' (Producer Portal, 2025-09-23) could not be opened. Category ranges worth knowing: HDPE/LDPE film rows run 0.24-0.26 (P10P HDPE flexible 0.26, P15P LDPE clear non-bag film 0.25, P16P LDPE other flexible 0.24); PP film 0.27 for both clear and other; laminates 0.24 (P33P other forms) to 0.25 (P46P pouches and envelopes); EPS 0.14 (P23P foamed containers) to 0.15 (P42P other expanded/foamed forms). Paper, glass and metal rows also have a 'w/ plastic component' variant (e.g., paperboard w/ plastic 0.05, molded fiber w/ plastic 0.08) used when the item has an attached plastic part. For a true per-lb cost of plastic materials add the plastic_component_fees (about 0.29/lb plus 0.001 per component): e.g., pe-film 0.24 + 0.03 + 0.26 = 0.53/lb. Repurpose Global (secondary) notes an earlier draft laminate fee of 58-148 cents/lb, now 24 cents. CA rows are not split by acceptance status. Cross-check: Resource Recycling (2026-10-13) reports cardboard 3 cents, glass 2 cents, aluminum non-aerosol 1 cent, film mostly 24-30 cents, which matches.",
+  "category_notes": "CalRecycle category guidance (Sept 2025) confirms the mapping, with two splits: bubble wrap and stretch film belong in clear non-bag film (25_P15P), and loose packing peanuts in small-format plastic (25_P47P), not PS foam. Rates for those two categories were not captured; the pe-film and eps-foam rates are used as stand-ins."
+}

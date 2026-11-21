@@ -1,0 +1,1040 @@
+[
+  {
+    "state": "AL",
+    "name": "Alabama",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "AK",
+    "name": "Alaska",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "AZ",
+    "name": "Arizona",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "AR",
+    "name": "Arkansas",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "CA",
+    "name": "California",
+    "law_name": "SB 54 (2022), Plastic Pollution Prevention and Packaging Producer Responsibility Act, Pub. Resources Code 42040 et seq.; 14 CCR 18980 et seq. (small producer exemption: 14 CCR 18980.5.2)",
+    "law_status": "fees_upcoming",
+    "revenue_threshold_usd": 1000000,
+    "revenue_scope": "in_state",
+    "weight_threshold_lb": null,
+    "exempt_if": "revenue_only",
+    "application_required": true,
+    "key_dates": [
+      {
+        "date": "2026-05-01",
+        "event": "Final SB 54 regulations took effect"
+      },
+      {
+        "date": "2026-05-31",
+        "event": "CY2025 annual supply report and source reduction report due to CAA"
+      },
+      {
+        "date": "2026-06-01",
+        "event": "Registration deadline with CalRecycle (PEPRS); small producer exemption applications due"
+      },
+      {
+        "date": "2026-07-01",
+        "event": "Baseline producer report due to CalRecycle"
+      },
+      {
+        "date": "2026-10-13",
+        "event": "CAA submitted its producer responsibility plan to CalRecycle (75-day review)"
+      },
+      {
+        "date": "2027-01-01",
+        "event": "Program fees begin; 10% plastic source reduction target"
+      },
+      {
+        "date": "2028-01-01",
+        "event": "30% recycling rate required for plastic covered material"
+      },
+      {
+        "date": "2032-01-01",
+        "event": "All covered material recyclable or compostable; 65% plastic recycling rate; 25% plastic source reduction"
+      }
+    ],
+    "fee_file": "california.json",
+    "source_url": "https://calrecycle.ca.gov/packaging/packaging-epr/exemptionsexclusions/",
+    "last_checked": "2026-11-16",
+    "notes": "PRIMARY for the exemption (CalRecycle). Small producers with gross annual sales under $1 million 'may apply' for a temporary, renewable exemption; they must first register in PEPRS and then file the small producer exemption application. The PEPRS guidance (2026-06-02) asks for 'total gross annual sales ... in California' plus proof such as CDTFA-401-A or tax returns, so the test is California sales only. Exempt producers must still plan for all packaging to be recyclable or compostable by 2032. No weight test. Renewal period not confirmed on a primary page (EPR Atlas says every two years, secondary). The June 1, 2026 registration and application deadline is from CA Grocers and Holland & Knight (secondary); businesses that become producers after 2027-01-01 have six months to register (Holland & Knight, secondary). FEE STATUS: early (pre-program) fees were invoiced in mid-2026 per Holland & Knight, PPAI and EPR Atlas (secondary); full program fees start 2027-01-01, so recorded as fees_upcoming. CAA illustrative fees were released 2026-05-01 (SPC roundup, secondary). Governor vetoed SB 1180 on 2026-09-21. ENVIRONMENT (statute, via LegiScan chaptered text): source reduce plastic covered material 10% by 2027, 20% by 2030, 25% by 2032 (by weight and by plastic component); all covered material recyclable or compostable by 2032; plastic recycling rates of 30% from 2028, 40% from 2030, 65% from 2032; PRO pays $500 million per year into the Plastic Pollution Mitigation Fund from 2027 to 2037. Labeling claims fall under SB 343 (separate law; enforcement enjoined per SPC, secondary). Sources: legiscan.com/CA/text/SB54/id/2600075, calrecycle.ca.gov/packaging/packaging-epr/, www2.calrecycle.ca.gov/Docs/Web/138910.",
+    "revenue_year_basis": "most_recent_calendar_year",
+    "patch_sources": [
+      {
+        "field": "revenue_year_basis",
+        "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/138862"
+      },
+      {
+        "field": "shipping_packaging_producer",
+        "source_url": "https://california.public.law/codes/public_resources_code_section_42041"
+      },
+      {
+        "field": "state_allocation_basis",
+        "source_url": "https://california.public.law/codes/public_resources_code_section_42041"
+      },
+      {
+        "field": "fee_data_year_lag",
+        "source_url": "https://www.cagrocers.com/wp-content/uploads/2026/05/SB-54-Producer-Reporting-Requirements-5.4.26.pdf"
+      }
+    ],
+    "shipping_packaging_producer": "brand_owner_or_in_state_seller_per_tiers_no_specific_ecommerce_rule",
+    "state_allocation_basis": "delivered_to_purchaser_in_state",
+    "fee_data_year_lag": null,
+    "candle_jar_status": "likely_covered_unconfirmed"
+  },
+  {
+    "state": "CO",
+    "name": "Colorado",
+    "law_name": "HB 22-1355, C.R.S. 25-17-701 et seq. (exemptions: C.R.S. 25-17-713); 6 CCR 1007-2 Part 1, Section 18",
+    "law_status": "fees_active",
+    "revenue_threshold_usd": 5779297,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2000,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [
+      {
+        "date": "2024-10-01",
+        "event": "Producer registration deadline with CAA"
+      },
+      {
+        "date": "2025-07-01",
+        "event": "Non-participating producers may not sell covered products in Colorado"
+      },
+      {
+        "date": "2025-07-31",
+        "event": "First supply report due to CAA"
+      },
+      {
+        "date": "2026-01-01",
+        "event": "Producer dues due to CAA (first dues; paid annually after)"
+      },
+      {
+        "date": "2026-05-31",
+        "event": "CY2025 annual supply report due to CAA"
+      },
+      {
+        "date": "2026-06-09",
+        "event": "CAA begins implementing its approved program plan"
+      }
+    ],
+    "fee_file": "colorado-2027.json",
+    "source_url": "https://cdphe.colorado.gov/hm/epr-program",
+    "last_checked": "2026-11-16",
+    "notes": "MIXED. Statute (enrolled HB 22-1355, primary): exempt if less than $5,000,000 in realized gross total revenue (excluding on-premises alcohol sales) OR used less than one ton of covered materials for products sold or distributed in Colorado in the prior year; the dollar limit is CPI-adjusted by rule every July 1. Current adjusted figure is NOT confirmed on a primary page: EPR Atlas (secondary, updated 2026-11-15) says $5,779,297 as of 2026-07-01 (used here); Wine Institute (secondary, 2026-10-13) shows $5,506,200; EcoEnclose (secondary) says about $5.6M as of July 2025. 'Gross total revenue' is not labeled global or in-state; recorded global by interpretation. 'One ton' unit not specified; recorded as short ton (2000 lb). SMALL-PRODUCER TIERS: 6 CCR 1007-2 § 18.5.2(C)(1) (via Justia) requires the PRO plan to include 'a de minimis level in which no dues are charged' and 'an optional flat rate for producers below a certain size'. EcoEnclose (secondary, 2026-10-14) says the flat-fee option applies at 10 short tons or less of Colorado-allocated weight, from $800 (1 to 2.5 tons) to $3,600 (7.5 to 10 tons). The amounts and the $500,000 figure were not confirmed on a CAA or CDPHE page. No exemption application process found. Fees ('dues') active since January 2026, paid in two installments (Jan and July) per PCPC summary (secondary). CAA has published a 2027 dues schedule (PDF could not be opened). LITIGATION: suits by Independent Lubricant Manufacturers Association (March 2026) and NAW; no injunction granted per EPR Atlas (secondary). SB 26-192 (fee appeals) failed. ENVIRONMENT: plan must set minimum collection and recycling rate targets for paper, glass, metal, plastic to meet by 2030-01-01 and 2035-01-01, plus minimum post-consumer recycled content rates; PRO creates a statewide minimum recyclable list; eco-modulated dues; no PFAS or labeling provisions in the statute. Sources: legiscan.com/CO/text/HB1355/id/2590449, cdphe.colorado.gov/hm/epr-program, circularactionalliance.org/circular-action-alliance-colorado. UPDATE 2026-11-16: Append: durable-packaging exclusion only for long-term storage of a durable product (5+ years), C.R.S. 25-17-703(13)(b)(I); packaging for products sold outside Colorado excluded, 25-17-703(25)(b)(IV).",
+    "fee_data_year_lag": 2,
+    "patch_sources": [
+      {
+        "field": "fee_data_year_lag",
+        "source_url": "https://www.personalcarecouncil.org/wp-content/uploads/2026/06/Colorado-EPR-Summary_May-2026.pdf"
+      },
+      {
+        "field": "revenue_year_basis",
+        "source_url": "https://colorado.public.law/statutes/crs_25-17-713"
+      },
+      {
+        "field": "weight_year_basis",
+        "source_url": "https://colorado.public.law/statutes/crs_25-17-713"
+      },
+      {
+        "field": "shipping_packaging_producer",
+        "source_url": "https://colorado.public.law/statutes/crs_25-17-703"
+      },
+      {
+        "field": "revenue_threshold_usd",
+        "source_url": "https://circularactionalliance.org/circular-action-alliance-colorado"
+      },
+      {
+        "field": "notes",
+        "source_url": "https://colorado.public.law/statutes/crs_25-17-703"
+      }
+    ],
+    "revenue_year_basis": "prior_calendar_year",
+    "weight_year_basis": "prior_calendar_year",
+    "shipping_packaging_producer": "person_that_packages_or_ships",
+    "revenue_threshold_confidence": "unconfirmed_secondary",
+    "candle_jar_status": "likely_covered_unconfirmed",
+    "flat_fee_tiers_confidence": "unconfirmed_secondary"
+  },
+  {
+    "state": "CT",
+    "name": "Connecticut",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. HB 6917 (packaging EPR study) died; PA 26-148 (2026) covers beverage containers only, not packaging EPR (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "DE",
+    "name": "Delaware",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "DC",
+    "name": "District of Columbia",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "FL",
+    "name": "Florida",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "GA",
+    "name": "Georgia",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. HB 1237 died at 2026 session adjournment (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "HI",
+    "name": "Hawaii",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). No EPR program. HB 750 (signed May 2025) is a needs assessment only; report due 2027-12-31 (SPC roundup and gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "ID",
+    "name": "Idaho",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "IL",
+    "name": "Illinois",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. HB 3161 last action 2025-02-18 (referred to House Rules; source: ilga.gov bill status, primary). HB 4064 in House Rules; a recycling needs assessment (Public Act 103-0383) has findings due 2026-12-01 (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "IN",
+    "name": "Indiana",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "IA",
+    "name": "Iowa",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "KS",
+    "name": "Kansas",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "KY",
+    "name": "Kentucky",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "LA",
+    "name": "Louisiana",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "ME",
+    "name": "Maine",
+    "law_name": "LD 1541 (2021), 38 M.R.S. § 2146; rules 06-096 CMR Chapter 428",
+    "law_status": "fees_upcoming",
+    "revenue_threshold_usd": 2000000,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2000,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://legislature.maine.gov/statutes/38/title38sec2146.html",
+    "last_checked": "2026-11-16",
+    "notes": "PRIMARY (statute + Maine DEP page). Exempt if prior-year total gross revenue under $2,000,000, OR under one ton of packaging material sold into Maine (statute says 'one ton', unit not specified; recorded as short ton 2000 lb). Transition: from one calendar year after the DEP-stewardship organization contract takes effect until 3 years after it, the revenue threshold is $5,000,000 (statute text; the DEP web page describes this differently, statute governs). 'Total gross revenue' is not labeled global or in-state; recorded as global by interpretation. Low-volume producers (1 to under 15 tons) may use a flat fee: DEP page says $500 per ton; statute caps flat fees at $7,500/yr. No application process for the exemption was found. STATUS: no stewardship organization under contract. The 2026 RFP received no bids (closed Aug 2026); DEP announced 2026-09-11 it is revising the RFP (latest DEP update 2026-10-28). No registration, reporting or fees yet; producers must register within 90 days after the SO opens registration, and payments start no later than 180 days after the contract takes effect, so no calendar dates can be listed. Planned annual cycle once running (DEP page): producer reporting May 31, invoicing July 1, payment Sept 1. ENVIRONMENT: program goals must support overall reduction in packaging used, more reuse, more post-consumer recycled content, litter reduction and higher recycling rates (material-specific for glass, metal, paper, plastic); fees adjusted to reward recycled content, recyclability, less packaging and lower toxicity (toxicity tied to chemicals regulated under Maine toxics laws; PFAS not named in § 2146); DEP sets 'readily recyclable' criteria by rule; DEP page says the program does not ban packaging types or set design standards. Sources: legislature.maine.gov/statutes/38/title38sec2146.html, www1.maine.gov/dep/waste/recycle/epr.html."
+  },
+  {
+    "state": "MD",
+    "name": "Maryland",
+    "law_name": "SB 901 (2025), Packaging and Paper Products Producer Responsibility Plans, Md. Environment Article Title 9 Subtitle 25; COMAR 26.04.14",
+    "law_status": "registration_only",
+    "revenue_threshold_usd": 2000000,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2000,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [
+      {
+        "date": "2026-05-31",
+        "event": "Producers register with CAA and file simplified report; annual reporting by May 31 after"
+      },
+      {
+        "date": "2026-07-01",
+        "event": "PRO registers with MDE (annually after)"
+      },
+      {
+        "date": "2027-07-01",
+        "event": "MDE statewide collection list due"
+      },
+      {
+        "date": "2028-07-01",
+        "event": "Producer responsibility plan due to MDE; PRO must reimburse at least 50% of cost per ton"
+      },
+      {
+        "date": "2029-07-01",
+        "event": "Reimbursement at least 75%; annual reports begin"
+      },
+      {
+        "date": "2030-07-01",
+        "event": "Reimbursement at least 90% each year after"
+      }
+    ],
+    "fee_file": null,
+    "source_url": "https://mgaleg.maryland.gov/2025RS/fnotes/bil_0001/sb0901.pdf",
+    "last_checked": "2026-11-16",
+    "notes": "PRIMARY-ish (official Maryland Department of Legislative Services fiscal note, Enrolled version; enacted bill text itself not opened). De minimis producer: in the most recent fiscal year introduced less than one ton of covered material into Maryland OR earned global gross revenues under $2.0 million; meeting either qualifies. 'One ton' unit not confirmed; recorded as short ton (2000 lb). No exemption application found. CAA Maryland page (PRO) gives the 2026-05-31 registration/report date and says producers start reimbursing costs 2028-07-01; fee collection may begin earlier but dates are not set. Regulations (COMAR 26.04.14) effective 2026-05-25 per EPR Atlas (secondary); the MDE compliance guide could not be opened. Signed 2025-05-13. ENVIRONMENT: stated intent to conserve resources by increasing recycling rates and recycled content; MDE to set material-specific recycling rate goals at 5-, 10- and 15-year intervals from the needs assessment; cost reimbursement 50%/75%/90% (2028/2029/2030); no numeric targets, toxics or labeling provisions in the fiscal note. Sources: mgaleg.maryland.gov/2025RS/fnotes/bil_0001/sb0901.pdf, circularactionalliance.org/maryland."
+  },
+  {
+    "state": "MA",
+    "name": "Massachusetts",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. Senate omnibus S.3050 (passed Senate 36-3 on 2026-04-15) does not include packaging EPR (source: packagingdive.com 2026-04-16, secondary). Packaging EPR bills S.571/H.926 stalled (gypsum.org tracker)."
+  },
+  {
+    "state": "MI",
+    "name": "Michigan",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted; listed as stalled (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "MN",
+    "name": "Minnesota",
+    "law_name": "HF 3911 (2024), Packaging Waste and Cost Reduction Act, Minn. Stat. 115A.144 to 115A.1452 (de minimis producer: 115A.1441 subd. 13)",
+    "law_status": "registration_only",
+    "revenue_threshold_usd": 2000000,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2000,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [
+      {
+        "date": "2025-07-01",
+        "event": "Producers must be members of CAA (registered PRO)"
+      },
+      {
+        "date": "2026-05-31",
+        "event": "Interim / simplified producer report due to CAA"
+      },
+      {
+        "date": "2026-12-31",
+        "event": "MPCA needs assessment due"
+      },
+      {
+        "date": "2028-10-01",
+        "event": "PRO stewardship plan due"
+      },
+      {
+        "date": "2029-01-01",
+        "event": "Producers must have an executed agreement with the PRO"
+      },
+      {
+        "date": "2032-01-01",
+        "event": "Covered materials may not be introduced unless covered by an approved stewardship plan; all packaging must be refillable, reusable, recyclable or compostable"
+      }
+    ],
+    "fee_file": null,
+    "source_url": "https://www.pca.state.mn.us/business-with-us/packaging-waste-and-cost-reduction-act",
+    "last_checked": "2026-11-16",
+    "notes": "Threshold is SECONDARY (Fredrikson law firm summary of Minn. Stat. 115A.1441 subd. 13): de minimis producer if, in the most recent fiscal year, it introduced less than one ton of covered material into Minnesota OR earned global gross revenues under $2,000,000. The Minnesota statute site could not be opened. 'One ton' unit not confirmed; recorded as short ton (2000 lb). No exemption application found. MPCA (primary) confirms CAA membership after 2025-07-01, phases (2027-2028 first plan; 2029-2032 cost coverage phased to at least 90% by 2031) and the 2032 refillable/reusable/recyclable/compostable requirement. The 2026-05-31 interim report date and 2028/2029 dates are from PPAI/Taft and Fredrikson (secondary). No producer fees billed yet. ENVIRONMENT: aims for less packaging and reduced toxicity; by 2032 all packaging, food packaging and paper products must be refillable, reusable, recyclable or compostable; producers reimburse at least 90% of costs; eco-modulated fees must reward eliminating intentionally added toxic substances, reuse, post-consumer content and recyclability; numeric recycling/reuse targets to be set later (none on MPCA pages). Sources: pca.state.mn.us/business-with-us/packaging-waste-and-cost-reduction-act, pca.state.mn.us/air-water-land-climate/extended-producer-responsibility-for-packaging."
+  },
+  {
+    "state": "MS",
+    "name": "Mississippi",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "MO",
+    "name": "Missouri",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). A packaging EPR bill was listed as pending by the PPAI/Taft white paper (Oct 2026); details not confirmed."
+  },
+  {
+    "state": "MT",
+    "name": "Montana",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "NE",
+    "name": "Nebraska",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. LB 607 indefinitely postponed 2026-04-17 (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "NV",
+    "name": "Nevada",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "NH",
+    "name": "New Hampshire",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "NJ",
+    "name": "New Jersey",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Pending, not enacted: S673/A3744 (Packaging and Paper Product Stewardship Act) and S614 in committee; S4656 ('Protect our Health from Plastics Act', introduced 2026) would require producers to cut plastic packaging 50% within 10 years, exempting producers under $1M revenue or under 1 ton of plastic packaging (source: sustainablepackaging.org/2026/10/27/packaging-policy-news/ and gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "NM",
+    "name": "New Mexico",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). No packaging EPR bill found as of May 2026 (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "NY",
+    "name": "New York",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Pending bill failed again in 2026: SB 1464A / A1749 (Packaging Reduction and Recycling Infrastructure Act) did not pass the Assembly before the June 2026 session end; it proposed reuse/recycling targets of 35% by 2032 rising to 75% by 2052 and phasing out PFAS-containing packaging (source: packagingdive.com/news/new-york-epr-packaging-2026-fails-bottle-bill-dsny/822145/, secondary). Reintroduction expected 2027 (gypsum.org tracker)."
+  },
+  {
+    "state": "NC",
+    "name": "North Carolina",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. H 882 (filed April 2025) pending, would also restrict intentionally added PFAS in packaging (ppai.org 10 states to watch, 2026-02-10, secondary)."
+  },
+  {
+    "state": "ND",
+    "name": "North Dakota",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "OH",
+    "name": "Ohio",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "OK",
+    "name": "Oklahoma",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "OR",
+    "name": "Oregon",
+    "law_name": "SB 582 (2021), Plastic Pollution and Recycling Modernization Act, ORS 459A.860 to 459A.975 (small producer: ORS 459A.863(32))",
+    "law_status": "fees_active",
+    "revenue_threshold_usd": 5000000,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2204.6,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [
+      {
+        "date": "2025-07-01",
+        "event": "Producers must be members of a PRO (CAA); CAA allowed to begin charging member fees"
+      },
+      {
+        "date": "2026-05-31",
+        "event": "Prior-year (2025) supply data due to CAA; due every May 31 after"
+      },
+      {
+        "date": "2026-12-31",
+        "event": "Top 25 producers submit first life cycle impact evaluations"
+      }
+    ],
+    "fee_file": "oregon-2027.json",
+    "source_url": "https://www.oregon.gov/deq/recycling/Pages/Producers-of-Covered-Products.aspx",
+    "last_checked": "2026-11-16",
+    "notes": "PRIMARY (Oregon DEQ). Small producer if gross worldwide revenue under $5 million in the most recent fiscal year, OR under one metric ton of covered products sold in or into Oregon in the most recent calendar year; DEQ decision tree says a YES to either makes the organization exempt for that year. Revenues and volumes of associated producers (e.g., parent-subsidiary) are added together (DEQ Exemptions FAQ, updated 2026-10-26, citing OAR 340-090-0860(6)). Small producers need not register, report, or pay fees; no application to DEQ is described. For remote/online sales, the seller that packs and ships is the producer of the shipping packaging (box, mailer); product packaging belongs to the brand owner/manufacturer (DEQ decision tree). LITIGATION: Feb 6, 2026 preliminary injunction for National Association of Wholesaler-Distributors members only; federal judge upheld the law in late Aug 2026 (SPC says Aug 28, EPR Atlas says Aug 27); NAW appealed to the Ninth Circuit (secondary sources). EPR Atlas (secondary) reports CAA published the 2027 fee schedule 2026-10-01. ENVIRONMENT: statutory goal for the statewide recycling rate of plastic packaging and food serviceware of at least 25% by 2028, 50% by 2040, 70% by 2050; large producers must do life cycle evaluations on at least 1% of covered products every two years; fees can be adjusted for life cycle impacts; created a Truth in Labeling Task Force on misleading recyclability claims; no PFAS provision found. Sources: oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf, oregon.gov/deq/recycling/Documents/RMAProducerObligationsSummary.pdf, oregon.gov/deq/recycling/Documents/recDecisionTree.pdf, oregon.gov/deq/recycling/Documents/RMAExemptionsFAQ.pdf.",
+    "fee_data_year_lag": 2,
+    "patch_sources": [
+      {
+        "field": "fee_data_year_lag",
+        "source_url": "https://www.oregon.gov/deq/recycling/Pages/Producers-of-Covered-Products.aspx"
+      },
+      {
+        "field": "revenue_year_basis",
+        "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf"
+      },
+      {
+        "field": "weight_year_basis",
+        "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf"
+      },
+      {
+        "field": "shipping_packaging_producer",
+        "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf"
+      },
+      {
+        "field": "state_allocation_basis",
+        "source_url": "https://productstewardship.us/wp-content/uploads/2024/12/OR-DEQ-Webinar-4-QA.pdf"
+      }
+    ],
+    "revenue_year_basis": "most_recent_fiscal_year",
+    "weight_year_basis": "most_recent_calendar_year",
+    "shipping_packaging_producer": "person_that_packages_and_ships",
+    "state_allocation_basis": "actual_state_sales_preferred; population_proration_allowed_fallback",
+    "candle_jar_status": "likely_covered_unconfirmed"
+  },
+  {
+    "state": "PA",
+    "name": "Pennsylvania",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "RI",
+    "name": "Rhode Island",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). No EPR program. H6207 (signed 2025-06-30) converted the EPR bill into a recycling needs assessment only; full EPR bill S2656 had no action (SPC roundup and gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "SC",
+    "name": "South Carolina",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "SD",
+    "name": "South Dakota",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "TN",
+    "name": "Tennessee",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. SB 269/HB 600 (Waste to Jobs Act) passed over in March 2026 (SPC roundup and gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "TX",
+    "name": "Texas",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "UT",
+    "name": "Utah",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "VT",
+    "name": "Vermont",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). Not enacted. S.139 died in committee; H.915 (2026) covers beverage containers only (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "VA",
+    "name": "Virginia",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary). No confirmed 2026 packaging EPR bill (gypsum.org tracker, secondary)."
+  },
+  {
+    "state": "WA",
+    "name": "Washington",
+    "law_name": "SB 5284 (2025), Recycling Reform Act, chapter 70A.208 RCW (de minimis producer: RCW 70A.208.020(16))",
+    "law_status": "registration_only",
+    "revenue_threshold_usd": 5000000,
+    "revenue_scope": "global",
+    "weight_threshold_lb": 2000,
+    "exempt_if": "any_test",
+    "application_required": false,
+    "key_dates": [
+      {
+        "date": "2026-05-31",
+        "event": "Interim state addendum and simplified report due to CAA"
+      },
+      {
+        "date": "2026-07-01",
+        "event": "Producers must join a PRO (CAA)"
+      },
+      {
+        "date": "2026-09-01",
+        "event": "PRO one-time implementation payment to Ecology"
+      },
+      {
+        "date": "2028-10-01",
+        "event": "CAA draft program plan due to Ecology"
+      }
+    ],
+    "fee_file": null,
+    "source_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=70A.208.020",
+    "last_checked": "2026-11-16",
+    "notes": "PRIMARY (RCW). De minimis producer: (a) introduced less than one ton of covered materials in its most recent fiscal year; (b) global gross revenue (excluding on-premises alcohol sales) under $5,000,000 for the prior fiscal year, inflation-adjusted from 2031-01-01; or (c) certain agricultural employers. Items are joined by 'or', so any one qualifies. 'One ton' unit not specified; recorded as short ton (2000 lb). No exemption application found. Durable-product packaging (protects/stores a durable product 5+ years) is exempt. Ecology: after March 2029 non-member producers cannot sell in Washington; from 2030 the PRO reimburses at least 90% of system cost; reuse grants start 2029. CAA says it will set an early (pre-program) fee structure; EPR Atlas (secondary) says first invoicing January 2027. No producer fees billed yet. ENVIRONMENT: PRO plan must include performance targets for reuse, return and recycling (no numbers on Ecology's page); PRO funds refill/reuse infrastructure grants from 2029; PPAI/Taft (secondary) describes a 65% (through 2029) / 70% (from 2030) recycling-rate test for material exemptions. PFAS/labeling not covered on pages opened. Sources: app.leg.wa.gov/RCW/default.aspx?cite=70A.208.020, ecology.wa.gov/.../recycling-reform-act, circularactionalliance.org/circular-action-alliance-washington."
+  },
+  {
+    "state": "WV",
+    "name": "West Virginia",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "WI",
+    "name": "Wisconsin",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  },
+  {
+    "state": "WY",
+    "name": "Wyoming",
+    "law_name": null,
+    "law_status": "none",
+    "revenue_threshold_usd": null,
+    "revenue_scope": null,
+    "weight_threshold_lb": null,
+    "exempt_if": null,
+    "application_required": null,
+    "key_dates": [],
+    "fee_file": null,
+    "source_url": "https://gypsum.org/epr-legislative-tracker/",
+    "last_checked": "2026-11-16",
+    "notes": "No enacted packaging EPR law as of 2026-11-16 (checked: SPC policy roundup 2026-10-27, EPR Atlas updated 2026-11-15, Gypsum Association 50-state tracker updated 2026-11-09, PPAI/Taft white paper current to 2026-10-02; all secondary)."
+  }
+]

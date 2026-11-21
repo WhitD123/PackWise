@@ -1,0 +1,568 @@
+{
+  "meta": {
+    "researched_on": "2026-11-16",
+    "scope": "Cushioning clearance, double boxing, drop tests, box strength, void fill for fragile (glass jar candle) parcel shipments, US small sellers",
+    "method": "WebSearch then WebFetch; only pages actually fetched are cited. Quotes are as returned by the fetch tool (verbatim excerpts, sometimes truncated at ~125 chars).",
+    "not_found": [
+      "ISTA 6-Amazon.com (SIOC or Over Boxing) drop heights by weight: the public ISTA overview says only that height 'varies with packaged-product weight'; no fetched page gave the numbers",
+      "NMFC Item 222 / UFC Rule 41 maximum outside dimensions (united inches) per construction: not in any fetched page",
+      "A primary-source copy of the Item 222 / Rule 41 table (fibrebox.org PDF fetched but tables not reproduced in text)",
+      "Any carrier or standard giving a numeric minimum spacing between two items in the same box",
+      "USPS numeric cushioning amounts (Publication 2 not reachable; DMM 100 'Preparing Packages' has none)",
+      "Amazon seller-facing prep rules for glass (Seller Central is login-only; not fetched)",
+      "FedEx guidance specific to air pillows (not mentioned in either FedEx PDF fetched)"
+    ]
+  },
+  "guidance": [
+    {
+      "id": "ups_loosefill_2in",
+      "topic": "clearance",
+      "source_org": "UPS",
+      "quote": "Use no less than two inches (five centimetres) of loose filler material",
+      "value": 2,
+      "unit": "in",
+      "applies_to": "Loose fill (EPS packing peanuts) around contents; UPS frames it around lightweight items, not fragile-only",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "Resolved to /us/en/support/shipping-support/packaging-tips (US). Same text on the UPS AU page https://www.ups.com/au/en/support/shipping-support/packaging-tips. UPS global PDF wording: 'use a minimum of two inches of cushioning around the contents of the box'."
+    },
+    {
+      "id": "ups_paper_2in",
+      "topic": "clearance",
+      "source_org": "UPS",
+      "quote": "Place at least two inches (five centimetres) of paper between contents and outer box.",
+      "value": 2,
+      "unit": "in",
+      "applies_to": "Crumpled kraft paper void fill",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "UPS also says crumpled paper is for non-fragile items (see ups_paper_nonfragile)."
+    },
+    {
+      "id": "ups_global_pdf_2in",
+      "topic": "clearance",
+      "source_org": "UPS",
+      "quote": "use a minimum of two inches of cushioning around the contents of the box",
+      "value": 2,
+      "unit": "in",
+      "applies_to": "Loose-fill method; global packaging guide also says 'Position individual items towards the center of the box.'",
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "APAC/global edition of UPS packaging guidelines (linked from UPS packaging-tips page). The US en_US Packaging_Guidelines.pdf URL returned 404."
+    },
+    {
+      "id": "ups_infographic_5_6cm",
+      "topic": "clearance",
+      "source_org": "UPS",
+      "quote": "Leave at least 5-6 cm distance between the contents and the walls of the box.",
+      "value": 2,
+      "unit": "in (5-6 cm, about 2.0-2.4 in)",
+      "applies_to": "All contents",
+      "source_url": "https://www.ups.com/assets/resources/webcontent/en_US/packaging_guide_infographic.pdf",
+      "source_type": "primary",
+      "notes": "Same infographic: 'Fragile items should be wrapped separately.' Conversion to inches is ours."
+    },
+    {
+      "id": "fedex_fragile_3in_wrap",
+      "topic": "wrap",
+      "source_org": "FedEx",
+      "quote": "Ship fragile products individually, wrapping them in a minimum 3\" thickness of air-cellular cushioning material.",
+      "value": 3,
+      "unit": "in",
+      "applies_to": "Fragile products packed in a single box",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "Also in FedEx General Packaging Guidelines (GrlPkgGuidelines_fxcom.pdf) and FedEx 'Packing breakables 101' page. This is the strictest carrier figure found for fragile items."
+    },
+    {
+      "id": "fedex_center_away",
+      "topic": "between_items",
+      "source_org": "FedEx",
+      "quote": "Wrap items individually with cushioning material and center them in boxes away from other items ... away from the sides, corners, top, and bottom of the box.",
+      "value": null,
+      "unit": null,
+      "applies_to": "All items; no numeric spacing given",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "Two quoted fragments from page 4 joined with an ellipsis. No carrier gave a numeric item-to-item gap."
+    },
+    {
+      "id": "ups_wrap_separately",
+      "topic": "wrap",
+      "source_org": "UPS",
+      "quote": "Fragile items should be wrapped separately.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Fragile items",
+      "source_url": "https://www.ups.com/assets/resources/webcontent/en_US/packaging_guide_infographic.pdf",
+      "source_type": "primary",
+      "notes": ""
+    },
+    {
+      "id": "fedex_double_box_fragile",
+      "topic": "double_box",
+      "source_org": "FedEx",
+      "quote": "Double-box fragile items with 3\" of cushioning in and around the smaller box.",
+      "value": 3,
+      "unit": "in",
+      "applies_to": "Fragile items",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "Phrased as an instruction in a guideline document, not a tariff requirement. Same sentence in GrlPkgGuidelines_fxcom.pdf."
+    },
+    {
+      "id": "fedex_outer_6in",
+      "topic": "double_box",
+      "source_org": "FedEx",
+      "quote": "Use a second box that is at least 6\" longer, wider, and deeper than the inner box.",
+      "value": 6,
+      "unit": "in (per dimension, i.e. 3 in per side)",
+      "applies_to": "Box-in-box method",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "Cushioning should fill the spaces 'between the inner box and outer box on the top, bottom, and all sides.' Inner box: 'Wrap product(s) individually with at least 2\" thickness of air-cellular cushioning or foam material' 'to fit snugly inside a corrugated box.'"
+    },
+    {
+      "id": "fedex_inner_2in",
+      "topic": "double_box",
+      "source_org": "FedEx",
+      "quote": "Wrap product(s) individually with at least 2\" thickness of air-cellular cushioning or foam material",
+      "value": 2,
+      "unit": "in",
+      "applies_to": "Product inside the inner box of a box-in-box pack",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "A separate electronics section (p.23) says inner box 'at least 4\" greater in length, width, and height than the item' allowing '2\" of space for all six sides', outer 6\" greater than inner allowing '3\" of space'."
+    },
+    {
+      "id": "ups_two_box",
+      "topic": "double_box",
+      "source_org": "UPS",
+      "quote": "The two-box method is recommended for sharp or fragile goods, bags and accessories, travel and luxury items.",
+      "value": 6,
+      "unit": "in (outer box larger per dimension)",
+      "applies_to": "Fragile goods (recommended, not required)",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "Same page: 'use a box that has a depth, width, and length six inches (15 centimetres) greater than the inner box' and 'an additional three inches (76 centimetres) of cushioning material around the inner box' (the 76 cm is a UPS typo for 7.6 cm)."
+    },
+    {
+      "id": "ups_paper_nonfragile",
+      "topic": "void_fill",
+      "source_org": "UPS",
+      "quote": "Ideal as void-fill material for lightweight, non-fragile items but must be tightly crumpled.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Crumpled kraft paper",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "UPS global PDF: 'Used primarily as void-fill material for lightweight, non-fragile items.' FedEx is more permissive: for artwork 'fill all void areas with packing material, e.g., Bubble Wrap, crumpled kraft paper (not newspaper)'; but FedEx electronics section says 'Do not use crushed paper.'"
+    },
+    {
+      "id": "ups_airbags",
+      "topic": "void_fill",
+      "source_org": "UPS",
+      "quote": "Use as void-fill material for lightweight items without sharp corners or edges.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Inflatable air bags / air pillows",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "UPS global PDF adds: 'Extreme hot or cold temperatures may affect the ability of air bags to provide adequate product protection.' Air pillows are void fill, not a wrap."
+    },
+    {
+      "id": "ups_peanuts",
+      "topic": "void_fill",
+      "source_org": "UPS",
+      "quote": "It's not ideal for flat, narrow products that may move in transit.",
+      "value": 2,
+      "unit": "in minimum when used",
+      "applies_to": "EPS loose-fill peanuts",
+      "source_url": "https://www.ups.com/packaging/?loc=en_US",
+      "source_type": "primary",
+      "notes": "Global PDF: 'Do not use with flat or narrow products that may move to the edge or bottom of the box in transit.' Also static warning for electronics. FedEx lists 'loosefill peanuts' as acceptable fill; USPS DMM lists 'foam peanuts'."
+    },
+    {
+      "id": "ups_bubble",
+      "topic": "wrap",
+      "source_org": "UPS",
+      "quote": "Designed to protect and cushion lightweight items.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Bubble wrap (air-encapsulated plastic)",
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "Global PDF says to use the 'flat surface of bubble wrap (bubbles facing away from product)'. FedEx: 'Stretch wrap and Bubble Wrap are both prohibited from use on the exterior of small parcel packages.'"
+    },
+    {
+      "id": "fedex_fill_no_movement",
+      "topic": "void_fill",
+      "source_org": "FedEx",
+      "quote": "Use fillers like crumpled newspaper, loosefill peanuts, or air-cellular cushioning material such as Bubble Wrap® ... to fill void spaces and prevent movement of goods inside the box during shipping.",
+      "value": null,
+      "unit": null,
+      "applies_to": "All void space",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "Two fragments from page 5 joined. Air pillows not mentioned by FedEx."
+    },
+    {
+      "id": "usps_shake_test",
+      "topic": "void_fill",
+      "source_org": "USPS",
+      "quote": "Close and shake the box to see if you have enough cushioning. If you hear items shifting, add more cushioning.",
+      "value": null,
+      "unit": null,
+      "applies_to": "All packages",
+      "source_url": "https://pe.usps.com/text/dmm100/preparing-packages.htm",
+      "source_type": "primary",
+      "notes": "Two adjacent sentences. Same page: 'You can use newspaper, \"foam peanuts,\" or shredded paper.' and for fragile: 'Use foamed plastic or padding to protect your items, placing the cushioning inside hollow items as well.' No inch amounts. 'Sturdy paperboard or corrugated fiberboard boxes are best for weights up to 10 pounds.'"
+    },
+    {
+      "id": "fedex_double_wall_heavy",
+      "topic": "box_strength",
+      "source_org": "FedEx",
+      "quote": "Use double-wall boxes for heavier items.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Heavier items (no threshold given)",
+      "source_url": "https://www.fedex.com/content/dam/fedex/us-united-states/services/HowToPack_fxcom.pdf",
+      "source_type": "primary",
+      "notes": "FedEx gives no ECT/burst values. Also: 'Use only new, undamaged boxes for shipping.' and reuse 'can weaken the packaging'."
+    },
+    {
+      "id": "ups_strength_guideline_only",
+      "topic": "box_strength",
+      "source_org": "UPS",
+      "quote": "The above box strengths are only guidelines to help assure the containment and protection of products",
+      "value": null,
+      "unit": null,
+      "applies_to": "UPS box strength chart",
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "Continues: 'They are not to be considered packaging specifications,' and 'all packaged products should be tested in accordance with the International Safe Transit Association (ISTA) Test Procedure 3A'."
+    },
+    {
+      "id": "ista_rule41_not_comparable",
+      "topic": "box_strength",
+      "source_org": "ISTA",
+      "quote": "There is no way to compare or correlate Rule 41 and Item 222 to ISTA pre-shipment performance tests.",
+      "value": null,
+      "unit": null,
+      "applies_to": "Box Maker's Certificate ratings vs ISTA tests",
+      "source_url": "https://support.ista.org/portal/en/kb/articles/what-are-rule-41-and-item-222-in-comparison-to-ista-procedures",
+      "source_type": "primary",
+      "notes": "ISTA KB (paraphrased): Rule 41 (rail) and Item 222 (motor freight) set board construction vs box size and gross weight minimums; they do not necessarily address product damage. Implication: box strength rating alone cannot be claimed as passing ISTA 3A."
+    },
+    {
+      "id": "ista3a_scope",
+      "topic": "drop_test",
+      "source_org": "ISTA",
+      "quote": "Test Procedure 3A covers testing of individual packaged-products weighing 70 kilograms (150 pounds) or less when prepared for shipment via a parcel delivery carrier.",
+      "value": 150,
+      "unit": "lb max",
+      "applies_to": "Parcel shipments",
+      "source_url": "https://ista.org/docs/3Aoverview.pdf",
+      "source_type": "primary",
+      "notes": "Overview gives sequence (9 drops, vibration, 8 drops incl. hazard drop) and 'Small' definition: volume <800 in3, longest dim <=14 in, weight <=10 lb. Heights not in overview; see drop_tests."
+    },
+    {
+      "id": "amazon_glass_fragile",
+      "topic": "drop_test",
+      "source_org": "Amazon",
+      "quote": "Glass, ceramic, porcelain, clay",
+      "value": 5,
+      "unit": "samples must pass (fragile, ISTA 6-Amazon SIOC Type A)",
+      "applies_to": "Amazon Frustration-Free Packaging certification",
+      "source_url": "https://assets.aboutamazon.com/e9/12/3e8a35b04ed0bf3f0880b1a40742/amazon-frustration-free-packaging-program-certification-guidelines-v10.3__2021%20(1).pdf",
+      "source_type": "primary",
+      "notes": "Quote is Amazon's list of fragile materials. Standard SIOC Type A: non-fragile 1 sample, fragile 5 samples. Doc also sets a box-utilization score threshold ('greater than 30% and 50% for fragile and non-fragile'), useful for a 'not oversized' check. 2021 version (v10.3); may be superseded. SIOC Type A = parcel, under 50 lb, girth <=165 in (ISTA 6-Amazon overview)."
+    }
+  ],
+  "box_strength": [
+    {
+      "construction": "UPS chart col 1: 200 lb burst or 32 ECT (single wall per UPS 'Recommended Walls' row, alignment ambiguous)",
+      "max_gross_weight_lb": 30,
+      "max_united_inches": 75,
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "Row read as 0-30 lb (0-13 kg), size limit <75 in, burst 200, ECT 32. Text extraction of the table was not cleanly aligned; size limit is UPS's 'maximum size of a box that can be manufactured', 'unrelated to length and girth measurements used by UPS'. Verify against the PDF visually before demo."
+    },
+    {
+      "construction": "UPS chart col 2: 250 lb burst or 44 ECT",
+      "max_gross_weight_lb": 50,
+      "max_united_inches": 85,
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "31-50 lb, size 75-85 in. Wall type ambiguous in extraction."
+    },
+    {
+      "construction": "UPS chart col 3: 275 lb burst or 55-61 ECT",
+      "max_gross_weight_lb": 65,
+      "max_united_inches": 96,
+      "source_url": "https://assets.ups.com/adobe/assets/urn:aaid:aem:4f4d0962-e01e-4ec2-9807-43bf036b32c0/original/as/apac-packaging-guidelines-GLOBAL-en.pdf",
+      "source_type": "primary",
+      "notes": "51-65 lb, size 85-96 in. ECT cell read as '55-61'. Columns 4-8 continue to 150 lb (350/71, 350/82, 400, 500, 600 burst); not needed for candles."
+    },
+    {
+      "construction": "single wall 32 ECT (Item 222-style table)",
+      "max_gross_weight_lb": 65,
+      "max_united_inches": null,
+      "source_url": "https://www.ipack.com/solutions/post/rules-regulations-corrugation-truck-rail-rules",
+      "source_type": "secondary",
+      "notes": "Vendor reproduction. Single wall rows: 20/23, 35/26, 50/29, 65/32, 80/40, 95/44, 120/55 (max lb / min ECT). Its 'Min. Burst Test' column (40-125) does not match burst ratings like 200 lb and looks like combined facing weight mislabeled; do not use that column. Dimensions not given. Note this is a freight-classification minimum, a looser bar than the UPS parcel chart (which caps 32 ECT at 30 lb)."
+    },
+    {
+      "construction": "single wall 44 ECT (Item 222-style table)",
+      "max_gross_weight_lb": 95,
+      "max_united_inches": null,
+      "source_url": "https://www.ipack.com/solutions/post/rules-regulations-corrugation-truck-rail-rules",
+      "source_type": "secondary",
+      "notes": "Same caveats as above."
+    },
+    {
+      "construction": "double wall 48 ECT (Item 222-style table)",
+      "max_gross_weight_lb": 100,
+      "max_united_inches": null,
+      "source_url": "https://www.ipack.com/solutions/post/rules-regulations-corrugation-truck-rail-rules",
+      "source_type": "secondary",
+      "notes": "Double wall rows: 80/42, 100/48, 120/51, 140/61, 160/71, 180/82."
+    },
+    {
+      "construction": "single wall 32 ECT (Uline recommendation)",
+      "max_gross_weight_lb": 30,
+      "max_united_inches": null,
+      "source_url": "https://www.uline.com/CustomerService/ULINE_FAQ_Ans?FAQ_ID=45",
+      "source_type": "secondary",
+      "notes": "Uline strength guide table: '32 ECT 30 lbs.' maximum weight in box. Agrees with UPS chart."
+    },
+    {
+      "construction": "single wall 200 lb test (Uline recommendation)",
+      "max_gross_weight_lb": 40,
+      "max_united_inches": null,
+      "source_url": "https://www.uline.com/CustomerService/ULINE_FAQ_Ans?FAQ_ID=45",
+      "source_type": "secondary",
+      "notes": "'200 lb. Single-Wall 40 lbs.' Also: '200 lb. test refers to bursting strength, while 32 ECT refers to stacking strength.' Vendor claim: 'Uline and UPS recommend 200 lb. test boxes'."
+    },
+    {
+      "construction": "double wall 275 lb burst / 48 ECT",
+      "max_gross_weight_lb": null,
+      "max_united_inches": null,
+      "source_url": null,
+      "source_type": "not_found",
+      "notes": "No fetched primary page gave a Rule 41/Item 222 row for 275 lb double wall. UPS chart lists 275 burst at 51-65 lb but wall type mapping was ambiguous."
+    }
+  ],
+  "drop_tests": [
+    {
+      "standard": "ISTA 3A (2018), standard/flat/elongated/small not in bag",
+      "weight_range_lb": "< 70",
+      "drop_height_in": 18,
+      "source_url": "https://assets.wfcdn.com/dm/document/2c23028d-ac73-489e-a412-d59947d9991a/104050-3815379-ista_procedure_3a.pdf",
+      "notes": "Copy of the full ISTA 3A 2018 procedure hosted by a third party (Wayfair CDN), so treat as primary content on a secondary host. Drops 1-7 and 9 at 18 in (460 mm); drop 8 (Face 3) at 36 in (910 mm). Same pattern in the in-bag/second block (drop 16 at 36 in). Corroborated by Atlantic Packaging info sheet (secondary): 'Packages that weigh less than 70 pounds are dropped at a height of 18 inches.'"
+    },
+    {
+      "standard": "ISTA 3A (2018), one higher drop per block",
+      "weight_range_lb": "< 70",
+      "drop_height_in": 36,
+      "source_url": "https://assets.wfcdn.com/dm/document/2c23028d-ac73-489e-a412-d59947d9991a/104050-3815379-ista_procedure_3a.pdf",
+      "notes": "Drop 8 in first block and drop 16 in second block."
+    },
+    {
+      "standard": "ISTA 3A (2018)",
+      "weight_range_lb": "70-150",
+      "drop_height_in": 12,
+      "source_url": "https://assets.wfcdn.com/dm/document/2c23028d-ac73-489e-a412-d59947d9991a/104050-3815379-ista_procedure_3a.pdf",
+      "notes": "With one 24 in (600 mm) drop per block."
+    },
+    {
+      "standard": "ISTA 3A (2018), small package in a bag",
+      "weight_range_lb": "small (<=10 lb, <=800 in3, longest <=14 in)",
+      "drop_height_in": 24,
+      "source_url": "https://assets.wfcdn.com/dm/document/2c23028d-ac73-489e-a412-d59947d9991a/104050-3815379-ista_procedure_3a.pdf",
+      "notes": "7 drops in a bag at 610 mm (24 in). Fetch tool flagged that column labels in this second table were not cleanly extracted; corroborated by Atlantic Packaging sheet: 'Small Packages in bags are dropped at a height of 24 inches.' A single 12 oz candle box will often qualify as 'Small'."
+    },
+    {
+      "standard": "ISTA 6-Amazon.com SIOC Type A",
+      "weight_range_lb": "< 50",
+      "drop_height_in": null,
+      "source_url": "https://ista.org/docs/6AmazoncomSIOCOverview18-18.pdf",
+      "notes": "not_found: overview lists 9 drops then 8 drops (incl. hazard drop) for Type A and B but only says height 'varies with packaged-product weight'. Type D (LTL) drops are 18 in max then 32 in max. Lab pages (Westpak, Micom, Element, Amazowl) did not publish heights."
+    },
+    {
+      "standard": "ISTA 1A / FedEx (for reference only)",
+      "weight_range_lb": "ISTA 1A 0-20 / FedEx 0-75",
+      "drop_height_in": 30,
+      "source_url": "https://www.atlanticpkg.com/wp-content/uploads/2025/07/ISTA-Drop-Testing-Info-Sheet.pdf",
+      "notes": "Secondary (packaging vendor). ISTA 1A: 0-20 lb 30 in, 21-40 lb 24 in, 41-60 lb 18 in, 61-100 lb 12 in. FedEx column: 0-75 lb 30 in, 75-100 lb 24 in, 100+ lb 18 in. Not confirmed on a FedEx or ISTA page."
+    }
+  ],
+  "recommended_app_rules": [
+    {
+      "rule_id": "R1_fragile_wall_clearance",
+      "rule": "For fragile items (glass, ceramic), require at least 2 in of cushioning between the item and every box wall (top, bottom, all sides). Box inner dims must be >= item dims + 4 in on each axis.",
+      "parameter": "min_clearance_in",
+      "value": 2,
+      "applies_when": "fragile",
+      "based_on": [
+        "ups_loosefill_2in",
+        "ups_paper_2in",
+        "ups_global_pdf_2in",
+        "ups_infographic_5_6cm",
+        "fedex_inner_2in",
+        "fedex_center_away"
+      ],
+      "is_interpretation": true,
+      "notes": "2 in is UPS's stated minimum; applying it as a hard box-picker floor for fragile items is our interpretation. Safe wording: 'meets the 2-inch cushioning minimum in UPS packaging guidance.'"
+    },
+    {
+      "rule_id": "R1b_fedex_strict_mode",
+      "rule": "Offer a 'carrier-strict' option: 3 in per side for fragile single-box packs (item + 6 in per axis), matching FedEx's minimum wrap thickness for fragile products.",
+      "parameter": "min_clearance_in_strict",
+      "value": 3,
+      "applies_when": "fragile AND (carrier = FedEx OR strict mode)",
+      "based_on": [
+        "fedex_fragile_3in_wrap"
+      ],
+      "is_interpretation": true,
+      "notes": "FedEx states wrap thickness, not wall clearance; treating 3 in of wrap as 3 in of clearance is our interpretation. Sellers should see that the FedEx figure is stricter than UPS."
+    },
+    {
+      "rule_id": "R2_nonfragile_clearance",
+      "rule": "For non-fragile items, keep at least 2 in of cushioning to the walls when using loose fill or crumpled paper; the box picker may use a smaller floor (suggest 1 in) only when the item is self-protecting (e.g., soft goods).",
+      "parameter": "min_clearance_in",
+      "value": 2,
+      "applies_when": "all (non-fragile)",
+      "based_on": [
+        "ups_loosefill_2in",
+        "ups_paper_2in",
+        "ups_infographic_5_6cm"
+      ],
+      "is_interpretation": true,
+      "notes": "UPS's 2 in figures are not limited to fragile items. The 1 in relaxed value is NOT sourced; label it as our assumption or drop it."
+    },
+    {
+      "rule_id": "R3_individual_wrap",
+      "rule": "Each glass item must be individually wrapped (bubble wrap or foam) before void fill; void fill alone is not enough for glass.",
+      "parameter": "requires_individual_wrap",
+      "value": true,
+      "applies_when": "fragile",
+      "based_on": [
+        "ups_wrap_separately",
+        "fedex_fragile_3in_wrap",
+        "fedex_center_away",
+        "ups_bubble"
+      ],
+      "is_interpretation": false,
+      "notes": "Directly stated by UPS ('Fragile items should be wrapped separately') and FedEx. Wrap thickness value is set by R1/R1b."
+    },
+    {
+      "rule_id": "R4_between_items",
+      "rule": "When several fragile items share a box, no glass surface may touch another; keep at least 2 in of cushioning between glass surfaces (e.g., 1 in of wrap on each jar or a divider plus wrap).",
+      "parameter": "min_between_items_in",
+      "value": 2,
+      "applies_when": "fragile AND item_count > 1",
+      "based_on": [
+        "fedex_center_away",
+        "ups_wrap_separately"
+      ],
+      "is_interpretation": true,
+      "notes": "No carrier gives a numeric item-to-item gap. The 2 in value reuses the wall-clearance minimum by analogy; say so in the UI."
+    },
+    {
+      "rule_id": "R5_void_fill_choice",
+      "rule": "For glass: allowed void fill = air pillows (item has no sharp edges; warn in extreme heat/cold), foam peanuts (at least 2 in; not for flat or narrow items), bubble wrap. Crumpled paper: flag as 'non-fragile only' per UPS, and never newspaper for glass. Always pass a shake test with no movement.",
+      "parameter": "allowed_fill_types_fragile",
+      "value": [
+        "air_pillows",
+        "eps_peanuts",
+        "bubble_wrap",
+        "foam"
+      ],
+      "applies_when": "fragile",
+      "based_on": [
+        "ups_paper_nonfragile",
+        "ups_airbags",
+        "ups_peanuts",
+        "ups_bubble",
+        "fedex_fill_no_movement",
+        "usps_shake_test"
+      ],
+      "is_interpretation": true,
+      "notes": "Excluding crumpled paper for glass follows UPS; FedEx allows crumpled kraft paper for artwork voids, so this is a conservative choice. A candle jar is rounded, so the UPS air-bag caveat about sharp corners does not block air pillows. For a 'Rethinking Waste' angle: recycled paper wrap around the jar is not addressed by carriers; do not claim it is approved. Coordinator note: UPS calls crumpled paper ideal for lightweight non-fragile items but does not ban it for fragile ones, and FedEx accepts crumpled kraft for artwork. For glass, prefer individual wrap (honeycomb paper or bubble) plus fill, or a box with a fitted insert. Treat this rule as guidance, not a hard block."
+    },
+    {
+      "rule_id": "R6_double_box_option",
+      "rule": "Recommend (not require) double boxing for glass. If chosen: product wrapped >= 2 in in a snug inner box; outer box >= inner box + 6 in on each axis; 3 in of cushioning on all six sides of the inner box.",
+      "parameter": "double_box_outer_margin_in",
+      "value": 6,
+      "applies_when": "fragile (optional upgrade; default for high-value or multi-jar)",
+      "based_on": [
+        "fedex_double_box_fragile",
+        "fedex_outer_6in",
+        "fedex_inner_2in",
+        "ups_two_box"
+      ],
+      "is_interpretation": true,
+      "notes": "UPS says 'recommended'; FedEx phrases it as an instruction ('Double-box fragile items'). Neither is a tariff requirement in the pages fetched. Making single-box with R1 the default (less material) and double-box an option is our call; tell judges FedEx guidance says to double-box fragile items."
+    },
+    {
+      "rule_id": "R7_box_strength_by_weight",
+      "rule": "Minimum box strength by gross package weight: up to 30 lb = 32 ECT or 200 lb burst single wall; 31-50 lb = 44 ECT or 250 lb burst; 51-65 lb = 55 ECT or 275 lb burst; over 65 lb = double wall and outside this app's scope.",
+      "parameter": "min_ect_by_weight",
+      "value": {
+        "30": 32,
+        "50": 44,
+        "65": 55
+      },
+      "applies_when": "all",
+      "based_on": [
+        "ups_strength_guideline_only",
+        "fedex_double_wall_heavy"
+      ],
+      "is_interpretation": true,
+      "notes": "Weight bands and ECT/burst from the UPS chart (box_strength rows 1-3); UPS calls them 'only guidelines'. Item 222 freight minimums (ipack, secondary) allow 32 ECT to 65 lb, so the UPS band is the stricter parcel figure. The >65 lb cutoff is ours. Also enforce UPS size limit <75 in (L+W+H) for the 32 ECT band. Candle shipments will almost always land in the first band."
+    },
+    {
+      "rule_id": "R8_new_boxes",
+      "rule": "Recommend new, undamaged boxes for glass; if a reused box is used, require it be rigid with all flaps intact and warn that reuse can weaken it.",
+      "parameter": "allow_reused_box_fragile",
+      "value": "warn",
+      "applies_when": "fragile",
+      "based_on": [
+        "fedex_double_wall_heavy"
+      ],
+      "is_interpretation": true,
+      "notes": "FedEx: 'Use only new, undamaged boxes for shipping' and reuse 'can weaken the packaging and place the inside product at risk'; UPS: 'Use a rigid box with flaps attached'. Allowing reuse with a warning (waste track) is our interpretation and conflicts with FedEx's 'only new' wording."
+    },
+    {
+      "rule_id": "R9_test_claim_wording",
+      "rule": "Do not claim a recommended box 'passes ISTA 3A'. Say the setup follows carrier packaging guidance and is designed for the ISTA 3A parcel drop profile (18 in drops with one 36 in drop under 70 lb; 24 in for small packages in bags), which only a lab test can confirm.",
+      "parameter": "test_claim",
+      "value": "designed_for_ista_3a_not_certified",
+      "applies_when": "all",
+      "based_on": [
+        "ista3a_scope",
+        "ista_rule41_not_comparable",
+        "ups_strength_guideline_only",
+        "amazon_glass_fragile"
+      ],
+      "is_interpretation": true,
+      "notes": "UPS itself recommends ISTA 3A testing; ISTA says box ratings cannot be correlated to its tests. Amazon requires 5 fragile samples to pass ISTA 6-Amazon for certification."
+    },
+    {
+      "rule_id": "R10_box_not_oversized",
+      "rule": "Pick the smallest standard box that satisfies R1 (and R4 for multi-item), so the box is safe but not oversized; optionally report box utilization (product volume / box volume).",
+      "parameter": "selection",
+      "value": "smallest_box_meeting_clearance",
+      "applies_when": "all",
+      "based_on": [
+        "ups_loosefill_2in",
+        "amazon_glass_fragile"
+      ],
+      "is_interpretation": true,
+      "notes": "Amazon FFP doc ties certification to a box-utilization score with different thresholds for fragile vs non-fragile (exact mapping unclear in the text). Useful framing for the waste theme; not a carrier rule."
+    }
+  ],
+  "last_checked": "2026-11-16"
+}

@@ -1,0 +1,273 @@
+{
+  "last_checked": "2026-11-16",
+  "answers": [
+    {
+      "question": "fee_basis",
+      "state": "OR",
+      "answer": "Oregon statute: base fee = material-specific base fee rate x total amount of covered products of each material the producer sold or distributed in or into Oregon. Market share and supply data are measured by weight (kg). Fees for a program year are set from supply data two years earlier (2027 fees use CY2025 data reported by May 31, 2026). Eco-modulation then adjusts the base fee.",
+      "quote": "The base fee paid by each producer member shall be calculated by multiplying the material-specific base fee rate ... by the total amount of covered products of each material sold or distributed by the producer in or into this state.",
+      "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "SB 582 (2021) sec. 11(2), now ORS 459A. Statute says 'amount' not 'weight'; OAR 340-090-0700(1)(a) (law.cornell.edu/regulations/oregon/Or-Admin-Code-SS-340-090-0700) says market share is 'denominated by the percentage of weight (mass) of covered product measured in kilograms'. Data-year lag: DEQ Producers page says 'Beginning with May 31, 2026, supply data for the prior year are due to CAA' and cites OAR 340-090-0700(4)(b) for use of supply data from two years earlier in fee setting; CAA's producer-reporting page: 'Oregon's 2026 Report is due May 31, 2026, based on the 2025 Data Year.' CAA 401 deck (May 29, 2025, wineinstitute.org mirror) confirms rates are set per pound by dividing net material costs by producer supply tons by material type."
+    },
+    {
+      "question": "fee_basis",
+      "state": "CO",
+      "answer": "Colorado dues vary by covered material type and are set from producer-reported supply data with CAA's national methodology, published as per-pound rates by material category; eco-modulation adjusts them. 2026 dues used CY2024 data; 2027 dues use CY2025 data (secondary). Packaging for products sold outside Colorado is not covered, so only Colorado-destined weight counts.",
+      "quote": "must vary by the type of covered material, whether or not the material is readily recyclable ... be based on the net recycling services costs for each covered material in the state.",
+      "source_url": "https://www.naw.org/wp-content/uploads/2025/10/10-03-2025-Response-to-National-Association-of-Wholesaler-Distributor-letter.pdf",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "CDPHE letter (David Snapp, Oct 3, 2025), mirrored on naw.org; it says CAA will publish per-pound dues by material category. CAA: 'Producer dues are calculated using producer-reported supply data and CAA's national fee-setting methodology' (circularactionalliance.org/co-2027-producer-dues, primary). Data year: PCPC Colorado summary May 2026 (secondary): '2026 dues are based on CY2024 supply data'; CY2025 reports due May 31, 2026 set 2027 dues. Rule 6 CCR 1007-2 sec. 18 (Justia) only says dues are 'based on the funding mechanism described in the Plan Proposal'. Exclusion of out-of-state products: C.R.S. 25-17-703(25)(b)(IV)."
+    },
+    {
+      "question": "fee_basis",
+      "state": "CA",
+      "answer": "California fees follow a PRO fee schedule 'delineated by covered material category' and adjusted by eco-modulation; the statute does not itself say 'weight'. Producers report total weight of covered material sold or distributed into California by covered material category, and a sale counts as in California if delivered to a purchaser in California. CY2025 annual supply reports were due May 31, 2026; which data year drives 2027 fees is not stated on an official page I opened.",
+      "quote": "the sale of covered materials shall be deemed to occur in the state if the covered materials are delivered to the purchaser in the state.",
+      "source_url": "https://california.public.law/codes/public_resources_code_section_42041",
+      "source_type": "primary",
+      "confidence": "likely",
+      "notes": "PRC 42041(w)(5). Fee schedule: PRC 42053(a)(1),(d): 'delineated by covered material category' (law.justia.com/codes/california/code-prc/division-30/part-3/chapter-3/article-2/section-42053). Reporting by weight per category: CA Grocers/KSC memo 5/4/26 (secondary): 'Total weight of material sold, distributed, or imported in/into the state'. Data year used for 2027 fees: not_found on primary source; marked likely, not confirmed."
+    },
+    {
+      "question": "fee_basis",
+      "state": "all",
+      "answer": "Allocation for national sellers: actual state sales data is the expected basis; a population-proration formula is an allowed fallback. Oregon DEQ allows prorating national sales by Oregon population under OAR 340-090-0700(1)(d), subject to 'best practices'. CAA says its estimation formula is to be used only when actual point-of-sale data is unavailable, and the producer stays responsible for accuracy. For a direct-to-consumer shipper, ship-to addresses are actual sales data, so they should be used (our interpretation).",
+      "quote": "pro-rate national sales data for Oregon's population",
+      "source_url": "https://productstewardship.us/wp-content/uploads/2024/12/OR-DEQ-Webinar-4-QA.pdf",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "DEQ Q&A Extended Response from the Sept 10, 2024 'E-Commerce and Online Retail Packaging' webinar (written in DEQ voice, hosted by Product Stewardship Institute); Q41. CAA 303 Reporting Q&A (Feb 4, 2025, circularactionalliance.org/producer-webinars/303-feb-4): 'you may use a formula to estimate sales for each applicable EPR state' ... 'only when actual point-of-sale data from retail partners is unavailable'; the formula itself (p.10 of 'Preparing to report your supply data') is portal-only, not_found. Colorado and California allocation guidance: not_found."
+    },
+    {
+      "question": "producer_definition",
+      "state": "OR",
+      "answer": "For remote (online) sales, the producer of the packaging that directly contains the item is determined by the normal brand rules, and the producer of packaging used to ship the item to the consumer is the person that packages and ships it. Maya packs and ships her own orders, so she is the producer of both the candle packaging and the shipping box and paper fill.",
+      "quote": "The producer of packaging used to ship the item to a consumer is the person that packages and ships",
+      "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "SB 582 sec. 3(1)(b)(B), codified ORS 459A.866(1)(b)(B). DEQ decision tree (oregon.gov/deq/recycling/Documents/recDecisionTree.pdf) says the same and adds that a seller who is only the shipping-packaging producer must notify the product-packaging producer. DEQ Q&A Q22: 'who applied the packaging and shipped the item is the important distinction' (branding on the box does not matter). Applying this to Maya is our interpretation."
+    },
+    {
+      "question": "producer_definition",
+      "state": "CO",
+      "answer": "For internet transactions, the producer of packaging that directly protects or contains the product is the normal producer, and for packaging used to ship to a consumer it is the person that packages OR ships the product. The rule says internet transactions involve two equally obligated producers. Maya is both.",
+      "quote": "For the purposes of packaging material used to ship a product to a consumer, the person that packages or ships the product to the consumer;",
+      "source_url": "https://colorado.public.law/statutes/crs_25-17-703",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "C.R.S. 25-17-703(30)(b)(II). 'Packaging material' covers delivery to the consumer 'including through an internet transaction' (25-17-703(25)(a)(I)). Rule 6 CCR 1007-2 sec. 18.2.2(B) (Justia, current through June 10, 2025): 'Internet transactions involve two obligated producers, both who are equally obligated'. colorado.public.law is an unofficial statute mirror."
+    },
+    {
+      "question": "producer_definition",
+      "state": "CA",
+      "answer": "California has no special e-commerce/shipping-packaging rule. Producer tiers: (1) in-state manufacturer that owns the brand; (2) if none in state, the brand owner or exclusive licensee; (3) if none in state, the person that sells or distributes the product in or into the state. 'Packaging' includes material used for delivery of goods by the producer. An out-of-state brand that sells directly to California consumers (Maya) ends up as producer of all its covered material, including the shipping box and fill (our interpretation).",
+      "quote": "If there is no person in the state who is the producer for purposes of paragraph (1) or (2), the producer of the covered material is the person who sells, offers for sale, or distributes the product that uses the covered material in or into the state.",
+      "source_url": "https://california.public.law/codes/public_resources_code_section_42041",
+      "source_type": "primary",
+      "confidence": "likely",
+      "notes": "PRC 42041(w)(1)-(3), (s) 'Packaging' = 'any separable and distinct material component used for the containment, protection, handling, delivery, or presentation of goods by the producer'. CalRecycle 'Identifying Covered Materials' (May 11, 2026, www2.calrecycle.ca.gov/Docs/Web/138814) lists 'cardboard boxes, shrink wrap, plastic tape used on packaging, air pillows' as covered secondary/tertiary packaging. CalRecycle Final Statement of Reasons (Docs/Web/138862): common carriers excluded and 'transportation on behalf of another person must be considered conducted by that person'. Whether tier 1 or tier 3 applies to Maya does not change the result. California does not explicitly say who owns shipping packaging when a third party (e.g., a marketplace or 3PL) packs; not_found."
+    },
+    {
+      "question": "candle_jar",
+      "state": "all",
+      "answer": "No official guidance in any state or from CAA mentions candles or candle jars. Closest official guidance points toward the jar being covered packaging: (CA) 'lidded glass jars' are listed as covered packaging and glass bottles/jars are a reporting category; the only product-related outs are (a) packaging for long-term storage of a product with a lifespan of at least five years, (b) packaging explicitly designed and marketed as reusable or refillable, and (c) a component that is an integral part of the product when all parts are consumed or disposed of together. A candle's wax is consumed and the jar is then discarded, so (c) does not clearly fit; a candle is not a 5-year durable product; consumer reuse alone does not meet 'explicitly designed and marketed' (all our interpretation). Oregon has no general durable-packaging exclusion; Colorado excludes only packaging for long-term storage of a durable product (at least five years).",
+      "quote": "Food packaging examples include but are not limited to potato chip bags, tin cans, juice squeeze packs, lidded glass jars",
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/138814",
+      "source_type": "primary",
+      "confidence": "unconfirmed",
+      "notes": "Other quotes: CA PRC 42041(e)(2)(F) excludes 'Packaging used for the long-term protection or storage of a product that has a lifespan of not less than five years'; 42041(af) reusable/refillable means 'Explicitly designed and marketed to be utilized multiple times for the same product'; CalRecycle doc Docs/Web/130707 quotes PRC 42041(s)(4)(B): 'A component or element that is an integral part of the product,' 'if all components or elements of the product are intended to be consumed or disposed of together.' CO C.R.S. 25-17-703(13)(b)(I) excludes 'Packaging materials intended to be used for the long-term storage or protection of a durable product ... for at least five years'; rule 18.3.2(A)(1) defines durable product as one that 'will remain usable for its original intended purpose for at least five years.' OR SB 582 sec. 2(18)(a)(A): packaging is 'Materials used for the containment or protection of products' (paper, plastic, glass, metal); DEQ Q&A Q8: producers 'need only report on and pay fees for the packaging.' PPAI x Taft whitepaper (Nov 2026, secondary): candle jars/mugs 'not addressed', needs state-specific review. Recommend app label: 'likely covered glass packaging; no official ruling'."
+    },
+    {
+      "question": "candle_jar",
+      "state": "CA",
+      "answer": "If covered, a glass jar and its detachable lid are reported separately: jar under Glass bottles/jars/containers; a metal lid under steel or aluminum; a glass lid under 'Other glass forms'. A non-detachable label stays with the jar. CAA guidance says a cap or lid intended to stay with the package when discarded is reported with the package by dominant material.",
+      "quote": "a glass jar and its detachable lid are categorized individually",
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "CalRecycle Covered Material Categories Reporting Guidance (updated Sept 8, 2025). Quote is as summarized by the fetch tool. CAA 303 Q&A (circularactionalliance.org/producer-webinars/303-feb-4): 'Non-separable components should be reported in the category representing the material type' making up most of the combined weight. A candle lid that the consumer removes to burn the candle is detachable (our interpretation), so report separately."
+    },
+    {
+      "question": "exemption_year",
+      "state": "OR",
+      "answer": "Revenue test: gross revenue under $5 million for the organization's most recent FISCAL year. Weight test: under one metric ton of covered products sold in or into Oregon in the most recent CALENDAR year. Either test alone exempts.",
+      "quote": "Sold in or into Oregon less than one metric ton of covered products for use in this state in the most recent calendar year;",
+      "source_url": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2021orlaw0681.pdf",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "SB 582 sec. 2(32)(c) (revenue, most recent fiscal year) and (d) (tonnage). DEQ decision tree Q12: 'less than $5 million for the most recent fiscal year?' and Q13 calendar-year tonnage test."
+    },
+    {
+      "question": "exemption_year",
+      "state": "CO",
+      "answer": "Both tests use the PRIOR CALENDAR YEAR: under $5 million (CPI-adjusted) realized gross total revenue, or under one ton of covered materials for products sold or distributed in or into Colorado.",
+      "quote": "A person with less than five million dollars in realized gross total revenue ... not including on-premises alcohol sales, during the prior calendar year",
+      "source_url": "https://colorado.public.law/statutes/crs_25-17-713",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "C.R.S. 25-17-713(1)(a),(b). Only the dollar limit is CPI-adjusted (Denver-Aurora-Lakewood CPI-U, each July 1); the one-ton test is not. Rule 18.2.3(B) repeats the one-ton prior-calendar-year test."
+    },
+    {
+      "question": "exemption_year",
+      "state": "CA",
+      "answer": "Gross sales in California under $1,000,000 in the most recent calendar year. Applicants must show records of in-state gross sales.",
+      "quote": "if in the most recent calendar year they had gross sales of less than one million dollars ($1,000,000) in the state",
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/138862",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "CalRecycle Final Statement of Reasons, small business alternatives section. CA Grocers/KSC memo 5/4/26 (secondary) agrees: records showing 'gross sales in the state in the most recent calendar year were less than one million dollars'. Regulation text 14 CCR 18980.5.2 itself not opened."
+    },
+    {
+      "question": "category_definitions",
+      "state": "CA",
+      "answer": "CalRecycle's Covered Material Categories guidance confirms definitions for corrugated, kraft, paperboard, molded fiber, paper multi-material laminate (other forms), LDPE and HDPE flexible/film, PS expanded/foamed other forms, glass bottles/jars, steel/tinplate containers and aluminum containers. Two cautions: clear non-bag film such as stretch film and bubble wrap is a separate category (25_P15P), and loose-fill packing peanuts are in a small-format plastic category (25_P47P), not PS foam other forms.",
+      "quote": "Each item is categorized by its dominant material class",
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538",
+      "source_type": "primary",
+      "confidence": "confirmed",
+      "notes": "Guidance updated Sept 8, 2025, based on CMC list of Sept 2, 2025. CAA 2027 CA fee schedule row names (e.g., 'LDPE Other Flexible and Film') were read from the eprfeecheck.com copy in round 2 and may be worded differently from CalRecycle's CMC names; match on CMC code where possible."
+    },
+    {
+      "question": "category_definitions",
+      "state": "OR",
+      "answer": "not_found. CAA's 'Oregon Reporting Category Definitions' (revised March 2026) is listed on the retired CAA Oregon guidance page but the document is only in the login Producer Portal. Mapping for OR remains reasoned from category names.",
+      "quote": "This webpage was retired on Aug. 10, 2026 and is no longer updated.",
+      "source_url": "https://circularactionalliance.org/producer-guidance-or",
+      "source_type": "primary",
+      "confidence": "unconfirmed",
+      "notes": "CAA 401 deck lists about 60 categories grouped by class but gives no definitions."
+    },
+    {
+      "question": "category_definitions",
+      "state": "CO",
+      "answer": "not_found. CAA's 'Colorado Reporting Category Definitions' (June 2025) is portal-only. Mapping for CO remains reasoned from category names.",
+      "quote": "Colorado Reporting Category Definitions ... available in the Producer Portal",
+      "source_url": "https://circularactionalliance.org/producer-guidance-co",
+      "source_type": "primary",
+      "confidence": "unconfirmed",
+      "notes": ""
+    },
+    {
+      "question": "colorado_threshold",
+      "state": "CO",
+      "answer": "Not confirmed from a primary source. The statute sets $5,000,000 adjusted each July 1 by Denver CPI. The rule (sec. 18.2.3(A)) points to the 'small business dollar limitation criteria established under Section 1.8.2' of the Solid Waste Regulations, which I could not open. CAA's Colorado page confirms CDPHE adjusts the threshold annually but gives no figure. Flat-fee tiers and de minimis amounts: rule requires the plan to include 'a de minimis level in which no dues are charged and an optional flat rate for producers below a certain size'; actual amounts are in CAA's 2027 Colorado Dues Schedule PDF, which redirects to a blocked host. For Maya ($8M) the exact figure does not change the result, since every reported figure ($5.5M to $5.8M) is below $8M.",
+      "quote": "Colorado's Act requires CDPHE to adjust the de minimis small producer exemption based on the Bureau of Labor's Consumer Price Index annually by July 1.",
+      "source_url": "https://circularactionalliance.org/circular-action-alliance-colorado",
+      "source_type": "primary",
+      "confidence": "unconfirmed",
+      "notes": "Rule text: regulations.justia.com/states/colorado/1000/1007/rule-6-ccr-1007-2/part-1/part-b/section-6-ccr-1007-2-18 (current through June 10, 2025). CDPHE rulemaking page lists a May 20, 2025 hearing on 6 CCR 1007-2 Part 1 Sec. 18 citing 25-17-713 (likely the CPI adjustment) with no figure. Dues schedule PDF: circularactionalliance.org/s/CO-2027DuesSchedule_1126.pdf (blocked on redirect). Keep $5,779,297 (EPR Atlas, secondary) labeled unconfirmed; EcoEnclose flat-fee tiers ($800-$3,600, <=10 tons) remain secondary-only."
+    }
+  ],
+  "category_mapping_check": [
+    {
+      "material_id": "corrugated",
+      "state": "CA",
+      "official_category": "Corrugated cardboard (25_PF9N)",
+      "definition_quote": "usually composed of three layers with a center wavy layer sandwiched between two outer layers",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "kraft-paper",
+      "state": "CA",
+      "official_category": "Kraft paper (25_PF1N)",
+      "definition_quote": "paper derived from wood pulp using the kraft process without a plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "paperboard",
+      "state": "CA",
+      "official_category": "Paperboard (25_PF10N)",
+      "definition_quote": "paperboard without a plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "molded-pulp",
+      "state": "CA",
+      "official_category": "Molded fiber (25_PF14N)",
+      "definition_quote": "paper fiber molded to shape and designed without a plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "paper-plastic-mix",
+      "state": "CA",
+      "official_category": "Multi-material laminate, other forms (25_PF7P)",
+      "definition_quote": "paper laminated with plastic and/or other materials that do not fit into any other category",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "pe-film",
+      "state": "CA",
+      "official_category": "LDPE flexible/film (25_P16P); HDPE flexible/film (25_P10P); clear non-bag film incl. stretch film and bubble wrap is 25_P15P",
+      "definition_quote": "flexible or film items that are made of low-density polyethylene that may be marked as LDPE (#4)",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "eps-foam",
+      "state": "CA",
+      "official_category": "Polystyrene expanded/foamed, other forms (25_P42P); packing peanuts go to small-format plastic (25_P47P)",
+      "definition_quote": "expanded/foamed forms made of polystyrene",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "glass",
+      "state": "CA",
+      "official_category": "Glass bottles, jugs and jars (25_G1N); lids and other forms are 25_G2N",
+      "definition_quote": "glass bottles, jugs, and jars without any plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "steel",
+      "state": "CA",
+      "official_category": "Steel/tinplate containers (25_M6N)",
+      "definition_quote": "rigid tin/steel/bimetal non-aerosol containers without any plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "aluminum",
+      "state": "CA",
+      "official_category": "Aluminum containers (25_M1N)",
+      "definition_quote": "any aluminum non-aerosol container without any plastic component",
+      "matches_current_mapping": true,
+      "source_url": "https://www2.calrecycle.ca.gov/Docs/Web/131538"
+    },
+    {
+      "material_id": "all",
+      "state": "OR",
+      "official_category": "not_found (CAA Oregon Reporting Category Definitions is portal-only)",
+      "definition_quote": "",
+      "matches_current_mapping": null,
+      "source_url": "https://circularactionalliance.org/producer-guidance-or"
+    },
+    {
+      "material_id": "all",
+      "state": "CO",
+      "official_category": "not_found (CAA Colorado Reporting Category Definitions is portal-only)",
+      "definition_quote": "",
+      "matches_current_mapping": null,
+      "source_url": "https://circularactionalliance.org/producer-guidance-co"
+    }
+  ],
+  "app_logic_recommendations": [
+    "Per-state weight: compute covered weight per state from the seller's own ship-to data (orders delivered to that state x packaging weight per order, by material). This matches CA PRC 42041(w)(5) (delivered to purchaser in state), CO's exclusion of packaging for products sold outside the state, and CAA's preference for actual sales data. Only if the seller has no state breakdown, fall back to national weight x state population share, and label it 'estimate (population proration, allowed by Oregon DEQ as a fallback)'. See fee_basis answers.",
+    "Fee estimate: sum over materials of (state weight in lb for that material x CAA rate per lb for that state's category). Accept negative rates (Oregon aluminum credit). Explain that real invoices for year Y are based on data from year Y-2 in OR and CO (so a 2027 fee reflects 2025 shipments), and that eco-modulation, bonuses and surcharges can move the bill.",
+    "Producer check for e-commerce: if the seller packs and ships its own orders, treat it as producer of both the product packaging (jar, lid, label, any carton) and the shipping box and fill in OR and CO (statute) and CA (statutory tiers; our interpretation). If a 3PL or marketplace packs the box, say the shipping-packaging obligation may fall on that party in OR ('packages and ships') and CO ('packages or ships'), and that CA has no specific rule.",
+    "Small-producer tests: OR = worldwide gross revenue under $5M in the most recent fiscal year OR under 1 metric ton (2,204.6 lb) into Oregon in the most recent calendar year; CO = gross revenue under the CPI-adjusted ~$5M figure in the prior calendar year OR under 1 ton into Colorado in the prior calendar year; CA = California gross sales under $1M in the most recent calendar year, with registration and an application required. Ask the user for the year their numbers cover.",
+    "California in-state sales test matters for national sellers: compute CA gross sales from the seller's ship-to data (or population share as a labeled estimate). For an $8M seller, a population-based CA share could land near $1M, so the app should show 'close to the line, use your actual California sales' rather than a firm verdict when the estimate is within about 20% of $1M (our design suggestion).",
+    "Candle jars: count the glass jar as covered glass packaging (category Glass bottles/jars) and the lid separately by its material, but label the line 'likely covered, no official ruling on candle jars'. Show the reasoning: CA lists lidded glass jars as covered packaging; the durable exclusion needs a product lifespan of 5+ years; the reusable exclusion needs a container explicitly designed and marketed for refill; Oregon has no durable exclusion. Offer a toggle 'treat jar as product (not packaging)' so the user can see both numbers.",
+    "Category mapping: keep current mapping; it matches CalRecycle CMC definitions. Add two CA splits: bubble wrap and stretch film go to clear non-bag film (25_P15P), and loose packing peanuts go to small-format plastic (25_P47P), not PS foam other forms. Keep OR/CO mappings labeled 'reasoned from category names; CAA definitions are portal-only'.",
+    "Colorado threshold: keep $5,779,297 but display it as 'about $5.8M (secondary source; CDPHE adjusts every July 1)'. Do not show flat-fee tier dollar amounts as official; label EcoEnclose's $800-$3,600 for 10 tons or less as secondary."
+  ]
+}

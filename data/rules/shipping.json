@@ -1,0 +1,1912 @@
+{
+  "carrier": "USPS",
+  "service": "Ground Advantage",
+  "pricing_type": "commercial",
+  "effective_date": "2026-10-04",
+  "temporary_pricing_note": "The Notice 123 in effect on 2026-11-16 (effective 2026-10-04) includes USPS's temporary 2026 holiday price change, which per the USPS newsroom runs from 12 a.m. CT Oct 4 until 12 a.m. CT Jan 17, 2027. A separate transportation-related time-limited increase (Notice 123 effective 2026-04-26) is also reported to end Jan 17, 2027 (secondary source only). Prices after 2027-01-17 will differ; re-check then.",
+  "zone_assumption": "Zone from the user's 972 chart, by largest metro per state. Zone 5 no longer assumed.",
+  "dim_divisor": 139,
+  "dim_applies_above_cubic_in": 1728,
+  "dim_rules": {
+    "dimension_rounding": "Round each of length, width and height UP to the nearest whole inch before multiplying (DMM 283.1.4.2).",
+    "dim_weight_rounding": "Divide cubic inches by 139 and round UP to the next whole pound (DMM 283.1.4.2).",
+    "applies_when": "Only when length x width x height exceeds 1,728 cubic inches (1 cubic foot), zones 1-9 (DMM 283.1.4.1). Postage is based on the greater of actual weight and dimensional weight.",
+    "nonrectangular": "Multiply L x W x H (extreme dimensions, rounded up) by 0.785 before comparing to 1,728 and dividing by 139 (DMM 283.1.4.3).",
+    "dim_weight_cap": "If dimensional weight exceeds 70 lb, the 70 lb price applies.",
+    "divisor_change": "Divisor became 139 effective 2026-07-12 per the USPS July 2026 final rule and the May 11, 2026 USPS release, which said the divisor would be aligned 'to industry standards'. The previous value was not stated in the documents opened, so it is not recorded here."
+  },
+  "weight_rules": {
+    "under_1_lb": "Commercial prices apply at 4, 8, 12 and 15.999 oz; any fraction over an increment rounds up to the next one (DMM 283.1.1a). Since 2026-07-12 all four ounce tiers carry the same price within a zone.",
+    "1_lb_and_up": "Prices per pound from 1 to 70 lb; any fraction of a pound counts as a whole pound, e.g. 1.25 lb is priced as 2 lb (DMM 283.1.1b).",
+    "max_weight_lb": 70
+  },
+  "rates": [
+    {
+      "max_lb": 0.25,
+      "price_usd": 8.24
+    },
+    {
+      "max_lb": 0.5,
+      "price_usd": 8.24
+    },
+    {
+      "max_lb": 0.75,
+      "price_usd": 8.24
+    },
+    {
+      "max_lb": 0.9999,
+      "price_usd": 8.24
+    },
+    {
+      "max_lb": 1,
+      "price_usd": 9.29
+    },
+    {
+      "max_lb": 2,
+      "price_usd": 10.5
+    },
+    {
+      "max_lb": 3,
+      "price_usd": 12.12
+    },
+    {
+      "max_lb": 4,
+      "price_usd": 13.89
+    },
+    {
+      "max_lb": 5,
+      "price_usd": 14.53
+    },
+    {
+      "max_lb": 6,
+      "price_usd": 15.33
+    },
+    {
+      "max_lb": 7,
+      "price_usd": 15.95
+    },
+    {
+      "max_lb": 8,
+      "price_usd": 16.54
+    },
+    {
+      "max_lb": 9,
+      "price_usd": 17.16
+    },
+    {
+      "max_lb": 10,
+      "price_usd": 17.81
+    },
+    {
+      "max_lb": 11,
+      "price_usd": 19.87
+    },
+    {
+      "max_lb": 12,
+      "price_usd": 20.61
+    },
+    {
+      "max_lb": 13,
+      "price_usd": 21.37
+    },
+    {
+      "max_lb": 14,
+      "price_usd": 22.13
+    },
+    {
+      "max_lb": 15,
+      "price_usd": 22.9
+    },
+    {
+      "max_lb": 16,
+      "price_usd": 23.64
+    },
+    {
+      "max_lb": 17,
+      "price_usd": 24.26
+    },
+    {
+      "max_lb": 18,
+      "price_usd": 24.91
+    },
+    {
+      "max_lb": 19,
+      "price_usd": 25.54
+    },
+    {
+      "max_lb": 20,
+      "price_usd": 26.68
+    }
+  ],
+  "surcharges_usd": {
+    "length_over_22_in_up_to_30_in": 4.5,
+    "length_over_30_in": 10.0,
+    "volume_over_2_cubic_ft": 21.0,
+    "package_quality_noncompliance_or_unmanifested": 0.25,
+    "dimension_noncompliance": 3.0
+  },
+  "source_url": "https://pe.usps.com/text/dmm300/Notice123.pdf",
+  "rules_source_url": "https://pe.usps.com/cpim/ftp/manuals/DMM300/283.pdf",
+  "last_checked": "2026-11-16",
+  "is_estimate": false,
+  "notes": "Prices from the Commercial-Parcels 'USPS Ground Advantage' table (p. 15) of Notice 123 effective October 04, 2026, Zone 5 column. The 15.999 oz tier is stored as max_lb 0.9999 (not 1.0) so it does not collide with the 1 lb row ($9.29); code should pick the first row whose max_lb is >= the billable weight. For reference, retail Ground Advantage Zone 5 in the same notice: 1 lb $11.70, 5 lb $18.85, 10 lb $24.25, 20 lb $37.90. Platform rates (Shopify, Pirate Ship) may differ slightly from published commercial prices. UPDATE 2026-11-16: added full zone 1-9 weight prices and Ground Advantage Cubic (DMM 283 1.3, Notice 123 p.16). Cubic: commercial only, 1 cu ft or less, 20 lb or less, longest side 22 in or less; round each outside dimension DOWN to 1/4 in, L x W x H / 1728, lowest 0.1 tier that fits. Soft packs use length plus width. A shipment pays the lower of weight price and Cubic price when eligible (our interpretation of how shipping software rates it).",
+  "weight_rates_by_zone": [
+    {
+      "max_lb": 0.25,
+      "prices_by_zone": {
+        "1": 7.33,
+        "2": 7.34,
+        "3": 7.7,
+        "4": 7.86,
+        "5": 8.24,
+        "6": 8.41,
+        "7": 8.62,
+        "8": 8.95,
+        "9": 8.95
+      }
+    },
+    {
+      "max_lb": 0.5,
+      "prices_by_zone": {
+        "1": 7.33,
+        "2": 7.34,
+        "3": 7.7,
+        "4": 7.86,
+        "5": 8.24,
+        "6": 8.41,
+        "7": 8.62,
+        "8": 8.95,
+        "9": 8.95
+      }
+    },
+    {
+      "max_lb": 0.75,
+      "prices_by_zone": {
+        "1": 7.33,
+        "2": 7.34,
+        "3": 7.7,
+        "4": 7.86,
+        "5": 8.24,
+        "6": 8.41,
+        "7": 8.62,
+        "8": 8.95,
+        "9": 8.95
+      }
+    },
+    {
+      "max_lb": 0.9999,
+      "prices_by_zone": {
+        "1": 7.33,
+        "2": 7.34,
+        "3": 7.7,
+        "4": 7.86,
+        "5": 8.24,
+        "6": 8.41,
+        "7": 8.62,
+        "8": 8.95,
+        "9": 8.95
+      }
+    },
+    {
+      "max_lb": 1.0,
+      "prices_by_zone": {
+        "1": 8.01,
+        "2": 8.08,
+        "3": 8.4,
+        "4": 8.55,
+        "5": 9.29,
+        "6": 10.18,
+        "7": 10.53,
+        "8": 11.22,
+        "9": 11.22
+      }
+    },
+    {
+      "max_lb": 2.0,
+      "prices_by_zone": {
+        "1": 8.39,
+        "2": 8.48,
+        "3": 8.66,
+        "4": 8.91,
+        "5": 10.5,
+        "6": 12.13,
+        "7": 12.55,
+        "8": 13.42,
+        "9": 13.42
+      }
+    },
+    {
+      "max_lb": 3.0,
+      "prices_by_zone": {
+        "1": 9.04,
+        "2": 9.06,
+        "3": 9.54,
+        "4": 10.07,
+        "5": 12.12,
+        "6": 14.14,
+        "7": 14.91,
+        "8": 16.3,
+        "9": 16.3
+      }
+    },
+    {
+      "max_lb": 4.0,
+      "prices_by_zone": {
+        "1": 9.93,
+        "2": 9.99,
+        "3": 10.35,
+        "4": 11.3,
+        "5": 13.89,
+        "6": 16.21,
+        "7": 17.24,
+        "8": 19.06,
+        "9": 19.06
+      }
+    },
+    {
+      "max_lb": 5.0,
+      "prices_by_zone": {
+        "1": 10.35,
+        "2": 10.41,
+        "3": 10.79,
+        "4": 11.67,
+        "5": 14.53,
+        "6": 16.94,
+        "7": 18.17,
+        "8": 20.24,
+        "9": 20.24
+      }
+    },
+    {
+      "max_lb": 6.0,
+      "prices_by_zone": {
+        "1": 10.52,
+        "2": 10.59,
+        "3": 11.01,
+        "4": 12.2,
+        "5": 15.33,
+        "6": 17.94,
+        "7": 19.36,
+        "8": 21.73,
+        "9": 21.73
+      }
+    },
+    {
+      "max_lb": 7.0,
+      "prices_by_zone": {
+        "1": 10.61,
+        "2": 10.67,
+        "3": 11.27,
+        "4": 12.55,
+        "5": 15.95,
+        "6": 18.7,
+        "7": 20.28,
+        "8": 22.88,
+        "9": 22.88
+      }
+    },
+    {
+      "max_lb": 8.0,
+      "prices_by_zone": {
+        "1": 10.75,
+        "2": 10.92,
+        "3": 12.14,
+        "4": 13.08,
+        "5": 16.54,
+        "6": 19.39,
+        "7": 21.13,
+        "8": 23.95,
+        "9": 23.95
+      }
+    },
+    {
+      "max_lb": 9.0,
+      "prices_by_zone": {
+        "1": 11.66,
+        "2": 11.9,
+        "3": 13.04,
+        "4": 14.3,
+        "5": 17.16,
+        "6": 20.18,
+        "7": 22.06,
+        "8": 25.14,
+        "9": 25.14
+      }
+    },
+    {
+      "max_lb": 10.0,
+      "prices_by_zone": {
+        "1": 12.56,
+        "2": 12.91,
+        "3": 13.83,
+        "4": 15.09,
+        "5": 17.81,
+        "6": 20.99,
+        "7": 23.02,
+        "8": 26.39,
+        "9": 26.39
+      }
+    },
+    {
+      "max_lb": 11.0,
+      "prices_by_zone": {
+        "1": 13.8,
+        "2": 13.99,
+        "3": 15.05,
+        "4": 16.23,
+        "5": 19.87,
+        "6": 23.03,
+        "7": 25.43,
+        "8": 29.12,
+        "9": 29.12
+      }
+    },
+    {
+      "max_lb": 12.0,
+      "prices_by_zone": {
+        "1": 14.54,
+        "2": 14.9,
+        "3": 15.68,
+        "4": 16.94,
+        "5": 20.61,
+        "6": 23.95,
+        "7": 26.53,
+        "8": 30.48,
+        "9": 30.48
+      }
+    },
+    {
+      "max_lb": 13.0,
+      "prices_by_zone": {
+        "1": 15.2,
+        "2": 15.53,
+        "3": 16.3,
+        "4": 17.58,
+        "5": 21.37,
+        "6": 24.91,
+        "7": 27.62,
+        "8": 31.86,
+        "9": 31.86
+      }
+    },
+    {
+      "max_lb": 14.0,
+      "prices_by_zone": {
+        "1": 15.78,
+        "2": 16.12,
+        "3": 16.86,
+        "4": 18.18,
+        "5": 22.13,
+        "6": 25.89,
+        "7": 28.74,
+        "8": 33.28,
+        "9": 33.28
+      }
+    },
+    {
+      "max_lb": 15.0,
+      "prices_by_zone": {
+        "1": 16.28,
+        "2": 16.58,
+        "3": 17.36,
+        "4": 18.72,
+        "5": 22.9,
+        "6": 26.88,
+        "7": 29.86,
+        "8": 34.66,
+        "9": 34.66
+      }
+    },
+    {
+      "max_lb": 16.0,
+      "prices_by_zone": {
+        "1": 16.69,
+        "2": 16.96,
+        "3": 17.78,
+        "4": 18.99,
+        "5": 23.64,
+        "6": 27.84,
+        "7": 30.97,
+        "8": 36.04,
+        "9": 36.04
+      }
+    },
+    {
+      "max_lb": 17.0,
+      "prices_by_zone": {
+        "1": 17.02,
+        "2": 17.34,
+        "3": 18.2,
+        "4": 19.46,
+        "5": 24.26,
+        "6": 28.6,
+        "7": 31.86,
+        "8": 37.17,
+        "9": 37.17
+      }
+    },
+    {
+      "max_lb": 18.0,
+      "prices_by_zone": {
+        "1": 17.26,
+        "2": 17.51,
+        "3": 18.66,
+        "4": 19.99,
+        "5": 24.91,
+        "6": 29.45,
+        "7": 32.84,
+        "8": 38.39,
+        "9": 38.39
+      }
+    },
+    {
+      "max_lb": 19.0,
+      "prices_by_zone": {
+        "1": 17.43,
+        "2": 17.87,
+        "3": 18.86,
+        "4": 20.41,
+        "5": 25.54,
+        "6": 30.27,
+        "7": 33.82,
+        "8": 39.59,
+        "9": 39.59
+      }
+    },
+    {
+      "max_lb": 20.0,
+      "prices_by_zone": {
+        "1": 17.51,
+        "2": 18.11,
+        "3": 19.08,
+        "4": 20.71,
+        "5": 26.68,
+        "6": 32.07,
+        "7": 36.42,
+        "8": 42.14,
+        "9": 42.14
+      }
+    }
+  ],
+  "weight_rates_source_url": "https://pe.usps.com/text/dmm300/Notice123.pdf",
+  "cubic": {
+    "exists_after_july_2026": true,
+    "eligibility": "Commercial only: eligible USPS Ground Advantage - Commercial customers, including Ground Advantage Return service customers, under DMM 505.3.0 (DMM 283.1.3.1). Commercial prices require a qualifying payment method (DMM 283.1.2): registered PC Postage end users with a qualifying label, USPS-approved IBI meters, permit imprint, or Returns service for permit holders. In practice small sellers reach it through PC Postage platforms; which specific platforms offer it was not verified this round. Each piece: 1 cubic foot or less, 20 lb or less, longest dimension 22 in or less (raised from 18 in effective 2026-07-12). Rolls and tubes are not eligible.",
+    "measurement_rule": "Measure L, W, H in inches at the maximum point of each dimension, round each DOWN to the nearest 1/4 inch, multiply L x W x H and divide by 1,728 to get cubic feet. Ten tiers in 0.10 cu ft steps (0.10 to 1.00); a piece falls in the smallest tier whose value it does not exceed, i.e. tier = ceil(cu_ft / 0.1) * 0.1. DMM example: 6 x 5.75 x 6.25 in = 0.125 cu ft, which is Tier 0.20 (DMM 283.1.3.2-1.3.3).",
+    "soft_pack_rule": "Soft packs and padded envelopes (DMM 283.1.3.4, Exhibit 1.3.4, revised 2026-07-12 to five tiers matching Priority Mail Cubic soft pack): use the outside dimensions of the original packaging, length and width only (height ignored), each rounded DOWN to the nearest 1/4 inch, then added. L+W must not exceed 36 in. Tiers by L+W: up to 21 in = 0.10; over 21 up to 27 = 0.20; over 27 up to 31 = 0.30; over 31 up to 34 = 0.40; over 34 up to 36 = 0.50. Pleated or expandable pieces must also meet the 1.3.3 measurement rules.",
+    "max_weight_lb": 20,
+    "max_cubic_ft": 1.0,
+    "max_longest_dimension_in": 22,
+    "tiers": [
+      {
+        "tier_cu_ft": 0.1,
+        "prices_by_zone": {
+          "1": 7.85,
+          "2": 7.91,
+          "3": 8.23,
+          "4": 8.39,
+          "5": 9.04,
+          "6": 9.76,
+          "7": 10.08,
+          "8": 10.68,
+          "9": 10.68
+        }
+      },
+      {
+        "tier_cu_ft": 0.2,
+        "prices_by_zone": {
+          "1": 8.22,
+          "2": 8.29,
+          "3": 8.54,
+          "4": 8.74,
+          "5": 9.92,
+          "6": 11.21,
+          "7": 11.6,
+          "8": 12.39,
+          "9": 12.39
+        }
+      },
+      {
+        "tier_cu_ft": 0.3,
+        "prices_by_zone": {
+          "1": 8.79,
+          "2": 8.85,
+          "3": 9.21,
+          "4": 9.63,
+          "5": 11.51,
+          "6": 13.38,
+          "7": 14.03,
+          "8": 15.22,
+          "9": 15.22
+        }
+      },
+      {
+        "tier_cu_ft": 0.4,
+        "prices_by_zone": {
+          "1": 9.72,
+          "2": 9.78,
+          "3": 10.16,
+          "4": 10.99,
+          "5": 13.48,
+          "6": 15.71,
+          "7": 16.66,
+          "8": 18.34,
+          "9": 18.34
+        }
+      },
+      {
+        "tier_cu_ft": 0.5,
+        "prices_by_zone": {
+          "1": 10.24,
+          "2": 10.31,
+          "3": 10.68,
+          "4": 11.58,
+          "5": 14.37,
+          "6": 16.75,
+          "7": 17.94,
+          "8": 19.95,
+          "9": 19.95
+        }
+      },
+      {
+        "tier_cu_ft": 0.6,
+        "prices_by_zone": {
+          "1": 10.49,
+          "2": 10.55,
+          "3": 10.96,
+          "4": 12.08,
+          "5": 15.15,
+          "6": 17.73,
+          "7": 19.1,
+          "8": 21.41,
+          "9": 21.41
+        }
+      },
+      {
+        "tier_cu_ft": 0.7,
+        "prices_by_zone": {
+          "1": 10.59,
+          "2": 10.65,
+          "3": 11.21,
+          "4": 12.47,
+          "5": 15.81,
+          "6": 18.52,
+          "7": 20.07,
+          "8": 22.62,
+          "9": 22.62
+        }
+      },
+      {
+        "tier_cu_ft": 0.8,
+        "prices_by_zone": {
+          "1": 10.73,
+          "2": 10.88,
+          "3": 11.99,
+          "4": 12.99,
+          "5": 16.44,
+          "6": 19.27,
+          "7": 20.99,
+          "8": 23.76,
+          "9": 23.76
+        }
+      },
+      {
+        "tier_cu_ft": 0.9,
+        "prices_by_zone": {
+          "1": 11.49,
+          "2": 11.73,
+          "3": 12.89,
+          "4": 14.09,
+          "5": 17.06,
+          "6": 20.04,
+          "7": 21.89,
+          "8": 24.94,
+          "9": 24.94
+        }
+      },
+      {
+        "tier_cu_ft": 1.0,
+        "prices_by_zone": {
+          "1": 13.07,
+          "2": 13.39,
+          "3": 14.33,
+          "4": 15.59,
+          "5": 18.68,
+          "6": 21.86,
+          "7": 23.93,
+          "8": 27.35,
+          "9": 27.35
+        }
+      }
+    ],
+    "effective_date": "2026-10-04",
+    "price_status": "Temporary 2026 holiday prices, in effect 12 a.m. CT 2026-10-04 until 12 a.m. CT 2027-01-17.",
+    "source_url": "https://pe.usps.com/text/dmm300/Notice123.pdf",
+    "source_type": "primary",
+    "source_location": "Notice 123 effective October 04, 2026, p.16 'Commercial Parcels - Cubic', USPS Ground Advantage",
+    "rules_source_url": "https://pe.usps.com/cpim/ftp/manuals/DMM300/283.pdf",
+    "rules_source_type": "primary (DMM 283, page marked 'Updated 11-2-26')",
+    "july_2026_change_source_url": "https://pe.usps.com/resources/Misc/Final Rule - July 2026 Domestic Competitive Products.pdf",
+    "post_2027_01_17": "not_found. The USPS holiday release (https://about.usps.com/newsroom/national-releases/2026/0825-usps-announces-temporary-price-change-for-2026-holiday-shipping-season.pdf, primary) gives only the end date, not post-period prices. Supply Chain Dive (secondary) reports a USPS fuel surcharge starting January 2027 as a weekly-adjusted percentage of base postage covering Ground Advantage; exact start date and post-Jan-17 base prices not found.",
+    "notes": "Two separate reads of the p.16 table agreed on every cell. Zone 9 equals Zone 8 in every tier. Cubic prices are not shown for zone 1&2 combined; zones 1 and 2 are separate. The Notice footnotes on p.16 list the package quality noncompliance fee, nonstandard characteristic surcharge, live animal and HAZMAT fees. Cubic is cheaper than weight pricing for dense small items: e.g., Zone 5, a 2.5 lb candle in a 0.2 cu ft box is $9.92 cubic vs $12.12 (3 lb) weight-based."
+  },
+  "zones_from_origin": {
+    "origin_zip3": "972",
+    "origin_city": "Portland, OR (demo seller ship-from)",
+    "status": "filled",
+    "note": "State zone = zone of the largest metro's ZIP3 (city in each row). States can span several zones; zones_in_state lists them (counted over all ZIP codes in the state, Hawaii 967 and DC 569 added by hand). Oregon: Portland is zone 1 but the rest of the state is zones 1 to 3. The chart marks some ranges with * (Oregon, Washington) and some with + (APO/FPO and Guam). The page's legend was not copied, so the markers are kept as data and not interpreted. ZIP3 967 (Hawaii) is not listed except 96700; Hawaii is set to zone 8 from 968. Zones are for the lower 48 plus AK, HI.",
+    "states": {
+      "AL": {
+        "city": "Huntsville",
+        "dest_zip3": "358",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "AK": {
+        "city": "Anchorage",
+        "dest_zip3": "995",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6,
+          7
+        ]
+      },
+      "AZ": {
+        "city": "Phoenix",
+        "dest_zip3": "850",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "AR": {
+        "city": "Little Rock",
+        "dest_zip3": "722",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "CA": {
+        "city": "Los Angeles",
+        "dest_zip3": "900",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          4,
+          5
+        ]
+      },
+      "CO": {
+        "city": "Denver",
+        "dest_zip3": "802",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "CT": {
+        "city": "Bridgeport",
+        "dest_zip3": "066",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "DE": {
+        "city": "Wilmington",
+        "dest_zip3": "198",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "DC": {
+        "city": "Washington",
+        "dest_zip3": "200",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "FL": {
+        "city": "Jacksonville",
+        "dest_zip3": "322",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "GA": {
+        "city": "Atlanta",
+        "dest_zip3": "303",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "HI": {
+        "city": "Honolulu",
+        "dest_zip3": "968",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "ID": {
+        "city": "Boise",
+        "dest_zip3": "837",
+        "zone": 4,
+        "zone_marker": null,
+        "zones_in_state": [
+          4
+        ]
+      },
+      "IL": {
+        "city": "Chicago",
+        "dest_zip3": "606",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "IN": {
+        "city": "Indianapolis",
+        "dest_zip3": "462",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "IA": {
+        "city": "Des Moines",
+        "dest_zip3": "503",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          6,
+          7
+        ]
+      },
+      "KS": {
+        "city": "Wichita",
+        "dest_zip3": "672",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          6,
+          7
+        ]
+      },
+      "KY": {
+        "city": "Louisville",
+        "dest_zip3": "402",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "LA": {
+        "city": "New Orleans",
+        "dest_zip3": "701",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "ME": {
+        "city": "Portland",
+        "dest_zip3": "041",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "MD": {
+        "city": "Baltimore",
+        "dest_zip3": "212",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "MA": {
+        "city": "Boston",
+        "dest_zip3": "021",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "MI": {
+        "city": "Detroit",
+        "dest_zip3": "482",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "MN": {
+        "city": "Minneapolis",
+        "dest_zip3": "554",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          6,
+          7
+        ]
+      },
+      "MS": {
+        "city": "Jackson",
+        "dest_zip3": "392",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "MO": {
+        "city": "Kansas City",
+        "dest_zip3": "641",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          7,
+          8
+        ]
+      },
+      "MT": {
+        "city": "Billings",
+        "dest_zip3": "591",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          4,
+          5
+        ]
+      },
+      "NE": {
+        "city": "Omaha",
+        "dest_zip3": "681",
+        "zone": 6,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "NV": {
+        "city": "Las Vegas",
+        "dest_zip3": "891",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          4,
+          5
+        ]
+      },
+      "NH": {
+        "city": "Manchester",
+        "dest_zip3": "031",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "NJ": {
+        "city": "Newark",
+        "dest_zip3": "071",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "NM": {
+        "city": "Albuquerque",
+        "dest_zip3": "871",
+        "zone": 6,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "NY": {
+        "city": "New York",
+        "dest_zip3": "100",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "NC": {
+        "city": "Charlotte",
+        "dest_zip3": "282",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "ND": {
+        "city": "Fargo",
+        "dest_zip3": "581",
+        "zone": 6,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "OH": {
+        "city": "Columbus",
+        "dest_zip3": "432",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "OK": {
+        "city": "Oklahoma City",
+        "dest_zip3": "731",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          6,
+          7
+        ]
+      },
+      "OR": {
+        "city": "Portland",
+        "dest_zip3": "972",
+        "zone": 1,
+        "zone_marker": "*",
+        "zones_in_state": [
+          1,
+          2,
+          3
+        ]
+      },
+      "PA": {
+        "city": "Philadelphia",
+        "dest_zip3": "191",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "RI": {
+        "city": "Providence",
+        "dest_zip3": "029",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "SC": {
+        "city": "Charleston",
+        "dest_zip3": "294",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "SD": {
+        "city": "Sioux Falls",
+        "dest_zip3": "571",
+        "zone": 6,
+        "zone_marker": null,
+        "zones_in_state": [
+          5,
+          6
+        ]
+      },
+      "TN": {
+        "city": "Nashville",
+        "dest_zip3": "372",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "TX": {
+        "city": "Houston",
+        "dest_zip3": "770",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          6,
+          7,
+          8
+        ]
+      },
+      "UT": {
+        "city": "Salt Lake City",
+        "dest_zip3": "841",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          4,
+          5
+        ]
+      },
+      "VT": {
+        "city": "Burlington",
+        "dest_zip3": "054",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "VA": {
+        "city": "Virginia Beach",
+        "dest_zip3": "234",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "WA": {
+        "city": "Seattle",
+        "dest_zip3": "981",
+        "zone": 2,
+        "zone_marker": null,
+        "zones_in_state": [
+          1,
+          2,
+          3
+        ]
+      },
+      "WV": {
+        "city": "Charleston",
+        "dest_zip3": "253",
+        "zone": 8,
+        "zone_marker": null,
+        "zones_in_state": [
+          8
+        ]
+      },
+      "WI": {
+        "city": "Milwaukee",
+        "dest_zip3": "532",
+        "zone": 7,
+        "zone_marker": null,
+        "zones_in_state": [
+          7
+        ]
+      },
+      "WY": {
+        "city": "Cheyenne",
+        "dest_zip3": "820",
+        "zone": 5,
+        "zone_marker": null,
+        "zones_in_state": [
+          4,
+          5
+        ]
+      }
+    },
+    "source": "USPS Domestic Zone Chart for origin ZIP3 972, as copied by the user from postcalc.usps.com/DomesticZoneChart on 2026-11-16",
+    "zip3_ranges": [
+      {
+        "from_zip3": "005",
+        "to_zip3": "089",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "595",
+        "to_zip3": "595",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "770",
+        "to_zip3": "770",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "874",
+        "to_zip3": "874",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "090",
+        "to_zip3": "099",
+        "zone": 8,
+        "marker": "+"
+      },
+      {
+        "from_zip3": "596",
+        "to_zip3": "599",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "772",
+        "to_zip3": "777",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "875",
+        "to_zip3": "885",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "100",
+        "to_zip3": "212",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "600",
+        "to_zip3": "620",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "778",
+        "to_zip3": "778",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "889",
+        "to_zip3": "891",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "214",
+        "to_zip3": "268",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "622",
+        "to_zip3": "623",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "779",
+        "to_zip3": "779",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "893",
+        "to_zip3": "895",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "270",
+        "to_zip3": "342",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "624",
+        "to_zip3": "624",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "780",
+        "to_zip3": "782",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "897",
+        "to_zip3": "898",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "344",
+        "to_zip3": "344",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "625",
+        "to_zip3": "627",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "783",
+        "to_zip3": "785",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "900",
+        "to_zip3": "908",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "346",
+        "to_zip3": "347",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "628",
+        "to_zip3": "629",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "786",
+        "to_zip3": "789",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "910",
+        "to_zip3": "928",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "349",
+        "to_zip3": "352",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "630",
+        "to_zip3": "631",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "790",
+        "to_zip3": "792",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "930",
+        "to_zip3": "939",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "354",
+        "to_zip3": "418",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "633",
+        "to_zip3": "637",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "793",
+        "to_zip3": "793",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "940",
+        "to_zip3": "949",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "420",
+        "to_zip3": "427",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "638",
+        "to_zip3": "638",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "794",
+        "to_zip3": "794",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "950",
+        "to_zip3": "950",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "430",
+        "to_zip3": "462",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "639",
+        "to_zip3": "641",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "795",
+        "to_zip3": "798",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "951",
+        "to_zip3": "961",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "463",
+        "to_zip3": "464",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "644",
+        "to_zip3": "658",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "799",
+        "to_zip3": "799",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "962",
+        "to_zip3": "966",
+        "zone": 4,
+        "marker": "+"
+      },
+      {
+        "from_zip3": "465",
+        "to_zip3": "493",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "660",
+        "to_zip3": "662",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "800",
+        "to_zip3": "800",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "494",
+        "to_zip3": "494",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "664",
+        "to_zip3": "668",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "801",
+        "to_zip3": "801",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "968",
+        "to_zip3": "968",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "495",
+        "to_zip3": "497",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "669",
+        "to_zip3": "671",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "802",
+        "to_zip3": "806",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "969",
+        "to_zip3": "969",
+        "zone": 9,
+        "marker": "+"
+      },
+      {
+        "from_zip3": "498",
+        "to_zip3": "509",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "672",
+        "to_zip3": "673",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "807",
+        "to_zip3": "811",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "970",
+        "to_zip3": "971",
+        "zone": 2,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "510",
+        "to_zip3": "515",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "674",
+        "to_zip3": "681",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "812",
+        "to_zip3": "816",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "972",
+        "to_zip3": "972",
+        "zone": 1,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "516",
+        "to_zip3": "516",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "683",
+        "to_zip3": "692",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "820",
+        "to_zip3": "820",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "973",
+        "to_zip3": "974",
+        "zone": 2,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "520",
+        "to_zip3": "528",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "693",
+        "to_zip3": "693",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "821",
+        "to_zip3": "821",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "975",
+        "to_zip3": "976",
+        "zone": 3,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "530",
+        "to_zip3": "532",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "700",
+        "to_zip3": "701",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "822",
+        "to_zip3": "831",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "977",
+        "to_zip3": "977",
+        "zone": 2,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "534",
+        "to_zip3": "535",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "703",
+        "to_zip3": "708",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "832",
+        "to_zip3": "838",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "978",
+        "to_zip3": "978",
+        "zone": 3,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "537",
+        "to_zip3": "551",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "710",
+        "to_zip3": "711",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "840",
+        "to_zip3": "842",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "979",
+        "to_zip3": "979",
+        "zone": 3,
+        "marker": null
+      },
+      {
+        "from_zip3": "553",
+        "to_zip3": "553",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "712",
+        "to_zip3": "714",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "843",
+        "to_zip3": "843",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "980",
+        "to_zip3": "981",
+        "zone": 2,
+        "marker": null
+      },
+      {
+        "from_zip3": "554",
+        "to_zip3": "560",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "716",
+        "to_zip3": "716",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "844",
+        "to_zip3": "847",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "982",
+        "to_zip3": "983",
+        "zone": 3,
+        "marker": null
+      },
+      {
+        "from_zip3": "561",
+        "to_zip3": "567",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "717",
+        "to_zip3": "722",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "850",
+        "to_zip3": "850",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "984",
+        "to_zip3": "985",
+        "zone": 2,
+        "marker": null
+      },
+      {
+        "from_zip3": "570",
+        "to_zip3": "576",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "723",
+        "to_zip3": "723",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "851",
+        "to_zip3": "852",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "986",
+        "to_zip3": "986",
+        "zone": 1,
+        "marker": "*"
+      },
+      {
+        "from_zip3": "577",
+        "to_zip3": "577",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "724",
+        "to_zip3": "731",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "853",
+        "to_zip3": "853",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "988",
+        "to_zip3": "988",
+        "zone": 3,
+        "marker": null
+      },
+      {
+        "from_zip3": "580",
+        "to_zip3": "585",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "733",
+        "to_zip3": "737",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "855",
+        "to_zip3": "857",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "989",
+        "to_zip3": "989",
+        "zone": 2,
+        "marker": null
+      },
+      {
+        "from_zip3": "586",
+        "to_zip3": "586",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "738",
+        "to_zip3": "739",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "859",
+        "to_zip3": "859",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "990",
+        "to_zip3": "994",
+        "zone": 3,
+        "marker": null
+      },
+      {
+        "from_zip3": "587",
+        "to_zip3": "587",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "740",
+        "to_zip3": "741",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "860",
+        "to_zip3": "860",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "995",
+        "to_zip3": "997",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "588",
+        "to_zip3": "588",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "743",
+        "to_zip3": "758",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "863",
+        "to_zip3": "865",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "998",
+        "to_zip3": "998",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "590",
+        "to_zip3": "593",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "759",
+        "to_zip3": "759",
+        "zone": 8,
+        "marker": null
+      },
+      {
+        "from_zip3": "870",
+        "to_zip3": "871",
+        "zone": 6,
+        "marker": null
+      },
+      {
+        "from_zip3": "999",
+        "to_zip3": "999",
+        "zone": 5,
+        "marker": null
+      },
+      {
+        "from_zip3": "594",
+        "to_zip3": "594",
+        "zone": 4,
+        "marker": null
+      },
+      {
+        "from_zip3": "760",
+        "to_zip3": "769",
+        "zone": 7,
+        "marker": null
+      },
+      {
+        "from_zip3": "873",
+        "to_zip3": "873",
+        "zone": 6,
+        "marker": null
+      }
+    ]
+  }
+}

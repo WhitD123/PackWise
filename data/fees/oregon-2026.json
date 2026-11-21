@@ -1,0 +1,90 @@
+{
+  "state": "OR",
+  "program_year": 2026,
+  "status": "final",
+  "unit": "usd_per_lb",
+  "source_type": "secondary",
+  "rates": {
+    "corrugated": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Corrugated Cardboard"
+    },
+    "kraft-paper": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Kraft Paper"
+    },
+    "paperboard": {
+      "rate_usd_per_lb": 0.08,
+      "official_category": "Paperboard"
+    },
+    "paper-plastic-mix": {
+      "rate_usd_per_lb": 0.51,
+      "official_category": "Other Paper Laminates"
+    },
+    "pe-film": {
+      "rate_usd_per_lb": 0.43,
+      "official_category": "HDPE (#2)/LDPE (#4) Flexible and Film Items"
+    },
+    "pp-film": {
+      "rate_usd_per_lb": 1.02,
+      "official_category": "PP (#5) Flexible and Film Items"
+    },
+    "plastic-laminate": {
+      "rate_usd_per_lb": 1.02,
+      "official_category": "Plastic Laminates and Other Flexible Plastic Packaging"
+    },
+    "glass": {
+      "rate_usd_per_lb": 0.1,
+      "official_category": "Glass Bottles and Jars & Other Containers"
+    },
+    "aluminum": {
+      "rate_usd_per_lb": 0.06,
+      "official_category": "Aluminum Containers"
+    },
+    "steel": {
+      "rate_usd_per_lb": 0.1,
+      "official_category": "Steel Containers"
+    }
+  },
+  "modulation": {
+    "passive_factors_in_rates": "No passive eco-modulation column. Acceptance status (USCL = on the statewide collection list, PRO = PRO take-back list, N/A = not accepted) is priced into the base fee; ORS 459A.884(3)(a) requires non-accepted materials to carry a higher average base fee than accepted ones.",
+    "active_bonuses": [
+      {
+        "name": "LCA Bonus A (disclosure)",
+        "adjustment": "10% of base fees on the SKU's primary packaging, excluding the reserve share (about 8% net)",
+        "cap": "$20,000 per LCA / SKU or batch; max 10 SKUs or batches to start",
+        "timing": "LCA completed on or after 2025-07-01; first-cycle submissions due 2025-08-15, granted in 2026"
+      },
+      {
+        "name": "LCA Bonus B (impact reduction)",
+        "adjustment": "Multiple of Bonus A by impact-reduction tier: 10-40% reduction x2.0, 40-70% x2.5, 70%+ x3.0 (DEQ raised Tier 2 and 3 from 2.25 and 2.5 on 2025-09-12)",
+        "cap": "Plan caps $40,000 / $45,000 / $50,000 per SKU or batch (caps not restated for DEQ's raised multipliers)",
+        "timing": "Packaging changes from December 2024 onward; submit by 2026-05-31; credited against 2027 base fees"
+      },
+      {
+        "name": "LCA Bonus C (switch to reuse or refill)",
+        "adjustment": "Uses Bonus B tiers",
+        "cap": "$40,000 (projected return rates) or $50,000 (actual return or refill rates) per SKU or batch",
+        "timing": "Switch made on or after 2024-12-01; submit by 2026-05-31; credited against 2027 base fees"
+      }
+    ],
+    "maluses": "None in force. The program plan says CAA will need to use maluses once reliable LCA data exist.",
+    "state_targets": [
+      "ORS 459A.926: statewide recycling rate for plastic packaging and plastic food serviceware of at least 25% by 2028, 50% by 2040, 70% by 2050 (EQC may adjust after 2038-01-01, between 35% and 70%)"
+    ],
+    "sources": [
+      "https://www.oregon.gov/deq/recycling/Documents/CAAORProgramPlan2026Amend.pdf",
+      "https://www.oregon.gov/deq/recycling/Documents/CAAPlanAmendApprLtr.pdf",
+      "https://wineinstitute.org/wp-content/uploads/2025/07/402_OR_Eco_Modulation_amp_Bonus_A_Overview_062425.pdf",
+      "https://oregon.public.law/statutes/ors_459A.926"
+    ]
+  },
+  "source_url": "https://www.strategicpackaginginsights.com/insights/oregon-colorado-epr-fee-schedules-line-by-line/",
+  "additional_sources": [
+    "https://www.ecoenclose.com/resources/epr-packaging-requirements/fees-by-state",
+    "https://epratlas.com/oregon/"
+  ],
+  "official_schedule_url": "https://static1.squarespace.com/static/64260ed078c36925b1cf3385/t/693b2c9103be112d168e1b19/1765485713621/OR+2026+Fee+Schedule+Public.pdf",
+  "last_checked": "2026-11-16",
+  "notes": "SECONDARY. The CAA 2026 Oregon Producer Fee Schedule (posted 2025-10-29) could not be opened (its host was blocked). The official schedule prints rates in cents per lb to one decimal; these are dollar conversions rounded to the cent by the secondary sources. Corrugated, film, PP film, laminates, glass, aluminum and steel come from SPI (2026-10-26) and agree with EcoEnclose (2026-10-14) and EPR Atlas $/tonne figures. Kraft Paper, Paperboard and Other Paper Laminates come only from EcoEnclose (paperboard also agrees with EPR Atlas 'Uncoated Paper/Board' $176/t = $0.08/lb). Left out: molded-pulp (no 2026 rate found for 'Other Paper Packaging'; the separate molded-pulp row only appears in 2027) and eps-foam (only the PS foamed CONTAINERS row, $1.38/lb, was found; the cushioning/void-fill row that covers packing peanuts was not found). Rates are invoiced as listed; 2026 had no reserve drawdown and SIM was zero on every row (per SPI)."
+}
