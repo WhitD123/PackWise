@@ -38,6 +38,16 @@ export interface ProductPackagingPart {
   is_candle_container: boolean;
 }
 
+export interface ImpactFact {
+  id: string;
+  metric: string;
+  value: number;
+  unit: string;
+  year: number;
+  publisher: string;
+  source_url: string;
+}
+
 export interface AppData {
   sampleOrders: SampleOrders;
   catalog: Catalog;
@@ -54,6 +64,8 @@ export interface AppData {
    */
   populationPercent: Record<string, number>;
   populationVintage: string;
+  /** Sourced background facts (environment.json impact_baseline), each with its publisher and link. */
+  impactFacts: ImpactFact[];
   /** US parcels shipped in 2025, the scale anchor for the impact projection (environment.json impact_baseline). */
   usParcelVolume: { value_billion: number; year: number; publisher: string; source_url: string };
   /** EU PPWR Article 24: maximum empty space for e-commerce packaging. A benchmark only, not a US law. */
@@ -124,6 +136,15 @@ export function loadData(): AppData {
     euEmptySpace: environmentJson.eu_empty_space,
     usParcelVolume: loadParcelVolume(),
     ...loadPopulation(),
+    impactFacts: (environmentJson.impact_baseline as unknown as ImpactFact[]).map((f) => ({
+      id: f.id,
+      metric: f.metric,
+      value: f.value,
+      unit: f.unit,
+      year: f.year,
+      publisher: f.publisher,
+      source_url: f.source_url,
+    })),
   };
 }
 

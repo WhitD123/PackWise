@@ -13,6 +13,7 @@ export function num(n: number, digits = 0): string {
 }
 
 export function grams(g: number): string {
+  if (g === 0) return "0 g";
   return g >= 1000 ? `${num(g / 1000, 2)} kg` : `${num(g, g < 10 ? 1 : 0)} g`;
 }
 
