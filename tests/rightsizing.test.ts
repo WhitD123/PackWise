@@ -167,13 +167,13 @@ describe("evaluateSetup", () => {
     assert.ok(Math.abs(fill.weight_g - (463 / 1728) * 200) < 1e-9);
   });
 
-  it("uses wrap per square foot of item surface", () => {
-    // Candle surface: 2 x (12.25 + 14 + 14) = 80.5 in2 = 0.559 ft2.
+  it("uses wrap per square foot: two layers over the item surface", () => {
+    // Candle surface: 2 x (12.25 + 14 + 14) = 80.5 in2 = 0.559 ft2 for one layer; the engine uses two.
     const ev = evaluateSetup(oneCandle, setup(POLY_MAILER, { wrap: BUBBLE_WRAP }), INDEX, CONTEXT);
     assert.ok(ev);
     const wrap = ev.usage.find((u) => u.component.id === BUBBLE_WRAP.id);
     assert.ok(wrap);
-    assert.ok(Math.abs(wrap.units - 80.5 / 144) < 1e-9);
+    assert.ok(Math.abs(wrap.units - (2 * 80.5) / 144) < 1e-9);
   });
 
   it("lets an insert replace the padding, so a smaller box fits", () => {

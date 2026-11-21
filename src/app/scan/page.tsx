@@ -8,8 +8,12 @@ import { loadData } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Scan your packaging | Packwise" };
 
-/** The built-in example photo for the demo. Shown only if the file exists. */
-const SAMPLE_PHOTO = "/demo/maya-order.jpg";
+/**
+ * The built-in example photo for the demo: a ceramic mug in a corrugated box with crinkle paper.
+ * It is a sample of how the scan reads packaging, not a photo of Maya's candle order.
+ * Shown only if the file exists.
+ */
+const SAMPLE_PHOTO = "/demo/scan-sample-mug.jpg";
 
 export default function ScanPage() {
   const data = loadData();

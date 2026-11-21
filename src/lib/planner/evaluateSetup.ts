@@ -3,9 +3,10 @@
 //
 // How the parts combine:
 //   wrap   adds WRAP_THICKNESS_IN around every item and counts toward its padding.
-//          Used per square foot of item surface.
+//          Used per square foot: two layers over the item's surface.
 //   insert holds all the items; the insert then goes into the outer as one block.
-//   fill   fills the empty space left in a box. Used per cubic foot of empty space.
+//   fill   fills the empty space left in a box (box inside volume minus the items' bounding boxes).
+//          Used per cubic foot of empty space.
 //   outer  the box or mailer. Boxes keep padding between items and walls by fragility.
 
 import { dimsOf, fittedInsertFits, resolveSetup, setupKey, type CatalogIndex } from "../catalog.ts";
@@ -42,6 +43,11 @@ const FRAGILITY_RANK: Record<Fragility, number> = { low: 0, medium: 1, high: 2 }
 const NO_PAD = { wall: 0, gap: 0 };
 const IN3_PER_FT3 = 1728;
 const IN2_PER_FT2 = 144;
+/**
+ * Layers of wrap around each item: CLAUDE.md section 7 says "about two layers; an estimate".
+ * For the 12 oz candle this gives 0.88 sq ft; the answer key rounds that to 1.0 sq ft.
+ */
+const WRAP_LAYERS = 2;
 
 export interface ExpandedOrder {
   /** One entry per physical item. */
@@ -122,7 +128,10 @@ export function evaluateSetup(
     const packed = packIntoBox(blocks, outerDims, clearance);
     if (!packed) return null;
     placements = packed;
-    voidVolume_in3 = Math.max(0, volume(outerDims) - blocks.reduce((s, d) => s + volume(d), 0));
+    // Empty space the filler has to occupy (CLAUDE.md section 7): inside volume minus the products'
+    // own bounding boxes. The wrap's thickness is not subtracted. With an insert, the insert block is the solid.
+    const solids = parts.insert ? blocks : items;
+    voidVolume_in3 = Math.max(0, volume(outerDims) - solids.reduce((s, d) => s + volume(d), 0));
     // Outside size: the supplier's, if listed (the fitted jar boxes), else inside + the wall thickness.
     const o = parts.outer;
     shippedDims =
@@ -155,7 +164,7 @@ export function evaluateSetup(
   });
   const usage: PartUsage[] = [usageOf(parts.outer, 1)];
   if (parts.insert) usage.push(usageOf(parts.insert, 1));
-  if (parts.wrap) usage.push(usageOf(parts.wrap, items.reduce((s, d) => s + surfaceArea(d), 0) / IN2_PER_FT2));
+  if (parts.wrap) usage.push(usageOf(parts.wrap, (WRAP_LAYERS * items.reduce((s, d) => s + surfaceArea(d), 0)) / IN2_PER_FT2));
   // A fitted box has no loose fill (CLAUDE.md section 7), whatever empty space it has.
   if (parts.fill) usage.push(usageOf(parts.fill, fitted ? 0 : voidVolume_in3 / IN3_PER_FT3));
 

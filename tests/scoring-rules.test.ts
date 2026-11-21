@@ -74,6 +74,31 @@ describe("fitted jar box (answer key: 215.5 g packaging, no plastic)", () => {
   });
 });
 
+describe("oversized box (answer key: 362.8 g packaging, 58.9 g plastic, 0.69 kg CO2e)", () => {
+  const OVERSIZED = { outer_id: "box-12x10x8-single", fill_id: "foam-peanuts-fill", wrap_id: "bubble-wrap-3-16", insert_id: null };
+  const key = readJson("tests/fixtures/demo-answer-key.json").demo_B_right_size_12oz_candle.per_order;
+  const ev = evaluateSetup(products, OVERSIZED, index, ctx, { strictClearance: false })!;
+
+  it("fills 0.5357 cu ft of empty space: box inside volume minus the jar's bounding box", () => {
+    const fill = ev.usage.find((u) => u.component.type === "filler")!;
+    close(fill.units, key["Fill volume (cu ft)"].current, 0.0005, "fill cu ft");
+    close(fill.weight_g, key["Fill weight (g)"].current, 0.1, "fill g");
+  });
+
+  it("uses about 0.88 sq ft of wrap (two layers); the key rounds this to 1.0 sq ft, 1 g heavier", () => {
+    const wrap = ev.usage.find((u) => u.component.type === "wrap")!;
+    close(wrap.units, 0.88, 0.005, "wrap sq ft");
+    close(wrap.weight_g, key["Wrap weight (g)"].current, 1.1, "wrap g");
+  });
+
+  it("totals match the key within the 1 g wrap rounding", () => {
+    close(ev.packagingWeight_g, key["Packaging weight (g)"].current, 1.5, "packaging g");
+    close(ev.plasticWeight_g, key["Plastic weight (g)"].current, 1.5, "plastic g");
+    close(ev.values.waste, key["Unrecycled packaging (g)"].current, 1.5, "landfill g");
+    close(ev.values.carbon, key["CO2e, production + end of life (kg)"].current, 0.005, "carbon");
+  });
+});
+
 describe("fees follow the coverage check", () => {
   it("Maya ($8.2M, over a ton into Oregon) pays an Oregon fee", () => {
     const ev = evaluateSetup(products, FITTED, index, ctx)!;

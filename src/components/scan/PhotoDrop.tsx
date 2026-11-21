@@ -57,10 +57,16 @@ export function PhotoDrop({
           </Button>
           {samplePhotoUrl && (
             <Button variant="secondary" onClick={onSample} disabled={busy}>
-              Use the example photo
+              Try the example photo
             </Button>
           )}
         </div>
+        {samplePhotoUrl && (
+          <p className="max-w-md text-xs text-muted">
+            The example is a ceramic mug in a corrugated box with crinkle paper. It shows how the scan reads packaging and
+            isn&rsquo;t anyone&rsquo;s real order.
+          </p>
+        )}
         <p className="text-xs text-muted">
           JPEG, PNG or WebP. The photo is sent to Google&rsquo;s Gemini to read the parts, and isn&rsquo;t saved by Packwise.
         </p>
