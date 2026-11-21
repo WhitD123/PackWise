@@ -20,6 +20,7 @@ import {
 } from "../src/lib/planner/plannerInput.ts";
 import { minimumProtection } from "../src/lib/scoring/protection.ts";
 import { FACTORS, WEIGHT_PRESETS } from "../src/lib/scoring/weights.ts";
+import { rightSize } from "../src/lib/rightsizing/rightSize.ts";
 import { rankSwaps } from "../src/lib/swaps/rankSwaps.ts";
 import type { Dimensions } from "../src/lib/types.ts";
 import { parseShopifyCsv } from "../src/lib/orders/parseShopifyCsv.ts";
@@ -184,6 +185,32 @@ describe("the Fees score and the coverage card agree", () => {
     const cardTotal = cards.reduce((s, c) => s + (c.fee_usd_per_year ?? 0), 0);
     close(ev.values.fees, cardTotal, 0.01, "label vs cards");
     assert.ok(ev.values.fees > 0);
+  });
+});
+
+describe("right-sizing on Maya's candle (demo story step 4)", () => {
+  const rs = rightSize(products, currentSetup(input)!, data.catalog, ctx)!;
+
+  it("recommends the fitted jar box, not 'already the smallest'", () => {
+    assert.ok(rs);
+    assert.ok(rs.recommended, "a smaller safe box exists");
+    assert.equal(rs.recommended!.setup.outer_id, "box-12oz-straight-jar-shipper");
+    assert.equal(rs.recommended!.setup.fill_id, null);
+    assert.equal(rs.recommended!.setup.wrap_id, null);
+  });
+
+  it("shows less empty space, less packaging and a lower shipping price", () => {
+    assert.ok(rs.voidReduction_in3 > 0);
+    assert.ok(rs.packagingSaved_g > 0);
+    assert.ok(rs.shippingSavingsPerOrder_usd > 0);
+    assert.ok(rs.totalSavingsPerYear_usd > 0);
+    assert.equal(rs.recommended!.values.protection, "high");
+  });
+
+  it("does not offer a fitted box that was made for a different jar", () => {
+    const eightOz = { ...input.lines[0], name: "8 oz candle", length_in: 2.875, width_in: 2.875, height_in: 3.5625 };
+    const r = rightSize(toProducts({ ...input, lines: [eightOz] }), currentSetup(input)!, data.catalog, ctx);
+    if (r?.recommended) assert.notEqual(r.recommended.setup.outer_id, "box-12oz-straight-jar-shipper");
   });
 });
 

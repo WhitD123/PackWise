@@ -1,6 +1,6 @@
 // Right-sizing (brief feature 4): keep the seller's kind of outer (box or mailer)
 // and their insert, wrap and fill; find the smallest outer that still fits
-// safely, and show the savings.
+// safely, and show the savings. A box made to hold the product (a fitted insert) counts too.
 
 import { dimsOf, indexCatalog, type CatalogIndex } from "../catalog.ts";
 import { evaluateSetup, expandOrder } from "../planner/evaluateSetup.ts";
@@ -56,9 +56,16 @@ export function rightSize(
   const cur = now.evaluated;
   const currentOuter = cur.parts.outer;
 
-  const candidates = index
-    .byType(currentOuter.type)
-    .map((outer) => evaluateSetup(products, { ...current, outer_id: outer.id }, index, ctx))
+  // Each outer keeps the seller's insert, wrap and fill. A fitted-insert box (made for one jar) holds the
+  // jar snugly and takes no wrap or loose fill, so it is tried on its own (CLAUDE.md section 7: candidate
+  // boxes fit by the packing rules or have a fitted insert for that product).
+  const fittedBoxes = currentOuter.type === "box" ? index.byType("box").filter((o) => o.has_fitted_insert) : [];
+  const attempts: Setup[] = [
+    ...index.byType(currentOuter.type).map((outer) => ({ ...current, outer_id: outer.id })),
+    ...fittedBoxes.map((outer) => ({ outer_id: outer.id, fill_id: null, wrap_id: null, insert_id: null })),
+  ];
+  const candidates = attempts
+    .map((setup) => evaluateSetup(products, setup, index, ctx))
     .filter((e): e is EvaluatedSetup => e !== null)
     .filter((e) => PROTECTION_RANK[e.values.protection] >= PROTECTION_RANK[cur.values.protection])
     .sort((a, b) => outerSize(a.parts.outer) - outerSize(b.parts.outer) || a.values.cost - b.values.cost);
