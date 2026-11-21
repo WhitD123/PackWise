@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   const model = process.env.GEMINI_MODEL || DEFAULT_SCAN_MODEL;
 
   try {
-    const { output } = await generateText({
+    const result = await generateText({
       model: google(model),
       output: Output.object({ schema: scanResultSchema }),
       abortSignal: AbortSignal.timeout(TIMEOUT_MS),
@@ -75,7 +75,9 @@ export async function POST(request: Request) {
       ],
     });
 
-    const scan = scanResultSchema.parse(output); // belt and braces: validate again
+    // Token counts (no photo, no key) so the real cost per scan can be worked out from provider pricing.
+    console.log(`scan ok: model=${model} input_tokens=${result.usage.inputTokens} output_tokens=${result.usage.outputTokens}`);
+    const scan = scanResultSchema.parse(result.output); // belt and braces: validate again
     return Response.json({ scan, parsed: parseScan(scan.parts, data.catalog), model });
   } catch (error) {
     // Log the reason on the server only. Never send provider details or keys to the browser.
