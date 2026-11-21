@@ -66,14 +66,15 @@ function StateCard({
             {showAfter && (
               <>
                 {" "}
-                <span className="text-muted">→</span>{" "}
+                <span aria-hidden="true" className="text-muted">→</span>
+                <span className="sr-only">to</span>{" "}
                 <span className={after!.fee_usd_per_year! <= before.fee_usd_per_year ? "text-moss" : "text-brick"}>
                   {usdWhole(after!.fee_usd_per_year!)}
                 </span>
               </>
             )}{" "}
             <span className="font-sans text-sm font-normal text-muted">
-              per year{showAfter ? ", today → after the top swap" : ""}
+              per year{showAfter ? ", today, then after the top swap" : ""}
             </span>
           </div>
           {schedule && (

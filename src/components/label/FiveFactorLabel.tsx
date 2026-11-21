@@ -41,16 +41,16 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
       </div>
       <dl>
         {rows.map((r) => (
-          <div key={r.label} className="border-b border-ink/60 py-1.5">
-            <div className="flex items-baseline justify-between gap-2 text-sm">
-              <dt className="font-bold">{r.term ? <Term id={r.term}>{r.label}</Term> : r.label}</dt>
-              <dd className="text-right">{r.value}</dd>
-            </div>
-            {r.detail && <div className="text-[11px] text-muted">{r.detail}</div>}
-            <div className="mt-1 flex items-center gap-2">
-              <ScoreBar score={r.score} />
-              <span className="w-7 text-right text-xs tabular-nums">{num(r.score, 1)}</span>
-            </div>
+          <div key={r.label} className="grid grid-cols-[1fr_auto] items-baseline gap-x-2 border-b border-ink/60 py-1.5 text-sm">
+            <dt className="font-bold">{r.term ? <Term id={r.term}>{r.label}</Term> : r.label}</dt>
+            <dd className="text-right">{r.value}</dd>
+            {r.detail && <dd className="col-span-2 text-[11px] text-muted">{r.detail}</dd>}
+            <dd className="col-span-2 mt-1 flex items-center gap-2">
+              <ScoreBar score={r.score} label={r.label} />
+              <span aria-hidden="true" className="w-7 text-right text-xs tabular-nums">
+                {num(r.score, 1)}
+              </span>
+            </dd>
           </div>
         ))}
       </dl>

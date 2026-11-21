@@ -92,7 +92,7 @@ export function ShippingStep({
       </div>
 
       <div>
-        <h3 className="mb-3 text-lg text-forest">Share of orders shipped to states with packaging fees</h3>
+        <h2 className="mb-3 text-lg text-forest">Share of orders shipped to states with packaging fees</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {data.feeSchedules.map((f) => (
             <Field key={f.state} label={STATE_NAMES[f.state] ?? f.state} hint={`${f.program_year} rates, ${f.status}`}>

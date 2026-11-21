@@ -68,9 +68,9 @@ function PartsTable({ s }: { s: SetupBreakdown }) {
   const ev = s.evaluated;
   return (
     <div className="space-y-2">
-      <h4 className="font-serif text-lg text-forest">
+      <h3 className="font-serif text-lg text-forest">
         {s.label}: {s.description}
-      </h4>
+      </h3>
       <Table
         head={["Part", "Material", "Amount", "Grams", "Recycled", "Landfilled (g)", "CO2e (g)"]}
         align={["l", "l", "r", "r", "r", "r", "r"]}

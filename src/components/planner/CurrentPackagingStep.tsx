@@ -57,7 +57,7 @@ export function CurrentPackagingStep({
       </div>
 
       <div>
-        <h3 className="mb-3 text-lg text-forest">What matters most?</h3>
+        <h2 className="mb-3 text-lg text-forest">What matters most?</h2>
         <div className="flex flex-wrap gap-3">
           {(Object.keys(PRESET_LABELS) as PresetName[]).map((p) => (
             <label
