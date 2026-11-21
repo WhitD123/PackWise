@@ -20,7 +20,8 @@ const schedules: Record<string, FeeSchedule> = {
   "california.json": readJson("data/fees/california.json"),
 };
 
-// Answer key, 12 oz candle: orders to Oregon = 176 / 2100 of 109,200 = 9,152.
+// Answer key basis, 12 oz candle: 9,152 Oregon orders a year (from the old 109,200-order file).
+// The fee math is per order, so these checks still hold; the sample file now has 19,188 Oregon orders.
 const OR_ORDERS = 9152;
 const currentSetup = { corrugated: 303.9, "eps-foam": 50.3013, "pe-film": 8.55 }; // box, fill, wrap (g)
 const fittedBox = { corrugated: 215.5 };

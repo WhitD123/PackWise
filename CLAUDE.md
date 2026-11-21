@@ -113,7 +113,7 @@ Packwise_handoff/
 │   │   ├── epr-logic.json        # sourced answers + app logic recommendations for the coverage check
 │   │   └── environment.json      # EU empty-space rule, benchmarks, impact baseline, projection, problem statement
 │   └── samples/
-│       ├── shopify-orders.csv    # 2,100 fake orders, one week, Maya's store
+│       ├── shopify-orders.csv    # 4,483 fake single-candle orders, one week, Maya's store
 │       └── demo-products.json    # Maya's 8 oz and 12 oz candles, sourced jar and wax weights
 ├── docs/
 │   ├── data-format.md            # THE CONTRACT: every field of every file, plus 4 update sections at the end
@@ -218,7 +218,7 @@ The repo layout planned in `docs/project-brief.md` section 11 still holds, with 
 - `projection`: the "N similar sellers" formula and caveats. `writeup_problem_statement`: a ready, sourced problem paragraph.
 
 ### `data/samples/`
-- `shopify-orders.csv`: columns `Name, Created at, Shipping Province, Lineitem name, Lineitem quantity, Subtotal`. 2,100 orders, week 2026-10-05 to 2026-10-11, about $157,000 (x 52 = about $8.2M/yr). **Annualize by x 52.** Oregon (176 orders, 8.4%) and California (about 15%) are deliberately over-represented so Maya clearly passes Oregon's 1-ton test and California's $1M test. Four products: Amber & Fig 8oz, Cedar & Smoke 8oz, Linen 12oz, Sea Salt 12oz.
+- `shopify-orders.csv`: columns `Name, Created at, Shipping Province, Lineitem name, Lineitem quantity, Subtotal`. 4,483 orders (one candle each), week 2026-10-05 to 2026-10-11, about $157,000 (x 52 = about $8.2M/yr, 233,116 orders/yr). **Annualize by x 52.** **Changed 2026-11-20:** the original file had 2,100 orders with 2 or 3 candles each (79% multi-candle); each was split into one-candle orders (same state, date and total revenue) so the "one product per package" scope is true. Oregon is 8.2% of orders (369/wk, 19,188/yr) and California about 14%. California sales are about $1.15M/yr, inside the 20% "close to the line" band around $1M, so the app hedges on California by design. Four products: Amber & Fig 8oz, Cedar & Smoke 8oz, Linen 12oz, Sea Salt 12oz.
 - `demo-products.json`: 8 oz candle 3.5625 in tall, 2.875 in diameter, 0.877 lb packed; 12 oz candle 3.25 x 3.25 in, 1.021 lb (up to 1.135 lb if filled near the brim). "8 oz" and "12 oz" are **jar capacities**, not wax weight. Jars are Uline with gold metal caps.
 
 ---
@@ -325,7 +325,7 @@ Walkthrough (website only):
 | Unrecycled packaging | 264.9 g | 146.5 g |
 | Empty-space ratio (EU method) | 96% | 72% (still above the 50% benchmark) |
 
-Per year at 109,200 orders: plastic avoided about 14,170 lb, shipping saved about $241,000, packaging cost up about $19,000, CO2e down about 35,200 kg. EPR fee applied only to the 8.4% of orders delivered to Oregon.
+**Stale yearly totals:** the figures below used 109,200 orders/yr (the old file). Per-order values above are still valid. Recompute the yearly numbers at 233,116 orders/yr from the workbook (Swap_Demo orders_per_year and the Oregon share 0.0823) before using them. Old figures, per year at 109,200 orders: plastic avoided about 14,170 lb, shipping saved about $241,000, packaging cost up about $19,000, CO2e down about 35,200 kg. EPR fee applied only to the 8.4% of orders delivered to Oregon.
 
 Honest findings to keep in the pitch:
 - **The paper-mailer swap is a plastic and fee win only.** The padded paper mailer is about 1.3x heavier than the poly bubble mailer, so unrecycled weight and CO2e rise slightly. Claim plastic avoided and lower fees for that swap, nothing more.
@@ -333,7 +333,7 @@ Honest findings to keep in the pitch:
 - The fitted box **doesn't meet** the EU 50% empty-space benchmark (72%), because it's a square box around a round jar. Say "much less empty space", not "meets the EU rule".
 
 ### Three decisions Tyler hasn't answered yet
-1. Orders per year: now 109,200 (whole sample, all states). The earlier version used 9,152 (Oregon-bound only). Confirm.
+1. Orders per year: **resolved 2026-11-20:** 233,116 (whole sample, all states, one candle per order). Oregon-bound is 19,188.
 2. The "1,000 similar sellers" projection now means 1,000 sellers at about $8M each (0.5% of US parcels, $241M shipping). That's aggressive for a small-seller pitch. Recommendation: about 100 sellers, or relabel. (Swap_Demo cell B83 in the workbook.)
 3. How to present the EU empty-space result (above).
 

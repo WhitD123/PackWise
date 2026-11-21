@@ -12,16 +12,16 @@ const HEADER = "Name,Created at,Shipping Province,Lineitem name,Lineitem quantit
 describe("sample file (Maya's store)", () => {
   const p = parseShopifyCsv(sample);
 
-  it("has 2,100 orders over 7 days, scaled by 52", () => {
-    assert.equal(p.orders.length, 2100);
+  it("has 4,483 one-candle orders over 7 days, scaled by 52", () => {
+    assert.equal(p.orders.length, 4483);
     assert.equal(p.periodDays, 7);
     assert.equal(p.annualizationFactor, 52);
-    assert.equal(p.ordersPerYear, 109_200); // matches the answer key
+    assert.equal(p.ordersPerYear, 233_116);
   });
 
-  it("counts Oregon: 176 orders, 9,152 a year (answer key)", () => {
-    assert.equal(p.orderCountByState.OR, 176);
-    assert.equal(p.ordersPerYearByState.OR, 9152);
+  it("counts Oregon: 369 orders, 19,188 a year", () => {
+    assert.equal(p.orderCountByState.OR, 369);
+    assert.equal(p.ordersPerYearByState.OR, 19_188);
   });
 
   it("annual revenue is about $8.2M and California sales about $1.15M", () => {
@@ -35,12 +35,10 @@ describe("sample file (Maya's store)", () => {
     assert.ok(Math.abs(total - 1) < 1e-9);
   });
 
-  it("reports how many orders have more than one item", () => {
-    assert.equal(p.orderSizeCounts[1], 448);
-    assert.equal(p.orderSizeCounts[2], 921);
-    assert.equal(p.orderSizeCounts[3], 731);
-    assert.ok(Math.abs(p.multiItemShare - 1652 / 2100) < 1e-9);
-    assert.ok(p.unitsPerYear > p.ordersPerYear);
+  it("every order is one candle, so units equal orders", () => {
+    assert.deepEqual(p.orderSizeCounts, { 1: 4483 });
+    assert.equal(p.multiItemShare, 0);
+    assert.equal(p.unitsPerYear, p.ordersPerYear);
   });
 
   it("has no warnings", () => {
@@ -74,6 +72,15 @@ describe("real Shopify export quirks", () => {
   it("ignores extra columns and column order", () => {
     const csv = ["Email,Subtotal,Name,Created at,Lineitem quantity,Lineitem name,Shipping Province", "a@b.c,10,#1,2026-10-05,1,A,TX"].join("\n");
     assert.equal(parseShopifyCsv(csv).orders[0].state, "TX");
+  });
+});
+
+describe("multi-item orders", () => {
+  it("counts items and flags the share of orders with more than one", () => {
+    const p = parseShopifyCsv([HEADER, "#1,2026-10-05,OR,A,3,90", "#2,2026-10-05,OR,A,1,30"].join("\n"));
+    assert.equal(p.orders.length, 2);
+    assert.equal(p.multiItemShare, 0.5);
+    assert.ok(Math.abs(p.unitsPerYear - 4 * p.annualizationFactor / 1) < 1e-9);
   });
 });
 
