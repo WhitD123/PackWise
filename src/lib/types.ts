@@ -28,6 +28,9 @@ export interface Material {
   /** End-of-life emissions, kg CO2e per kg (EPA Emission Factors Hub). A null recycling value counts as 0. */
   eol_kg_co2e_per_kg?: { landfill: number; recycling: number | null };
   disposal_text: string;
+  /** One sentence on why the material matters, and its How2Recycle-style label (data/materials.json). */
+  why_it_matters?: string;
+  how2recycle_label?: string;
   source_url: string;
   last_checked: string;
   is_estimate: boolean;
@@ -83,6 +86,16 @@ export interface PackagingComponent {
   is_estimate: boolean;
   last_checked: string;
   notes?: string;
+  /** Low and high weight, grams per unit, when the weight is uncertain (paper fillers). */
+  weight_range_g?: [number, number];
+  /** Share of recycled material, 0 to 1, as the supplier states it. Null = not stated. */
+  recycled_content_rate?: number | null;
+  post_consumer_rate?: number | null;
+  /** The supplier's own recyclability claim and its exact wording, if any. */
+  recyclability_claim?: string | null;
+  claim_wording?: string | null;
+  certifications?: string[];
+  reusable?: boolean | null;
 }
 
 /** Section 5: data/fees/<state>.json */
