@@ -186,6 +186,8 @@ export function evaluateSetup(
 
   // 5. Fees: pounds delivered to each state x its rate, via the coverage module so
   //    scoring and the coverage card agree. An exempt state costs $0.
+  const feeGrams: Record<string, number> = { ...gramsByMaterial };
+  for (const [material, g] of Object.entries(ctx.productPackagingGrams ?? {})) feeGrams[material] = (feeGrams[material] ?? 0) + g;
   let feesPerYear = 0;
   for (const [state, share] of Object.entries(ctx.stateShare)) {
     if (!(share > 0)) continue;
@@ -196,13 +198,13 @@ export function evaluateSetup(
     if (ctx.coverage && rule) {
       const r = checkState(
         rule,
-        { seller: ctx.coverage.seller, ordersPerYearByState: { [state]: orders }, packagingGramsPerOrderByMaterial: gramsByMaterial },
+        { seller: ctx.coverage.seller, ordersPerYearByState: { [state]: orders }, packagingGramsPerOrderByMaterial: feeGrams },
         rule.fee_file ? { [rule.fee_file]: schedule } : {},
       );
       feesPerYear += r.fee_usd_per_year ?? 0;
       r.warnings.forEach((w) => warnings.add(w));
     } else {
-      const fee = estimateFees(schedule, orders, gramsByMaterial);
+      const fee = estimateFees(schedule, orders, feeGrams);
       feesPerYear += fee.fee_usd_per_year;
       fee.warnings.forEach((w) => warnings.add(w));
     }

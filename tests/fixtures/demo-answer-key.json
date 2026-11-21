@@ -179,6 +179,7 @@
         "right_sized_price_usd": 10.68
       }
     ],
+    "per_year_STALE_NOTE": "Stale since 2026-11-20: the block below was calculated at 109,200 orders a year. The sample file now has 233,116 (4,483 orders in one week x 52). Per-order values above are still valid. Do not quote these yearly figures; tests/scoring-rules.test.ts checks yearly totals as per-order values x orders per year.",
     "per_year": {
       "Packaging weight (lb)": {
         "current": 87330.55,

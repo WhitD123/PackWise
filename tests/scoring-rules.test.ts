@@ -6,6 +6,7 @@ import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import { fittedInsertFits, indexCatalog } from "../src/lib/catalog.ts";
+import { coverageForSetup } from "../src/lib/coverage/forSetup.ts";
 import { loadData } from "../src/lib/data.ts";
 import { evaluateSetup, lifecycleFactor } from "../src/lib/planner/evaluateSetup.ts";
 import { planPackaging } from "../src/lib/planner/planPackaging.ts";
@@ -132,6 +133,39 @@ describe("fees follow the coverage check", () => {
     const noSeller = toContext({ ...input, revenueUsd: undefined }, data);
     const ev = evaluateSetup(products, FITTED, index, noSeller)!;
     assert.ok(ev.values.fees > 0);
+  });
+});
+
+describe("the Fees score and the coverage card agree", () => {
+  it("one setup's yearly fee is the same number on the label and on the state cards (jar and lid counted)", () => {
+    const ev = evaluateSetup(products, FITTED, index, ctx)!;
+    const cards = coverageForSetup(ev, input, data, { includeCandleContainer: true });
+    const cardTotal = cards.reduce((s, c) => s + (c.fee_usd_per_year ?? 0), 0);
+    close(ev.values.fees, cardTotal, 0.01, "label vs cards");
+    assert.ok(ev.values.fees > 0);
+  });
+});
+
+describe("yearly swap totals (answer key per-order values x orders per year)", () => {
+  const key = readJson("tests/fixtures/demo-answer-key.json").demo_B_right_size_12oz_candle.per_order;
+  const N = input.ordersPerYear;
+  const G = 453.59237;
+  const diff = (name: string) => key[name].current - key[name].right_sized;
+  const top = rankSwaps(products, currentSetup(input)!, data.catalog, ctx)!.swaps[0];
+  const within = (actual: number, expected: number, pct: number, label: string) =>
+    assert.ok(Math.abs(actual - expected) <= expected * pct, `${label}: expected about ${Math.round(expected)}, got ${Math.round(actual)}`);
+
+  // The key rounds wrap to 1.0 sq ft; the engine uses 0.88 (two layers), about 1 g less plastic per order: under 2% a year.
+  it("plastic avoided, landfill avoided and CO2e avoided match within 2%", () => {
+    within(top.plastic_avoided_lb_per_year, (diff("Plastic weight (g)") * N) / G, 0.02, "plastic lb");
+    within(top.landfill_avoided_lb_per_year, (diff("Unrecycled packaging (g)") * N) / G, 0.02, "landfill lb");
+    within(top.carbon_avoided_kg_per_year, diff("CO2e, production + end of life (kg)") * N, 0.02, "CO2e kg");
+  });
+
+  it("net dollars saved = shipping saved minus the extra packaging cost, within 1%", () => {
+    const shipping = diff("Shipping price paid ($, lower of the two, averaged over destination zones)");
+    const packaging = -diff("Packaging material cost ($)");
+    within(top.usd_saved_per_year, (shipping - packaging) * N, 0.01, "net dollars");
   });
 });
 

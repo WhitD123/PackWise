@@ -101,6 +101,20 @@ export function toProducts(input: PlannerInput): Product[] {
   }));
 }
 
+/**
+ * Grams per order by material of the packaging that comes with the product (jar, lid).
+ * `includeCandleContainer` false = treat the jar and lid as part of the product, not packaging.
+ */
+export function productPackagingGramsPerOrder(input: PlannerInput, includeCandleContainer: boolean): Record<string, number> {
+  const grams: Record<string, number> = {};
+  const itemsPerOrder = input.lines.reduce((s, l) => s + l.items_per_order, 0) || 1;
+  for (const part of input.productPackaging ?? []) {
+    if (part.is_candle_container && !includeCandleContainer) continue;
+    grams[part.material] = (grams[part.material] ?? 0) + part.weight_g * itemsPerOrder;
+  }
+  return grams;
+}
+
 export function toContext(input: PlannerInput, data: AppData): SellerContext {
   return {
     ordersPerYear: input.ordersPerYear,
@@ -112,6 +126,8 @@ export function toContext(input: PlannerInput, data: AppData): SellerContext {
         data.shipping,
       ) ?? undefined,
     feeSchedules: data.feeSchedules,
+    // The coverage card counts the jar and lid by default, so the Fees score does too.
+    productPackagingGrams: productPackagingGramsPerOrder(input, true),
     coverage:
       input.revenueUsd === undefined
         ? undefined

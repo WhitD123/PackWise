@@ -5,7 +5,7 @@
 // packaging (jar, lid). The "treat the jar as product" toggle leaves the jar and lid out.
 
 import type { AppData } from "../data.ts";
-import type { PlannerInput } from "../planner/plannerInput.ts";
+import { productPackagingGramsPerOrder, type PlannerInput } from "../planner/plannerInput.ts";
 import type { EvaluatedSetup } from "../types.ts";
 import { checkCoverage } from "./checkCoverage.ts";
 import type { CoverageResult } from "./types.ts";
@@ -28,11 +28,7 @@ export function gramsPerOrderByMaterial(
     grams[material] = (grams[material] ?? 0) + g;
   };
   for (const u of setup.usage) add(u.component.material, u.weight_g);
-  const itemsPerOrder = input.lines.reduce((s, l) => s + l.items_per_order, 0) || 1;
-  for (const part of input.productPackaging ?? []) {
-    if (part.is_candle_container && !includeCandleContainer) continue;
-    add(part.material, part.weight_g * itemsPerOrder);
-  }
+  for (const [material, g] of Object.entries(productPackagingGramsPerOrder(input, includeCandleContainer))) add(material, g);
   return grams;
 }
 

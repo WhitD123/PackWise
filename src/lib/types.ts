@@ -202,6 +202,11 @@ export interface SellerContext {
    * treated as covered.
    */
   coverage?: { rules: CoverageRuleRecord[]; seller: SellerProfile };
+  /**
+   * Grams per order, by material, of packaging that comes with the product (the candle's jar and lid).
+   * The state fee check counts it for every setup alike, so the Fees score matches the coverage card.
+   */
+  productPackagingGrams?: Record<string, number>;
 }
 
 /** Internal geometry helper (not a data shape). */
