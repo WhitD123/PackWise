@@ -57,8 +57,35 @@ dd,
   color: var(--ink);
 }
 
+/* Motion only answers the reader's own action (a new choice, an opened definition), and only if they allow motion. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+  .pw-fade {
+    animation: pw-fade 260ms ease-out;
+  }
+  .pw-pop {
+    animation: pw-pop 140ms ease-out;
+  }
+}
+@keyframes pw-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pw-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

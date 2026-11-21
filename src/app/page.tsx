@@ -1,128 +1,143 @@
-// Landing page. Every number on it is read from the data files or computed by the engine for the demo
-// seller (a 12 oz candle, one order from the sample file), never typed in.
+// Landing page. It says what Packwise does in plain words, lets a visitor try it straight away (no sign-up),
+// and offers three ways to start. Every number is read from the data files or computed by the engine.
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 
-import { CartonCompare } from "@/components/home/CartonCompare";
-import { FiveFactorLabel } from "@/components/label/FiveFactorLabel";
-import { ButtonLink } from "@/components/ui/Button";
+import { LabelSwitcher } from "@/components/home/LabelSwitcher";
+import { TryIt } from "@/components/home/TryIt";
+import { Term } from "@/components/ui/Term";
 import { loadData } from "@/lib/data";
-import { dims, grams, usd } from "@/lib/format";
+import { num } from "@/lib/format";
 import { buildWorkedExample } from "@/lib/method/workedExample";
 
-const pct = (x: number) => `${Math.round(x * 100)}%`;
 const list = (items: string[]) => new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(items);
+
+const GETS: [string, string][] = [
+  ["A better box", "The smallest box that still protects your product. Sometimes it is one made for your product, with no filler at all."],
+  ["What you save", "Shipping and packaging cost per order and per year, with the USPS price worked out for each box."],
+  ["Less waste", "How much plastic and landfill waste you cut, and which state packaging fees you can avoid."],
+];
 
 const LABEL_ROWS: [string, string][] = [
   ["Landfill waste", "Grams of packaging likely to end up in a landfill, based on how much of each material actually gets recycled."],
   ["Cost", "Packaging plus USPS shipping, per order."],
-  ["Protection", "Whether the setup protects the product, from its fragility, the cushioning and the box strength. Fragile glass needs High."],
-  ["State fees", "What the packaging would cost each year in states that charge producers, or $0 if you are exempt."],
-  ["Carbon", "Greenhouse gases from making the packaging and from disposing of it."],
+  ["Protection", "Whether the setup protects the product. Fragile glass needs High."],
+  ["State fees", "What the packaging would cost each year in states that charge for it, or $0 if you are exempt."],
+  ["Carbon", "Greenhouse gases from making the packaging and from throwing it away."],
 ];
 
-const STEPS: [string, string][] = [
-  ["Describe your product, or photograph a packed order.", "We read the box, the filler and the wrap from the photo. You correct anything we got wrong."],
-  ["See how today's setup scores.", "Cost, protection, waste, state fees and carbon for what you ship now."],
-  ["Compare better setups.", "Each one shows the dollars saved, the plastic avoided and what it costs you."],
-  ["Check the state laws.", "Which states you are covered in and what the fees would be, before and after a swap."],
-  ["See the yearly impact.", "The formula is on the screen, with the sources behind it."],
-];
+function Icon({ name }: { name: "example" | "ruler" | "camera" }) {
+  const common = { fill: "none", stroke: "var(--forest)", strokeWidth: 2, strokeLinejoin: "round" as const };
+  return (
+    <svg aria-hidden="true" viewBox="0 0 32 32" className="h-8 w-8">
+      {name === "example" && (
+        <>
+          <rect x="6" y="3" width="20" height="26" {...common} />
+          <path d="M10 9h12M10 14h12M10 19h8" {...common} />
+          <path d="M6 11h20" {...common} strokeWidth={3.5} />
+        </>
+      )}
+      {name === "ruler" && (
+        <>
+          <rect x="3" y="10" width="26" height="12" {...common} />
+          <path d="M8 10v5M13 10v3M18 10v5M23 10v3" {...common} />
+        </>
+      )}
+      {name === "camera" && (
+        <>
+          <path d="M4 10h6l2-3h8l2 3h6v15H4z" {...common} />
+          <circle cx="16" cy="17" r="5" {...common} />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function StartOption({ href, icon, title, children, action }: { href: string; icon: "example" | "ruler" | "camera"; title: string; children: ReactNode; action: string }) {
+  return (
+    <Link
+      href={href}
+      className="group flex flex-col border-t-4 border-forest bg-surface p-5 outline-offset-4 hover:bg-kraft/30"
+    >
+      <Icon name={icon} />
+      <h3 className="mt-3 text-xl text-forest">{title}</h3>
+      <p className="mt-1 flex-1 text-base text-ink">{children}</p>
+      <span className="mt-4 font-semibold text-forest underline decoration-2 underline-offset-4 group-hover:decoration-moss">{action}</span>
+    </Link>
+  );
+}
 
 export default function Home() {
   const data = loadData();
   const ex = buildWorkedExample(data);
-  const feeStates = data.coverageRules.filter((r) => r.law_status === "fees_active" || r.law_status === "fees_upcoming");
-  const withRates = feeStates.filter((r) => r.fee_file && data.coverageSchedules[r.fee_file]);
   const named = (status: string) => data.coverageRules.filter((r) => r.law_status === status).map((r) => r.name);
   const lawCount = data.coverageRules.filter((r) => r.law_status !== "none").length;
-  const rateRows = ["corrugated", "eps-foam", "pe-film"].map((id) => data.catalog.materials.find((m) => m.id === id)!);
-  const rate = (file: string, material: string) => {
-    const r = data.coverageSchedules[file]?.rates[material];
-    return r ? `${r.rate_usd_per_lb < 0 ? "-" : ""}$${Math.abs(r.rate_usd_per_lb).toFixed(2)}` : "no rate found";
+  const feeFor = (state: string, material: string) => {
+    const rule = data.coverageRules.find((r) => r.state === state);
+    const r = rule?.fee_file ? data.coverageSchedules[rule.fee_file]?.rates[material] : undefined;
+    return r ? `$${r.rate_usd_per_lb.toFixed(2)}` : null;
   };
-
-  const today = ex?.today.evaluated;
-  const swap = ex?.swap.evaluated;
-  const name = ex?.input.lines[0].name;
+  const foamOR = feeFor("OR", "eps-foam");
+  const boxOR = feeFor("OR", "corrugated");
 
   return (
-    <div className="space-y-24">
-      <section className="border-2 border-forest bg-kraft p-6 sm:p-10">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center">
-          <div>
+    <div className="space-y-20">
+      <section className="border-2 border-forest bg-kraft p-5 sm:p-10">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+          <div className="lg:pt-4">
             <h1 className="max-w-xl text-4xl font-bold text-forest sm:text-5xl">
-              {today && name
-                ? `A ${name} ships in a box that is ${pct(today.emptySpaceRatio ?? 0)} empty.`
-                : "Pick packaging before it becomes waste."}
+              Find packaging that costs less to ship and makes less waste.
             </h1>
             <p className="mt-5 max-w-lg text-lg text-ink">
-              {today
-                ? `The air is packed with foam peanuts and bubble wrap, and most of the packaging (${pct(today.values.waste / today.packagingWeight_g)} by weight) is likely to end up in a landfill. `
-                : ""}
-              Packwise scores your packaging on cost, protection, waste, state fees and carbon, then shows a better setup
-              and what it saves.
+              Packwise is a free tool for small online shops. Tell it what you sell and how you pack it. It finds a box
+              that fits better and shows what you would save on shipping, how much plastic you would cut, and whether{" "}
+              <Term id="state-laws">state packaging laws</Term> apply to you.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/planner">Plan your packaging</ButtonLink>
-              <ButtonLink href="/results" variant="secondary">
-                See the demo seller&rsquo;s results
-              </ButtonLink>
-            </div>
+            <ul className="mt-7 max-w-lg space-y-4">
+              {GETS.map(([lead, text]) => (
+                <li key={lead} className="border-l-4 border-forest pl-4">
+                  <span className="block font-serif text-lg font-semibold text-forest">{lead}</span>
+                  <span className="text-ink">{text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-7 max-w-lg text-ink">
+              No account and nothing to install. Every number links to how it is worked out.{" "}
+              <Link href="/how-it-works" className="font-semibold text-forest underline underline-offset-4">
+                How we calculate this
+              </Link>
+            </p>
           </div>
+          <TryIt data={data} />
+        </div>
+      </section>
 
-          {today && swap && (
-            <div className="border border-ink bg-surface p-5">
-              <p className="mb-4 text-sm text-muted">Per order, from the sample order file. Cartons drawn to the same scale.</p>
-              <CartonCompare today={today} swap={swap} />
-              <table className="mt-5 w-full text-sm">
-                <caption className="sr-only">Today&rsquo;s packaging compared with the right-sized setup</caption>
-                <thead>
-                  <tr className="border-b border-ink text-left">
-                    <th className="py-1.5 pr-3 font-semibold">
-                      <span className="sr-only">Measure</span>
-                    </th>
-                    <th className="py-1.5 pr-3 font-semibold">Today</th>
-                    <th className="py-1.5 font-semibold">Right-sized</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["Ships at", dims(today.shippedDims), dims(swap.shippedDims)],
-                    ["Empty space", pct(today.emptySpaceRatio ?? 0), pct(swap.emptySpaceRatio ?? 0)],
-                    ["Plastic", grams(today.plasticWeight_g), grams(swap.plasticWeight_g)],
-                    ["Shipping", usd(today.shippingCost_usd), usd(swap.shippingCost_usd)],
-                  ].map(([label, a, b]) => (
-                    <tr key={label} className="border-b border-line">
-                      <th scope="row" className="py-1.5 pr-3 text-left font-normal text-muted">
-                        {label}
-                      </th>
-                      <td className="py-1.5 pr-3">{a}</td>
-                      <td className="py-1.5 font-semibold text-forest">{b}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <p className="mt-3 text-xs text-muted">
-                Right-sized is a box made for this jar, so it needs no foam or wrap. Shipping is averaged over where the
-                sample orders go.{" "}
-                <Link href="/how-it-works#example" className="underline underline-offset-2">
-                  How we calculate this
-                </Link>
-              </p>
-            </div>
-          )}
+      <section>
+        <h2 className="text-3xl font-bold text-forest">Where are you starting?</h2>
+        <p className="mt-2 max-w-2xl text-muted">Pick whichever is easiest. You can switch at any point, and your answers carry over.</p>
+        <div className="mt-6 grid gap-5 md:grid-cols-3">
+          <StartOption href="/results" icon="example" title="Show me an example" action="Open the example">
+            See the full results for a candle shop that ships {num(data.sampleOrders.ordersPerYear)} orders a year.
+          </StartOption>
+          <StartOption href="/planner" icon="ruler" title="I know what I sell" action="Start the planner">
+            Answer three short steps: your product, where you ship, and how you pack it today.
+          </StartOption>
+          <StartOption href="/scan" icon="camera" title="I have a packed order" action="Scan a photo">
+            Take a photo of an open, packed order. We list the box, filler and wrap, and you fix anything we got wrong.
+          </StartOption>
         </div>
       </section>
 
       {ex && (
         <section className="grid gap-12 lg:grid-cols-[24rem_1fr] lg:items-start">
-          <FiveFactorLabel option={ex.swapScored} />
+          <LabelSwitcher today={ex.todayScored} better={ex.swapScored} />
           <div className="max-w-xl">
-            <h2 className="text-3xl font-bold text-forest">Every setup gets a Packaging Facts label</h2>
+            <h2 className="text-3xl font-bold text-forest">Every option gets a Packaging Facts label</h2>
             <p className="mt-3">
-              Like the label on food: one card, the numbers that matter. This one is for the right-sized box above. Scores
-              compare the options for the same product, so a 10 means the best of the setups we tried.
+              Like the label on food: one card with the numbers that matter. Flip between the candle shop&rsquo;s box today and
+              the better one to see what changes. Scores compare the options for the same product, so a 10 means the best of
+              the setups we tried.
             </p>
             <dl className="mt-6 divide-y divide-line border-y border-line">
               {LABEL_ROWS.map(([term, text]) => (
@@ -136,74 +151,19 @@ export default function Home() {
         </section>
       )}
 
-      <section className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
-        <div>
-          <h2 className="max-w-sm text-3xl font-bold text-forest">From your orders to an answer</h2>
-          <p className="mt-3 max-w-sm text-muted">
-            Start with a sample order file, or upload your own Shopify export. Nothing is saved on a server.
-          </p>
-        </div>
-        <ol className="space-y-6 border-l-2 border-forest pl-6">
-          {STEPS.map(([title, text], i) => (
-            <li key={title} className="relative">
-              <span
-                aria-hidden="true"
-                className="absolute -left-[2.2rem] top-0 flex h-7 w-7 items-center justify-center rounded-full border-2 border-forest bg-paper font-serif text-sm font-bold text-forest"
-              >
-                {i + 1}
-              </span>
-              <h3 className="text-xl font-semibold text-ink">{title}</h3>
-              <p className="mt-1 text-muted">{text}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       <section className="max-w-3xl">
-        <h2 className="text-3xl font-bold text-forest">The cheap plastic option is starting to cost more</h2>
+        <h2 className="text-3xl font-bold text-forest">Why the cheap plastic option is starting to cost more</h2>
         <p className="mt-3">
-          {lawCount} states now have packaging laws. {list(named("fees_active"))} already charge fees by the pound
-          {named("fees_upcoming").length > 0 ? `, and ${list(named("fees_upcoming"))} ${named("fees_upcoming").length > 1 ? "are" : "is"} next` : ""}. The
-          rate depends on the material, and it is highest for plastic film and foam.
+          {lawCount} states now have <Term id="state-laws">packaging laws</Term>. {list(named("fees_active"))} already charge
+          brands a fee for every pound of packaging they ship
+          {named("fees_upcoming").length > 0 ? `, and ${list(named("fees_upcoming"))} are next` : ""}. The fee depends on the
+          material.
+          {foamOR && boxOR && ` In Oregon, foam peanuts cost ${foamOR} a pound and cardboard ${boxOR}.`} Small shops are often
+          exempt, and Packwise checks that for you.
         </p>
-        <div className="mt-5 overflow-x-auto">
-          <table className="w-full min-w-[28rem] text-base">
-            <caption className="mb-2 text-left text-sm text-muted">Fee per pound of packaging</caption>
-            <thead>
-              <tr className="border-b border-ink text-left">
-                <th className="py-2 pr-4 font-semibold">Material</th>
-                {withRates.map((r) => {
-                  const sched = data.coverageSchedules[r.fee_file!];
-                  return (
-                    <th key={r.state} className="py-2 pr-4 text-right font-semibold">
-                      {r.name} {sched.program_year}
-                      {sched.status === "proposed" ? " (proposed)" : ""}
-                    </th>
-                  );
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {rateRows.map((m) => (
-                <tr key={m.id} className="border-b border-line">
-                  <th scope="row" className="py-2 pr-4 text-left font-normal">
-                    {m.name}
-                  </th>
-                  {withRates.map((r) => (
-                    <td key={r.state} className="py-2 pr-4 text-right">
-                      {rate(r.fee_file!, m.id)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-3 text-sm text-muted">
-          Small producers are exempt in every state, so Packwise checks your revenue and shipments against each
-          state&rsquo;s limits.{" "}
-          <Link href="/how-it-works#laws" className="underline underline-offset-2">
-            How the laws work
+        <p className="mt-3">
+          <Link href="/how-it-works#laws" className="font-semibold text-forest underline underline-offset-4">
+            How the state laws work
           </Link>
         </p>
       </section>

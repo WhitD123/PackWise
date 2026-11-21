@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { OptionsCompare } from "@/components/planner/OptionsCompare";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card, SectionHeading } from "@/components/ui/Card";
+import { Term } from "@/components/ui/Term";
 import { Warning } from "@/components/ui/Warning";
 import { describeSetup, indexCatalog, resolveSetup } from "@/lib/catalog";
 import type { AppData } from "@/lib/data";
@@ -30,9 +31,17 @@ import { CartonCompare } from "@/components/home/CartonCompare";
 import { BoxFitCaption } from "./BoxFitDiagram";
 import { CoverageSection } from "./CoverageSection";
 import { ImpactSummary } from "./ImpactSummary";
+import { SectionNav } from "./SectionNav";
 import { SwapCard } from "./SwapCard";
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const RESULT_SECTIONS = [
+  { id: "pick", label: "Our pick" },
+  { id: "right-sizing", label: "Right-sizing" },
+  { id: "swaps", label: "Better swaps" },
+  { id: "laws", label: "State laws" },
+];
 
 export function ResultsView({ data }: { data: AppData }) {
   const euLimit = { ratio: data.euEmptySpace.max_empty_space_ratio, year: data.euEmptySpace.application_date.slice(0, 4) };
@@ -99,7 +108,9 @@ export function ResultsView({ data }: { data: AppData }) {
         )}
       </div>
 
-      <section>
+      <SectionNav sections={RESULT_SECTIONS} />
+
+      <section id="pick" className="scroll-mt-6">
         <SectionHeading
           title={onePick ? "Our pick for this order" : "Three ways to pack it"}
           lead={`${onePick ? "One setup is the cheapest, the lowest waste and the best balance. " : ""}We tested ${plan.fittingCount} combinations of boxes, mailers, wraps, fills and inserts that fit this order and kept the ones that protect it well enough.`}
@@ -117,7 +128,7 @@ export function ResultsView({ data }: { data: AppData }) {
       </section>
 
       {current && (
-        <section>
+        <section id="right-sizing" className="scroll-mt-6">
           <SectionHeading
             title="Right-sizing"
             lead="Carriers charge by box size as well as weight. A smaller container that still fits safely costs less to ship and needs less filler."
@@ -151,7 +162,11 @@ export function ResultsView({ data }: { data: AppData }) {
                 {rs.current.zoneLabel === "assumed" || !rs.current.zoneLabel
                   ? `${ZONE_LABEL_TEXT.assumed}: every order is priced as Zone 5.`
                   : `${ZONE_LABEL_TEXT[rs.current.zoneLabel]}. Shipping is the average over your order mix, with zones measured from ZIP ${shipFromZipOf(input).slice(0, 3)}.`}{" "}
-                {rs.recommended?.shippingMethod === "cubic" && "The right-sized package qualifies for Cubic pricing. "}
+                {rs.recommended?.shippingMethod === "cubic" && (
+                  <>
+                    The right-sized package qualifies for <Term id="cubic-pricing">Cubic pricing</Term>.{" "}
+                  </>
+                )}
                 Prices include USPS temporary holiday rates through Jan 17, 2027.
               </p>
               {rs.recommended && (
@@ -172,7 +187,7 @@ export function ResultsView({ data }: { data: AppData }) {
       )}
 
       {swaps && (
-        <section>
+        <section id="swaps" className="scroll-mt-6">
           <SectionHeading
             title="Better swaps"
             lead={`Compared with what you use today (${currentName}). We only suggest swaps that protect at least as well and cut plastic or landfill waste.`}

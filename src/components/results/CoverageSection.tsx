@@ -152,7 +152,7 @@ export function CoverageSection({
   const dcNoLaw = noLaw.some((r) => r.state === "DC");
 
   return (
-    <section>
+    <section id="laws" className="scroll-mt-6">
       <SectionHeading
         title="State packaging laws"
         lead="Seven states make brands report, and in some states pay for, the packaging they ship. Fees per pound are highest for packaging that is hard to recycle, like plastic film and foam."

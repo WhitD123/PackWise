@@ -1,5 +1,7 @@
 import { ScoreBar } from "@/components/ui/ScoreBar";
+import { Term } from "@/components/ui/Term";
 import { Warning } from "@/components/ui/Warning";
+import type { GlossaryKey } from "@/lib/glossary";
 import { grams, num, usd, usdWhole } from "@/lib/format";
 import { ZONE_SHORT } from "@/lib/shipping/getZone";
 import type { ScoredSetup } from "@/lib/types";
@@ -10,9 +12,10 @@ const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
   const s = option.score;
   // Waste first: the theme is waste (docs/scoring-spec.md).
-  const rows: { label: string; value: string; score: number; detail?: string }[] = [
+  const rows: { label: string; value: string; score: number; detail?: string; term?: GlossaryKey }[] = [
     {
       label: "Landfill waste",
+      term: "landfill-waste",
       value: `${grams(s.waste.landfill_g_per_order)} / order`,
       score: s.waste.score,
       detail: `${grams(option.packagingWeight_g)} packaging, ${grams(s.plastic_g_per_order)} plastic`,
@@ -25,9 +28,9 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
         option.shippingMethod === "cubic" ? ", Cubic price" : ""
       }, ${ZONE_SHORT[option.zoneLabel ?? "assumed"]})`,
     },
-    { label: "Protection", value: capitalize(s.protection.level), score: s.protection.score },
-    { label: "State fees", value: `${usdWhole(s.fees.usd_per_year)} / year`, score: s.fees.score },
-    { label: "Carbon", value: `${num(s.carbon.kg_co2e_per_order * 1000, 0)} g CO2e / order`, score: s.carbon.score },
+    { label: "Protection", value: capitalize(s.protection.level), score: s.protection.score, term: "protection" },
+    { label: "State fees", value: `${usdWhole(s.fees.usd_per_year)} / year`, score: s.fees.score, term: "state-laws" },
+    { label: "Carbon", value: `${num(s.carbon.kg_co2e_per_order * 1000, 0)} g CO2e / order`, score: s.carbon.score, term: "co2e" },
   ];
 
   return (
@@ -40,7 +43,7 @@ export function FiveFactorLabel({ option }: { option: ScoredSetup }) {
         {rows.map((r) => (
           <div key={r.label} className="border-b border-ink/60 py-1.5">
             <div className="flex items-baseline justify-between gap-2 text-sm">
-              <dt className="font-bold">{r.label}</dt>
+              <dt className="font-bold">{r.term ? <Term id={r.term}>{r.label}</Term> : r.label}</dt>
               <dd className="text-right">{r.value}</dd>
             </div>
             {r.detail && <div className="text-[11px] text-muted">{r.detail}</div>}
