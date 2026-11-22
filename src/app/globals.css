@@ -89,3 +89,20 @@ dd,
     transform: none;
   }
 }
+
+/* Printing the customer insert: plain white sheet, the card keeps its border and tag fills, and never splits. */
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+  main {
+    padding: 0;
+  }
+  .disposal-insert {
+    background: #fff !important;
+    break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -194,6 +194,15 @@ export default function Home() {
                 ),
               },
               {
+                title: "Help customers recycle it",
+                body: (
+                  <>
+                    Print a card for the box that tells customers what goes in the recycling bin and what doesn&rsquo;t, part by
+                    part, so the right parts reach the recycling bin and the wrong ones stay out.
+                  </>
+                ),
+              },
+              {
                 title: "Know where you stand on state laws",
                 body: (
                   <>
@@ -244,7 +253,7 @@ export default function Home() {
             },
             {
               title: "You get a clear plan",
-              body: "The best setup for your product with its Packaging Facts label, better swaps with what you save and what changes, your state law check, and the yearly impact.",
+              body: "The best setup for your product with its Packaging Facts label, better swaps with what you save and what changes, a printable recycling card for your customers, your state law check, and the yearly impact.",
             },
           ].map((s, i) => (
             <li key={s.title} className="relative pl-12">

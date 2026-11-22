@@ -89,7 +89,7 @@ Rules: each feature gets its own branch (`tyler/coverage`, `tyler/photo-scan`, `
 | 6 | Photo scan | Vision AI lists the parts and materials in a photo of a packed order; the user corrects them | Technical, Presentation |
 | 7 | Coverage + fees | Per state: covered, exempt, no law, or must apply; with the reason and a yearly fee estimate before and after a swap | Feasibility |
 
-Stretch, in order, only after all seven work end to end: (1) disposal insert generator (printable card telling customers how to dispose of each part), (2) PDF export of the results page, (3) robustness check (Monte Carlo on uncertain inputs: "ranked first in 91% of runs"), (4) spec-sheet PDF reader, (5) status list for the other EPR states, (6) short guides.
+Stretch, in order, only after all seven work end to end: (1) disposal insert generator (printable card telling customers how to dispose of each part; **built 2026-11-22**: "Customer insert" section on the results page plus the print page `/insert`, logic in `src/lib/insert/disposalCard.ts`, every line from `materials.json`), (2) PDF export of the results page, (3) robustness check (Monte Carlo on uncertain inputs: "ranked first in 91% of runs"), (4) spec-sheet PDF reader, (5) status list for the other EPR states, (6) short guides.
 
 Cut, don't build: match score, dashboard, impact scorecard, separate report, 50-state table, user accounts, business model.
 

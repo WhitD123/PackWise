@@ -6,7 +6,7 @@ import { dataLastUpdated, loadData } from "@/lib/data";
 export function Footer() {
   const data = loadData();
   return (
-    <footer className="border-t border-line bg-surface">
+    <footer className="border-t border-line bg-surface print:hidden">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 text-sm sm:px-6 md:grid-cols-3">
         <div>
           <p className="font-serif text-lg font-semibold text-forest">About Packwise</p>

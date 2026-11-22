@@ -16,6 +16,7 @@ import { planPackaging } from "@/lib/planner/planPackaging";
 import {
   currentSetup,
   defaultInput,
+  productPackagingOf,
   shipFromZipOf,
   toContext,
   toProducts,
@@ -29,6 +30,7 @@ import { PRESET_LABELS, WEIGHT_PRESETS } from "@/lib/scoring/weights";
 import { rankSwaps } from "@/lib/swaps/rankSwaps";
 
 import { CartonCompare } from "@/components/home/CartonCompare";
+import { InsertSection, type InsertOption } from "@/components/insert/InsertSection";
 import { BoxFitCaption } from "./BoxFitDiagram";
 import { CoverageSection } from "./CoverageSection";
 import { ImpactSummary } from "./ImpactSummary";
@@ -41,6 +43,7 @@ const RESULT_SECTIONS = [
   { id: "pick", label: "Our pick" },
   { id: "right-sizing", label: "Right-sizing" },
   { id: "swaps", label: "Better swaps" },
+  { id: "insert", label: "Customer insert" },
   { id: "laws", label: "State laws" },
 ];
 
@@ -218,6 +221,26 @@ export function ResultsView({ data }: { data: AppData }) {
           )}
         </section>
       )}
+
+      {(() => {
+        // The card follows the advice: the top swap first, then the picks, and today's packaging last.
+        const options: InsertOption[] = [];
+        if (swaps?.swaps[0]) options.push({ title: "Our top swap", setup: swaps.swaps[0].option });
+        if (plan.picks) {
+          options.push({ title: "Best balance", setup: plan.picks.bestBalance });
+          options.push({ title: "Lowest waste", setup: plan.picks.lowestWaste });
+        }
+        const today = swaps?.current ?? rs?.current;
+        if (today) options.push({ title: "What you use today", setup: today });
+        if (options.length === 0) return null;
+        return (
+          <InsertSection
+            options={options}
+            materials={data.catalog.materials}
+            extras={productPackagingOf(input).map((p) => ({ label: p.label, material: p.material }))}
+          />
+        );
+      })()}
 
       {(() => {
         // Today's setup if we could measure it, otherwise the best-balance pick.

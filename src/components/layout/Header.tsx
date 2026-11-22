@@ -14,7 +14,7 @@ function Mark() {
 
 export function Header() {
   return (
-    <header className="border-b border-line bg-paper">
+    <header className="border-b border-line bg-paper print:hidden">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 font-serif text-2xl font-bold text-forest">
           <Mark />
